@@ -1,0 +1,7 @@
+== Asciidoc
+
+Hier wird Asciidoc Dokumentiert.
+
+.Bild Ebene 2
+
+image::small-image.svg[Small Image, 600, scaledwidth=50%]

@@ -1,0 +1,21 @@
+:title-separator: {sp}|
+:toclevels: 6
+:toc-title: Inhalt
+= MID Tools | Wie man Infrastruktur als Code managed
+Sebastian Sauerbier <s.sauerbier@mid.de>
+
+== Einührung
+
+.Testbild
+
+image::small-image.svg[Small Image, 600, scaledwidth=50%]
+
+[TIP]
+https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[Syntax Reference] and
+https://asciidoctor.org/docs/user-manual/[Full Manual] extend with
+https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Theming Guide]
+
+== Lexikon
+include::A/A.adoc[leveloffset=+2]
+
+include::D/D.adoc[leveloffset=+2]

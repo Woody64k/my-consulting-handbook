@@ -1,0 +1,18 @@
+= Docker
+
+== Security
+=== Isolate containers with a user namespace
+Add docker-user to:
+* /etc/suduid
+* /etc/subgid
+Mit option userns-remap aktivieren.
+
+[TIP]
+https://docs.docker.com/engine/security/apparmor/[Docker Doku zum AppArmor]
+
+=== AppArmor security profiles for Docker
+AppArmor-Profil für einen Container.
+(kann man dem run-aufruf mit "security-opt" übergeben.)
+
+[TIP]
+https://docs.docker.com/engine/security/userns-remap/[Docker Doku zur Isolation]

@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.woody64k.consulting.</groupId>
+	<artifactId>handbook</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<description>AsciiDoc für ein Persönliches Notizbuch.</description>
+
+	<profiles>
+		<profile>
+			<id>doc</id>
+			<properties>
+				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+				<maven.compiler.source>1.7</maven.compiler.source>
+				<maven.compiler.target>1.7</maven.compiler.target>
+				<asciidoctor.maven.plugin.version>1.5.7.1</asciidoctor.maven.plugin.version>
+				<asciidoctorj.pdf.version>1.5.0-alpha.16</asciidoctorj.pdf.version>
+				<asciidoctorj.version>1.5.7</asciidoctorj.version>
+				<jruby.version>9.1.17.0</jruby.version>
+			</properties>
+
+			<build>
+				<defaultGoal>process-resources</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctor-maven-plugin</artifactId>
+						<version>${asciidoctor.maven.plugin.version}</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.asciidoctor</groupId>
+								<artifactId>asciidoctorj-pdf</artifactId>
+								<version>${asciidoctorj.pdf.version}</version>
+							</dependency>
+							<!-- Comment this section to use the default jruby artifact provided by the plugin -->
+							<dependency>
+								<groupId>org.jruby</groupId>
+								<artifactId>jruby-complete</artifactId>
+								<version>${jruby.version}</version>
+							</dependency>
+							<!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+							<dependency>
+								<groupId>org.asciidoctor</groupId>
+								<artifactId>asciidoctorj</artifactId>
+								<version>${asciidoctorj.version}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+							<sourceDirectory>src/main/asciidoc</sourceDirectory>
+							<!-- Attributes common to all output formats -->
+							<attributes>
+								<sourcedir>${project.build.sourceDirectory}</sourcedir>
+							</attributes>
+						</configuration>
+						<executions>
+							<execution>
+								<id>generate-pdf-doc</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>process-asciidoc</goal>
+								</goals>
+								<configuration>
+									<backend>pdf</backend>
+									<sourceHighlighter>coderay</sourceHighlighter>
+									<doctype>book</doctype>
+									<attributes>
+										<pdf-stylesdir>${project.basedir}/src/main/theme</pdf-stylesdir>
+										<imagesdir>${project.basedir}/src/main/resources/images</imagesdir>
+										<pdf-style>custom</pdf-style>
+										<icons>font</icons>
+										<pagenums />
+										<toc />
+										<idprefix />
+										<idseparator>-</idseparator>
+									</attributes>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<version>3.0.0</version>
+						<executions>
+							<execution>
+								<id>attach-artifacts</id>
+								<phase>package</phase>
+								<goals>
+									<goal>attach-artifact</goal>
+								</goals>
+								<configuration>
+									<artifacts>
+										<artifact>
+											<file>${project.build.directory}${file.separator}handbook.pdf</file>
+											<type>pdf</type>
+										</artifact>
+									</artifacts>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
