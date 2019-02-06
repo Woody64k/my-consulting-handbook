@@ -1,0 +1,8 @@
+== Kubernetes
+.Kubernetes Logo
+image::Kubernetes-logo.svg[Ein weißes Steurrad in einem blauen Sieben-Eck,128,128]
+
+=== Definition
+
+=== Weitere Anleitungen
+<<Kubernetes - Handbuch>>

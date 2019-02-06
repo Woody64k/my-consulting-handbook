@@ -1,0 +1,29 @@
+== Masterobjekt
+=== Definition
+
+
+
+[quote, Aristoteles]
+____
+Die klassische Form der Definition ist die unter Angabe eines genus proximum (Gattung) und einer differentia specifica (spezifisches Abgrenzungskriterium).
+____
+
+ Beispiel „Ein Skandinavier ist ein Mensch, der aus Dänemark, Norwegen oder Schweden kommt“
+
+=== Bedeutung
+=== Beschreibung
+=== Beispiel
+=== Beziehungen
+==== <<Synonym>> (Masterobjekt)
+* Das Deskriptor-Objekt, welches den Artikel enthält wird *Fett* gedruckt.
+
+==== <<Antonym>> (Gegenteil)
+==== Eigenschaften (Attribute)
+==== Kausalität (Ursache)
+==== Hierarchische Beziehungen
+==== Hyperonym (Oberbegriff)
+==== Hyponym (Unterbegriff)
+==== Holonym (Beziehung zum Ganzen)
+==== Meronym (Beziehung zum Teil)
+==== Instanzrelation (ist vom Typ)
+==== Instanzrelation (abgeleitete Objekte)
