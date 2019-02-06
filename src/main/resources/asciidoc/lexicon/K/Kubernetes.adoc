@@ -1,0 +1,13 @@
+== Kubernetes
+.Kubernetes Logo
+image::Kubernetes-logo.svg[Ein weißes Steurrad in einem blauen Sieben-Eck,128,128]
+
+<<Synonym>>::<<Kubernetes>> -> <<k8s>>
+
+=== Definition
+
+=== Konzept
+<<Pod (k8s)>>
+
+=== Weitere Anleitungen
+<<Kubernetes - Handbuch>>

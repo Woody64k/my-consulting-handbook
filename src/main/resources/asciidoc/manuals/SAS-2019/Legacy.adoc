@@ -1,0 +1,12 @@
+== Gewachsene Systeme kontinuierlich und agil verbessern – praktische Auswege aus der Legacy-Hölle
+
+* Management <--> Techniker
+* Risiko <--> Konsequenzen
+
+Diese Kommunikationslücke gilt es zu schließen.
+
+=== aim42 Überblick
+<<Synonym>>:AIM -> Architecture Improvement Model
+
+http://aim42.github.io/
+

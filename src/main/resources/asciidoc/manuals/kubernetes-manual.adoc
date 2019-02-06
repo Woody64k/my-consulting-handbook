@@ -1,0 +1,17 @@
+= Kubernetes - Handbuch
+
+== Einführung (Kubernetes)
+
+Dieses Handbuch sammelt verschiedene Anleitungen zum Umgang mit <<Kubernetes>>.
+
+
+== Installation (Kubernetes)
+== Komandozeilenreferenz (Kubernetes)
+== Web UI (Kubernetes)
+=== Web UI Installation (Kubernetes)
+Vorraussetzung ist die erstellung von Zertifikaten mittels <<Zertifikate erstellen (Sicherheit)>>.
+
+[source,shell]
+----
+include::kubernetes/installKubernetesUI.sh[]
+----

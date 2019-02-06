@@ -1,3 +1,0 @@
-= Docker-Compose
-
-Docker Compose baut auf <<Docker>> auf. Es ermöglicht mehrere Container gemeinsam zu verwalten. 

@@ -1,0 +1,28 @@
+== ReasonML
+
+=== Grundlagen
+Eine Datei = ein Modul
+Für rekursive Funktionen muss das schlüsselword reg genutzt werden.
+
+IDE: VS-Code
+Extention -> OCaml and Reason IDE
+
+
+=== Install (ReasonML)
+
+[source,shell]
+----
+npm install --global bs-platform
+----
+
+=== Verwendung (ReasonML)
+
+[source,shell]
+----
+bsb -init my-project -theme react
+----
+
+[source,js]
+----
+include::ReasonML/Hello-World.re[]
+----

@@ -1,0 +1,3 @@
+== Pod (k8s)
+Short Description::container / set of containers + storage resources + unique IP + local options
+Definition::

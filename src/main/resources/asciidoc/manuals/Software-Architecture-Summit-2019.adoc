@@ -1,0 +1,5 @@
+== Software Architecture Summit 2019
+
+include::SAS-2019/Emapthy.adoc[leveloffset=+1]
+include::SAS-2019/Password123.adoc[leveloffset=+1]
+include::SAS-2019/Legacy.adoc[leveloffset=+1]

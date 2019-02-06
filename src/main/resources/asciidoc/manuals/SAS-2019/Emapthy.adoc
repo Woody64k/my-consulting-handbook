@@ -1,0 +1,14 @@
+== Ein Plädoyer für Empathie gegenüber Fachexpert(inn)en
+
+=== Knowledge Crunching
+Sind verschiedenen Methoden zur Gestaltung der Kommunikation zwischen Fachbereich und IT.
+
+* Event Storming
+* Domain Storytelling
+* Example Mapping
+* User Story Mapping
+
+TIP: Fachlich ist der Kern des Systems.
+
+=== Model Exploration Wirlpool
+image::design/Model_Exploration_Whirlpool.png[Challenge Model with Scenarios an develop the Model against them.]

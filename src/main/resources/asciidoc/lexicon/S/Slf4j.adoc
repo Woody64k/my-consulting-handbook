@@ -1,0 +1,16 @@
+== Slf4j
+=== Definition Synonym
+
+[quote, Unbekannt, https://de.wikipedia.org/wiki/Synonym]
+____
+Synonym von stammt vom altgriechischen συνώνυμος synōnymos „von gleichem Namen“ bzw. dem hiervon abgeleiteten Substantiv συνωνυμία synōnymía „Gleichheit des Namens“; bestehend aus σύν syn „zusammen“ und ὄνομα ónoma „Name“ ab. Es sind sprachliche oder lexikalische Ausdrücke und Zeichen, die den gleichen oder einen sehr ähnlichen Bedeutungsumfang haben. Die Beziehung zwischen Synonymen wird <<Synonym>>ie, auch Homosemie genannt und stellt eine wichtige semantische Relation dar, die von anderen Sinnrelationen abzugrenzen ist.
+____
+
+=== Doku
+==== Log Level
+. fatal (the most serious)
+. error
+. warn
+. info
+. debug
+. trace (the least serious)

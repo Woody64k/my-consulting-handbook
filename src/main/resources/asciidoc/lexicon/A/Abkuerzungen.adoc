@@ -1,0 +1,10 @@
+== Abkürzungen
+
+.Abkürzungen
+[cols="2,6",options="header"]
+|====
+| Abkürzung		| Bedeutung
+| <<CNCF>>		| <<Cloud Native Computing Foundation>>
+| <<DDD>>       | <<Domain Driven Design>>
+| <<k8s>>		| <<Kubernetes>>
+|====

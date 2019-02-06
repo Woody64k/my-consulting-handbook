@@ -1,0 +1,3 @@
+== DDD
+
+<<Synonym>>::<<DDD>> -> <<Domain Driven Design>>
