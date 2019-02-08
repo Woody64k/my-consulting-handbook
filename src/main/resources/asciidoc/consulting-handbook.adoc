@@ -1,0 +1,23 @@
+:title-separator: {sp}|
+:toclevels: 6
+:toc-title: Inhalt
+= Consulting Lexikon | Wissen für Consultants
+Sebastian Sauerbier <s.sauerbier@mid.de>
+
+== Einführung
+
+Test: 空手
+
+[TIP]
+====
+Für Autoren empfielt sich folgendes Kapitel zum Einstieg: <<Asciidoc>>
+====
+
+// Lexikon
+include::lexicon/lexicon.adoc[]
+
+// Handbücher
+include::manuals/manuals.adoc[]
+
+== Templates
+include::templates/master.adoc[]
