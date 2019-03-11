@@ -1,8 +1,6 @@
 == Masterobjekt
 === Definition
 
-
-
 [quote, Aristoteles]
 ____
 Die klassische Form der Definition ist die unter Angabe eines genus proximum (Gattung) und einer differentia specifica (spezifisches Abgrenzungskriterium).
@@ -16,7 +14,6 @@ ____
 === Beziehungen
 ==== <<Synonym>> (Gleiches)
 * Das Deskriptor-Objekt, welches den Artikel enthält wird *Fett* gedruckt.
-
 ==== <<Antonym>> (Gegenteil)
 ==== Eigenschaften (Attribute)
 ==== Kausalität (Ursache)
