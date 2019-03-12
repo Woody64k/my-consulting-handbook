@@ -1,0 +1,84 @@
+== Career Advice for Architects
+
+TIP: Reden und zuhören hilft.
+
+=== Required Skills
+
+* Asking Questions
+** Was bauen wir?
+** Warum bauen wir diese Software?
+** Welche Rahmenbedingungen haben wir?
+* Listening to the Answers
+* Good Communication Skills
+** geschriebene Kommunikation
+** sauberen nachvollziehbaren Code schreiben
+** gesprochene Informationen
+** zuhören
+* Anpassungsfähigkeit (be open Minded)
+** Anforderungen und Geschäft ändern sich
+** Technologienen ändern sich.
+** TIP: Nichts ist wirklich "Fertig"
+* Priorisierung (And time management)
+** Welche Features sind am Wichtigsten?
+** Unterstützung der Anforderungspriorisierung.
+** Auch für die eigenen Aufgaben wichtig (Beruflich und Privat)
+* Technology Skills
+** Fähigkeiten Trends zu erkennen und zu bewerten
+* Sei Aufmerksam
+** Wenn man nicht-technische aufgaben zu gut erledigt, wird man vll. in eine nicht technische Rolle gedrängt.
+
+=== Scaling
+
+* Pair Programming
+** Nicht nur mit Entwicklern, sondern auch mit Architekten, Testern und Betrieb
+** ggf. Auch beim Storeis schreiben und Diskutieren mit Business Analysten)
+** z.B. technischen Testern die Unittests zeigen und diskutieren.
+** Hilft Wissen zu teilen entlastet und erhöht das organisatorische und das eigene Wissen
+** Junior Developers ask the best questions (Hinterfragen hilft zu verstehen und ggf. zu ändern)
+* Code Reviews
+** Verhindern Bugs
+** Teilen die Informationen mit den Reviewern
+** Helfen den Code zu verbessern
+** Ziel ist es, dass der Code und das System besser werden.
+* 20% Time (zur freien verfügung)
+** Dient dem lernen und ausprobieren
+** Kann auch für Workshops genutzt werden um Wissen zu teilen
+* Communitiy Support
+** Stackoverflow fragen zu beantworten hilft zu lernen
+** Fragen stellen hilft auch
+** Gib auch Dinge zurück an die Community (Open Source Bibliotheken verbessern)
+* Buck-Klub
+** Bücher teilen
+** Bücher im Team lesen und Wissen teilen
+** Präsentation über die gelesenen Kapitel
+** Verbessert die Kommunikationsfähigkeiten
+* Interne lernsessions
+** z.B. Brownbags - in der Mittagspause
+** Um Dinge auszuprobieren.
+** Herauszufinden wer etwas weiß und wer ggf. am Selben oder Ähnlichem arbeitet
+* Konferenzen (und User Groups)
+** Präsentationen halten
+** Lernen wie andere die Technilogie nutzen
+
+TIP: Der Architekt muss sein Wissen und seine Fähigkeiten mit dem Team teilen.
+
+=== Important thigs
+==== Backup and Redundancy
+
+* Wenn viele etwas wissen, können sie einspringen und stabilisieren das System
+* Spezialisierung ist ein großes Projektrisiko.
+
+==== Erhöhre die Teamleistungs
+
+* Anderen sein Wissen zu teilen erhöht die Performance massiv
+
+==== Bewahrung
+
+* Teilen der Fähigkeit hilft eine starke Organisation zu formen
+
+All dies hilft zu lernen.
+
+.How to scale yourself and our team
+image::sas2019/scale.svg[How to scale yourself and our team, 512, 128]
+
+

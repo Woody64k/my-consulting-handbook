@@ -36,6 +36,7 @@ font:
     - M+ 1p Fallback
 base:
   font_family: Noto Serif
+  font_size: 10.5
   font_color: $colors_primary
   line_height_length: 17
   line_height: $base_line_height_length / $base_font_size
@@ -49,12 +50,24 @@ code:
     size: 6
 vertical_rhythm: $base_line_height_length
 heading:
-  h1_font_size: $base_font_size * 2.5
-  h2_font_size: $base_font_size * 2
-  h3_font_size: $base_font_size * 1.8
-  h4_font_size: $base_font_size * 1.5
-  h5_font_size: $base_font_size * 1.2
-  h6_font_size: $base_font_size * 1.1
+  h1:
+    font_size: $base_font_size * 2.5
+    margin_top: 40
+  h2:
+    font_size: $base_font_size * 2.4
+    margin_top: 30
+  h3:
+    font_size: $base_font_size * 2.2
+    margin_top: 20
+  h4:
+    font_size: $base_font_size * 2.0
+    margin_top: 15
+  h5:
+    font_size: $base_font_size * 1.1
+    margin_top: 2
+  h6:
+    font_size: $base_font_size * 1.0
+    margin_top: 1
   margin_top: $vertical_rhythm
   margin_bottom: $vertical_rhythm / 3
   font_color: $base_font_color
