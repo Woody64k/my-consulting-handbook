@@ -1,3 +1,123 @@
 == Microservices – Idee, Architektur, Umsetzung und Betrieb am Beispiel (Teil 1)
 http://ewolff.com
+mailto::architecturesummit2019@ewolff.com
 
+Microservices sind eine Idee der Module.
+Sie sind separat deploybar.
+Das bedeutet sie sind stärker entkoppelt.
+Sie sollen die Ausfallsicherheit und die Isolation der Software erhöhen.
+
+Schlechte Microservices sind schlimmer als schlechte Monolithen.
+-> Der Modulschnitt muss sehr gut sein.
+
+=== Domain Driven Design
+==== Einführung
+[TIP]
+====
+*Domain-Driven Design* by Eric Evans
+
+*Domain-driven Design Reference* by Eric Evans
+====
+
+Die Domäne soll das Software-Design treiben.
+Vortile:
+
+* Bessere kommunikation des Fachlichen Experten und der IT-Experten
+
+===== Ubiquitous Language
+Ist das Hauptpattern:: Eine Gemeinsame Sprache für Fachliche- und Technische-Experten.
+
+Diese Language gilt nur in einem Bestimmten Kontext (Bounded Context)
+
+==== Bounded Context
+Eine Grenze im Modell wird definiert, in der die Begriffe gelten.
+Es gibt kein universelles Datenmodell.
+
+Domain aufteilung in sehr unterschiedliche unabhängige Module.
+Wird eine neue Anforderung in einem neuen Kontext definiert oder in einen Bestehenden aufgenommen.
+
+Beispiel: Ecommerce
+
+Themen:
+
+* Rechnungen
+* Steuern
+* Tracking
+* Shopping Cart
+* Delivery
+* Payment
+* Lost & Found
+* Accept order
+
+Modulschnitt:
+
+. Modul: Invoicing Process
+.. Rechnungen
+.. Steuern
+.. Payment
+. Modul: Shipping
+.. Tracking
+.. Delivery
+.. Lost & Found
+. Modul: Order Process
+.. Shopping Cart
+.. Accept order
+
+TIP: Wenn lange diskutiert wird, so sollte man die einfachere Lösung wählen. In dem Fall muss man sich auf eine spätere Revision der Entscheidung vorbereiten.
+
+Objekte wie Kunde oder Produkt finden sich in verschiedenen Contexten mit unterschiedlicher Bedeutung.
+
+Beispiel für neue Anforderungen und betroffene Kontexte:
+
+* Lieferservice ändert sich
+** Shipping
+* Steuern ändern sich
+** Invoicing Process
+* Ein neuer Lieferservice wird aufgenommen
+** Shipping
+** Order Process
+* Bonus System
+** New Context
+
+[INFO]
+====
+Verschiedene Aspekte der Domänenobjekte sollten in verschiedenen Kontexten implementiert werden.
+
+Änderungen beschränken sich häufig nur auf einen Bounded Context aber nicht immer.
+
+Manche Änderungen erfordern neue Bounded Contexts.
+====
+
+TIP: bounded context = Modul
+
+==== Strategic Design
+Beschäftigt sich mit Bounded Contexts und deren Beziehungen.
+Verschiedene Patterns.
+
+===== Core Domain
+Die Essenz eines Domänenmodells kann verborgen sein.
+Nicht alle Teile des Systems werden die gleiche Qualität haben.
+
+- -> Prioritäten setzen
+- -> eine kleine Core Domäne definieren
+- -> In diese Core Domain viel Talent investieren.
+
+===== Generic Subdomains
+Quasi Commodity. Kein spezialisiertes Wissen benötigt.
+Nicht zentral für die Funktionalität des Gesamtsystems.
+
+Hier ggf. Standard-Software einsetzen.
+
+===== Beispiel
+<<USP>>: Zuverlässige pünktliche Lieferung
+
+Core Domain: Shipping
+
+Generic subdomains: z.B. Buchahltung aber auch Bezahlung und Bestellprozesse
+
+So Focus on shipping.
+
+=== Microservices
+==== Kommunikation & Integration
+==== Kubernetes: Docker Scheduler
+==== Istion: Service Mesh

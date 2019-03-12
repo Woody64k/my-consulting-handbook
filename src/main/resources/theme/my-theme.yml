@@ -60,8 +60,8 @@ heading:
     font_size: $base_font_size * 2.2
     margin_top: 20
   h4:
-    font_size: $base_font_size * 2.0
-    margin_top: 15
+    font_size: $base_font_size * 1.8
+    margin_top: 12
   h5:
     font_size: $base_font_size * 1.1
     margin_top: 2

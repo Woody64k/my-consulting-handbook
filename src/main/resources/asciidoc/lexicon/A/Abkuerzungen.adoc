@@ -7,4 +7,5 @@
 | <<CNCF>>		| <<Cloud Native Computing Foundation>>
 | <<DDD>>       | <<Domain Driven Design>>
 | <<k8s>>		| <<Kubernetes>>
+| <<USP>> 		| <<Unique Selling Proposition>>
 |====
