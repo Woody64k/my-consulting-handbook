@@ -1,7 +1,9 @@
 == Microservices – Idee, Architektur, Umsetzung und Betrieb am Beispiel (Teil 1)
-http://ewolff.com
-mailto::architecturesummit2019@ewolff.com
-
+....
+Webseite: http://ewolff.com
+mailto:   architecturesummit2019@ewolff.com
+Github:   https://github.com/ewolff/microservice-istio
+....
 Microservices sind eine Idee der Module.
 Sie sind separat deploybar.
 Das bedeutet sie sind stärker entkoppelt.
@@ -38,8 +40,7 @@ Wird eine neue Anforderung in einem neuen Kontext definiert oder in einen Besteh
 
 Beispiel: Ecommerce
 
-Themen:
-
+.Themen:
 * Rechnungen
 * Steuern
 * Tracking
@@ -49,8 +50,7 @@ Themen:
 * Lost & Found
 * Accept order
 
-Modulschnitt:
-
+.Modulschnitt:
 . Modul: Invoicing Process
 .. Rechnungen
 .. Steuern
@@ -117,7 +117,312 @@ Generic subdomains: z.B. Buchahltung aber auch Bezahlung und Bestellprozesse
 
 So Focus on shipping.
 
+
+===== Upstream Downstream
+Upstream:: Gruppen beeinflussen Downstream-Gruppen.
+Downstream:: Hat keine auswirkung auf Upstream.
+
+NOTE: Guppe = Organisationseinheit
+ 
+.Up- & Downstream
+image::sas2019/UpAndDownStream.svg[Shows Up- and Downstream, 512, 128]
+
+====== Published Language
+Gut dokumentierte gemeinsame Sprache.
+z.B. WSDL
+
+.Vorteile:
+* Datenstruktur kann wiederverwendet werden.
+* Neue Clients sind einfacher zu integrieren (?)
+
+.Herausforderungen:
+* Viele Abhängigkeiten -> kann viele Bounded Contexts beeinflussen
+* Kann zum universellen Datenmodell führen (ggf. chaotisch)
+* Wer benötigt welchen teil des Datenmodells. 
+* Das löschen schwierig ist wird es potentiell wachsen.
+
+Beziehungen zwischen den Modulen:
+
+====== Customer/Supplier
+
+* Customer = Downstream
+* Supplier = Upstream
+
+-> Spezifische Language jeweils zwischen zwei Modulen (Schnittstelle)
+
+Vorteile:
+
+* Löschen ist einfacher
+* Änderungen betreffen weniger Parteien
+* 
+
+Nachteile:
+
+* Mehr Schnittstellen
+
+==== Contex Map
+
+Indentifiziere alle Modelle und Definiere die Bounded Contexts.
+Kartiere des Terrain und Transformiere dies später.
+
 === Microservices
+
+Fachliche Anforderung kann bei einem Team eingekippt werden. Dies kann weitere Stories an seine Supplier einkippen.
+
 ==== Kommunikation & Integration
+
+ISA - Independent Systems Architecture -> Principles.
+
+Modules:
+
+* Separation of Concerns
+* Hohe Kohäsion, Lose Kopplung
+
+Zugriff muss durch Schnittstellen erfolgen.
+Microdservices sollten NIEMALS auf die Interna des anderen Services zugreifen.
+Auch nicht auf die Datenbankschemata.
+
+Bei sauberen Bounded-Contexts sollte dieser Zugriff auch nicht notwendig sein.
+
+Micro Architektur:: Betrifft die Interna eines Moduls.
+
+Macro Architektur:: Betrifft alle Module.
+Ziele: technologische Entkopplung, minimale Macro-Architektur, möglichst stabil.
+* -> Muss fragen der Integration beantworten.
+* -> Technologisch sollte und wird man einheitlich bleiben:
+** -> Updates der Module sind unabhängig von anderen Modulen möglich.
+** -> ggf. Whitelist von Technologien
+* -> Schrittweise technologiemigration möglich.
+
+
+TIP: Jeder Technologie-Stack wird irgendwann veraltet sein und muss Schrittweise migriert werden.
+
+
+Wie die Macro-Architektur minimal halten?
+
+Modnolith - Alles hängt zusammen und müssen gemeinsam Migrieren.
+
+Container Entkoppeln die Module auf technologieebene (z.B. VM).
+
+===== Asynchronität
+Ich rede nicht mit anderen Microservices und warte auf eine Antwort,während ich den Request eines anderen Services beantworte.
+
+* Entweder Fire and Forget servicecalls
+* oder Kontinierliches aktualisieren der Daten
+
+.Vorteile:
+* Wir können mit ausgefallenen Systemen umgehen. (Verarbeitung verspätet sich)
+* Zustellung der Nachrichten muss garantiert werden.
+* Passt gut zu Events und Bounded Contexts.
+
+.Nachteile:
+* Wir haben Inkonsistenzen weil Nachrichten verspätet sind.
+* Wir können Inkonsistenzen haben, weil Nachrichten in der falschen Reihenfolge ankommen.
+** ggf. Zugriff auf alte Events nötg um Inkonsistenzen zu reparieren.
+* Benötigt wahrscheinlich Datenreplikation
+* Benötigt Indempotenz - Es muss möglich sein, Nachrichten ohne probleme Mehrfach zu erhalten.
+** Grund, wenn das Modul nach der Verarbeitung der Nachricht aber vor der Quitierung beim Messageing-System abstürzt, wird die Nachricht erneut zugeschickt.
+* Send a Message only to one reciever.
+
+===== Syncronität
+.Vorteile:
+* Einfacher zu verstehen
+* So sind entwickler gewohnt zu denken.
+
+.Nachteile:
+* Keine Ausfallsicherheit
+* Latenzzeiten addieren sich auf
+
+===== Umsetzung
+Messageing-Service -> easy
+REST -> auch möglich
+
+* Daten werden gepollt (Client entscheidet, wann er pollt.)
+* HTTP Caching (Last-Modified Header bzw. If-Modified-Since Header)
+
+-> Kann nicht zwischen mehreren Serviceinstanzen balancen (Doppelte verarbeitung durch mehrere Instanzen)
+
+TIP: Lieber mit Kafka oder ähnlichem Messaging-System. Kann zwischen mehreren Service-Instanzen sharen.
+
+===== Service Discovery
+* Services identifizieren
+* Load Balancing
+* Routing von Externen anfragen auf Microservices
+
+==== Docker Container
+Sind Prozesse mit Separiertem Dateisystem und Separierten Netzwerkstack
+
+* -> Ist sehr leichtgewichtig weil nur ein Prozess.
+* -> Geteiltes Basis-Image. (Speichertechnisch geshared.)
+
+Technologisch sollte und wird man einheitlich bleiben:
+
+* -> Updates der Module sind unabhängig von anderen Modulen möglich.
+* -> ggf. Whitelist von Technologien
+
+.Einfaches Docker Image für Spring-Boot.
+[source,dockerfile]
+----
+include::microservices/order.dockerfile[]
+----
+
 ==== Kubernetes: Docker Scheduler
+Dockercontainer auf einem System ist nicht ausfallsicher.
+
+-> Dockercontainer im Cluster laufen lassen.
+
+===== Pods
+
+Ein Pod sind 1..n Dockercontainer.
+Sie Teilen sich Volumes und Ports.
+Sie Bilden eine Geschlossene Umgebung (MicroService + Hilfsfunktionen)
+
+===== Replica Sets
+
+Werden Deployed (*Deployment*).
+
+Deployed einen Pod im Replica-Set.
+
+===== Services
+
+Services sichern den Zugriff zu einem Pod.
+Sie werden ein DNS-Eintrag.
+Es gibt eine Cluster-Weite IP-Adresse (Load-Balancer) für diesen Service.
+
+Node-Port unter dem der Service erreichbar sein soll.
+
+===== Routing
+
+Ingress-Controller.
+Route traffic from outside.
+
+HANDS_ON::
+[source,bash]
+----
+kubectl apply -f infrastructure.yaml
+minicube dashboard
+./ingress-url.sh
+kubectl apply -f microservices.yaml
+----
+
+===== Alternativen
+
+.NetflixStack
+* Discovery: Eureka
+* Load Balancing: Ribbon
+* Routing: Zuul
+* Funktioniert am besten mit Java
+
+.Consul DNS
+* Discovery: Consul DNS + Registrator
+* Load Balancing: DNS
+* Routing: Apache httpd + Consul Template
+* Funktioniert mit jeder Umgebung.
+
 ==== Istion: Service Mesh
+.We need
+* Configuration
+* Log Analysis
+* Tracing
+* Monitoring
+* Depoyment
+
+Hängt proyies in die Pods zwischen ide Kommunikation
+
+===== Monitoring
+
+.Prometheus
+* Pull basiert
+* Mehrdimensional (Über alles Microservices)
+* http code / handler etc. 
+
+Deployen und Starten von Granfana
+
+[source,bash]
+----
+./monitoring-prometheus.sh
+echo "call localhost:9090"
+----
+
+
+.Grafana
+* Baut auf Istio auf.
+[source,bash]
+----
+./monitoring-grafana.sh
+echo "call localhost:3000"
+----
+
+===== Logging
+.Direct nach Elastic
+* Dazu muss Logback der Module auf den Elasticsearch konfiguriert werden
+
+. Installation von Elasticsearch & Kibana
+[source,bash]
+----
+kubectl -f logging.yaml
+./logging.sh
+----
+
+.Konfiguration für Logback
+[source,XML]
+----
+include::microservices/logback-spring.xml[]
+----
+
+===== Traceing
+.Welcher Service ruft welchen Service auf?
+* Dazu müssen Metadaten analysiert werden.
+* Istio Liefert eine Traceing-Infrastruktur.
+* Die entsprechenden Header müssen geforwarded werden.
+** x-request-id
+** x-ot-span-context
+
+JaegerUI für die Auswertung.
+
+Header werden durch Spring Cloud Sleuth gesetzt:
+.application.yaml
+[source,YAML]
+----
+spring:
+  sleuth:
+    propagation-keys: x-request-id,x-ot-span-context
+----
+
+.pom.xml
+[source,xml]
+----
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+----
+
+===== Resilience
+.Zum Testen
+* delay-injection.yaml
+* fault-injection.yaml
+* failing-order-service.yaml
+
+.Retry Einrichten
+* retry.yaml
+
+.In Kubernetes einrichten
+[source,bash]
+----
+kubectl apply -f fault-injection.yaml
+----
+
+.Aus Kubernetes entfernen
+[source,bash]
+----
+kubectl delete -f fault-injection.yaml
+----
+===== Automatisches Monitoring durch Kubernetes
+Configure Liveness and Readiness Probes
+
+=== ISA
+* Modules
+* Macro / Micro-Architecture
+* Container
+* Integraion & Communications

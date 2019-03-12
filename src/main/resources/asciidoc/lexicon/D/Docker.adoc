@@ -1,4 +1,16 @@
 == Docker
+=== Cheat Sheet
+.Die wichtigsten Befehle
+[cols="1m,3a,4",options="header"]
+|========================
+| Befehl    | Syntax	| Beschreibung
+| history | [source,dockerfile]
+----
+docker history <imageName>
+----
+| Zeigt die zuletzt ausgeführten Befehle beim bau des Immages an.
+|========================
+docker history
 
 === Security
 
