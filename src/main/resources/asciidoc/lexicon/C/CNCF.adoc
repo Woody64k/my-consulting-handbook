@@ -1,2 +1,2 @@
 == CNCF
-<<Synonym>>::<<CNCF>> -> <<Cloud Native Computing Foundation>>
+<<Synonym>>:: <<CNCF>> -> <<Cloud Native Computing Foundation>>

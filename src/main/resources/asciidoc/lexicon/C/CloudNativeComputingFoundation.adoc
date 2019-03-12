@@ -1,5 +1,5 @@
 == Cloud Native Computing Foundation
-<<Synonym>>::<<Cloud Native Computing Foundation>> -> <<CNCF>>
+<<Synonym>>:: <<Cloud Native Computing Foundation>> -> <<CNCF>>
 
 Geschichte::
 Die <<Cloud Native Computing Foundation>> (<<CNCF>>) wurde 2015 zur Förderung von Containern gegründet. Es wurde mit <<Kubernetes>> 1.0, einem Open Source Container Cluster Manager, angekündigt, der von Google als Seed-Technologie zur Gründung beigetragen wurde. Gründungsmitglieder waren Google, CoreOS, Mesosphere, Red Hat, Twitter, Huawei, Intel, Cisco, IBM, Docker, Univa und VMware. Auf dem ersten CloudNativeDay in Toronto im August 2016 wurde ein Programm angekündigt, um qualifizierte Vertreter der von der CNCF kontrollierten Technologien zu etablieren. Der Serienunternehmer Dan Kohn, der auch an der Einführung von CII mitgewirkt hat, ist der derzeitige geschäftsführende Direktor des Projekts. Im August 2018 gab Google bekannt, dass die operative Kontrolle des Projekts an die Community übergeben wurde.
