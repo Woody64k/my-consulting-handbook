@@ -1,0 +1,3 @@
+== ADR
+
+<<Synonym>>:: <<ADR>> -> <<Architecture Decission Notes>>

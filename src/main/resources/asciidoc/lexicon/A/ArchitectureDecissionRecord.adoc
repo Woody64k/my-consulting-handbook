@@ -1,0 +1,3 @@
+== Architecture Decission Record
+
+<<Synonym>>:: <<Architecture Decission Record>> -> <<ADR>>

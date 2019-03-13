@@ -78,7 +78,11 @@ heading:
 link:
   font_color: $colors_link
 outline_list:
+  item_spacing: 1
   indent: $base_font_size * 1.5
+ulist:
+  marker:
+    line_height: 0.5
 table:
   cell:
     padding: 3

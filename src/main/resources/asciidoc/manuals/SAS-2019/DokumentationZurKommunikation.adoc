@@ -1,0 +1,144 @@
+== Dokumentation für bessere Teamkommunikation
+.Wie viel ist das richtige Level von Dokumentation.
+* Dokumentation welche die Kommunikation verbessert.
+* Dokumentation welche die Architektur verbessert
+
+.Personas der Dokumentation:
+* "Neue" Entwickler
+* sich selbst
+* Endanwender
+* Andere Teams
+* Management (Technischer Leiter & Linien Manager)
+* Product Owner
+* Ops (Betrieb)
+* Tester
+* Reviewer (für Feedback
+
+=== Commit Messages
+Längere ergänzungen zum Commit welche das Warum erläutern und weitere Information bieten.
+
+=== The Wall of common Understanding
+Definition:: Eine Wand mit begrenzter Fläche um einen Überblick zu generieren. (Zwingt zum Pragmatismus)
+z.B. auf 8 A4 Blättern. Diese wird aufgestellt. Wenn sie regelmäßig benutzt wird funktioniert sie.
+
+.Was packt man darauf:
+* Eine Legende wenn nötigt.
+
+==== Overview Map
+TIP: Genug Details um auf Erkundung zu gehen. (Enouth detail to start exploring.)
+
+.Überblick
+* Das was muss man neuen Kollegen erklähren.
+* Erklärung von Terminologie welche oft benutzt wird.
+
+Die Dokumentation sollte einigermaßen stabil sein.
+
+
+==== Detailed Map
+.Inhalt:
+* Info-Grafiken & Beschreibung. 
+* Komplizierte oder Komplexe Dinge, die man nicht oft anfasst. (Idealerweise Umsetzung vereinfachen)
+
+NOTE: Buch: "The Back of the Napkin"
+
+=== Widget Kit
+Bausteine auf Karten, mit welchen man Dinge erklähren kann.
+
+
+=== Entscheidungsdokumentation
+NOTE: Michael Nygard: Documenting Architecture Decissions.
+
+.Ohne verständniss für die Entscheidung haben wir nur zwei Optionen:
+* blindes akzeptieren
+* blindes verwerfen
+
+.Was Dokumentieren:
+* Enscheidungen bei denen es viele Diskussionen gab.
+* Entscheidungen die man im Nachgang nur schwer ändern kann.
+* Wie würde jemand diese Entscheidunge treffen, wenn er den Kontext nicht kennt.
+* "Whack-a-mole" decisions (Dinge, die immer wieder Aufgeworfen werden)
+* Problembeschreibung
+
+.Schema
+[source, adoc]
+----
+# 2. Use FancyJS to do stuff in frontend.
+
+Date: 14/05/2017
+
+## Status
+
+## Context
+
+## Decision
+
+## Consequences
+----
+
+=== Empathie in der Dokumentation
+==== Empathie zwischen den Entwicklern
+NOTE: Arbeiten mit Software ohne anleitung und dokumentation ist angsteinflößend und gefährlich. -> https://www.makeareadme.com
+
+* Cheat Sheets
+* Firefighting checklist
+* Troubleshooting
+* Runbooks
+
+TIP: Mittelfristig Automatisieren.
+
+==== Empathie zwischen Fachbereich und Entwickler
+Transparenz schaffen über Konsequenzen der Anforderung und der Umsetzung.
+
+==== Empathie mit anderen Technologien
+Wenn etwas dumm aussieht, atme durch und überlege, warum es schwer war und so geworden ist.
+
+=== Wie halte ich sie "UP TO DATE"
+
+* So wenig wie nötig dokumentieren
+* Mach sie sichtbar (wo ist die Vorlage und wie kann sie aktualisiert werden)
+* Das Pflegen der Dokumentation in Rituale aufnehmen (z.B. DoD - Dokumentation notwendig?)
+* Barrieren für Dokumentation gering halten
+* Schaffe eine Ownership für die Dokumentation (z.B. Doku gemeinsam erstellen)
+
+==== Immutable Documentation
+How-Docs - how-TOs etc:: Müssen aktuell bleiben. Lieber aktuell als vollständig.
+Why-Docs - History:: Muss nicht aktuell gehalten werden.
+
+==== Core Documentation
+Ein Kernteil der Dokumentation muss aktuell gehalten werden, der Rest darf ggf. veralten.
+
+.Principles and Practices
+* Was wir wie umsetzen
+
+.Radar:
+* Von welchen Technologien wollen wir weg
+* Welche technologien würden auch passen (werden aber nicht eingesetzt)
+
+.Fitness Functions
+* Qualitätsziele
+* Architekturziele
+* etc.
+
+.Template, How-TOs, Lessons-Learned
+* Checklisten
+* Installationsanleitungen
+* etc.
+
+=== Kategorien der Dokumentation
+==== Maps
+.Themen
+* Übersicht mit Einstiegspunkten (Kontext Diagramm)
+* Environments and Deployments
+* Security vulnerabilities
+* Screenshot der UI & Overlay (UI-Struktur)
+* Komponenten und Beziehungen
+* Stakeholder-Map
+* Geschäftsfeld (Fachlicher inhalt)
+
+==== How-TOs
+* Readmes
+* Run books
+
+==== History
+* <<ADR>> - <<Architecture Decission Notes>>
+* Commit messages

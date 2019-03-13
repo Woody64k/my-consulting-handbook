@@ -13,3 +13,5 @@ include::SAS-2019/Microservices.adoc[]
 include::SAS-2019/HowWeChangedOurWorld.adoc[]
 
 include::SAS-2019/ServerlessArchitectures.adoc[]
+
+include::SAS-2019/DokumentationZurKommunikation.adoc[]

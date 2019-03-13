@@ -1,0 +1,18 @@
+== Entscheidungsvorlage
+
+<<ADR>> - <<Architecture Decission Record>>
+
+[cols="1h,3a"]
+|===
+|Problembeschreibung:   | <Beschreibung>
+|Randbedingungen (Constraints):   | <Bedingungen von Außen>
+|Annahmen:   | <Unsicherheiten -> getroffene Annahmen>
+|Alternativen:   |[options="header",cols="1,1,1"]
+!===
+! Alternative   ! Pro   ! Kontra   
+//----------------------
+! <Name>: <Beschreibung>   ! <Argumente>   ! <Argumente>
+!===   
+|Entscheidung:   | <Die Alternative für die man sich entschieden hat>
+|Begründung:   | <Was den wesenlichen einfluss auf de Entscheidung hatte>
+|===
