@@ -1,8 +1,15 @@
 = Software Architecture Summit 2019
 
 include::SAS-2019/Emapthy.adoc[]
+
 include::SAS-2019/Password123.adoc[]
+
 include::SAS-2019/Legacy.adoc[]
+
 include::SAS-2019/CareerAdviceForArchitects.adoc[]
+
 include::SAS-2019/Microservices.adoc[]
+
 include::SAS-2019/HowWeChangedOurWorld.adoc[]
+
+include::SAS-2019/ServerlessArchitectures.adoc[]
