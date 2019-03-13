@@ -1,0 +1,265 @@
+== Serverless Architectures: The Missing Manual
+=== Warum Serverless?
+.Server hosten und pflege ist riskant, teuer & aufwändig.
+* Patchlevel
+* Absicherung
+* Firewall
+* Skalierbarkeit (Wachstum und zugriffsspitzen)
+* Traffic (Peaks z.B. zu Weihnachten)
+* Technoligiewechsel und Wissensaufbau
+* Reaktionsgeschwindigkeit
+
+=== Road to less server
+
+. IaaS - Infrastructure as a Service. (Hardware auslagern)
+.. Hardware anmieten und dort hosten.
+.. ggf. mit Docker Umgebungsunterschiede ausgleichen
+.. Balancing:
+*** + EBS - Elastic Beanstalks zum automatischen skalieren
+*** ECS: Elastic Container Service
+*** EKS: Elastic Container Service for Kubernetes
+. PaaS - Platform as a Service
+.. Datenbank und Filesystem durch Cloud-Service ersetzen
+.. Beispiele:
+*** S3 Storags
+*** DynamoDB NoSQL
+*** RDS Database
+.. Automaische Archivierung
+.. Automatische Backups mit Replikation
+. BaaS - Backend as a Service
+.. Problem:
+*** Meine Geschäftslogik
+*** Meine Integration
+.. Fall A: Standard Geschäftslogik
+*** Authentication (Cognito, etc.)
+*** Monitoring -> Gateway
+*** Traceing -> Gateway
+*** Logging -> Gateway
+*** Routing -> Gateway
+.. Fall B: Eigene Logik
+*** Run Code, Not Server
+*** Zahle nur die Hardware wenn du die Software nutzt
+. FaaS - Function as a Service
+.. Zerlegung zu *Funktionen* (AWS Lambdas)
+.. und *Events*
+*** Lose gekoppeltes System vieler kleiner verteilter Module
+*** Sehr komplex
+
+Beispiel:
+
+[source,java]
+----
+ackage com.example.lambda.demo;
+
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+
+public class Hello implements RequestHandler<Object, String> {
+
+    @Override
+    public String handleRequest(Object input, Context context) {
+        context.getLogger().log("Input: " + input);
+
+        // TODO: implement your handler
+        return "Hello from Lambda";
+    }
+
+}
+----
+
+=== Wie funktioniert eines Serverless Function
+Anlage erfolgt via CLI und CI/CD Pipeline.
+
+* Stateless Code (z.B. AWS Lambda)
+* Events from S3, DynamoDB, etc.
+* Antwort:
+** INVOKE
+** RETURN
+* Technologie:
+** Node
+** Python
+** Java
+** C#
+
+.Lambda Function:
+* Handler Function
+* Event Object
+* Context Object
+
+.Management Function:
+* Configuration
+* Monitoring
+* Security (In- and Out-Role)
+* Payment
+
+[NOTE]
+====
+.Serverless Manifest:
+* Funktionen werden deployt und skaliert
+* Keine Machinenen, VMs oder Container
+* Permanenter Speicher ist Irgendwo anders
+* Skaliert je Anfrage
+* Leerlauf wird nicht bezahlt
+** Lang laufende Funktionen Asyncron aufteilen
+* Eingebaute verfügbarkeit und fehlertolleranz
+* BYOC - Bring your Own Code
+====
+
+=== FaaS @work
+WARNING: Komplexität und viele beteiligte Komponenten bieten viel Raum für Fehler.
+
+// TODO: Bild einfügen
+* AWS Step Functions Workflow
+** Fehlerbehandlung
+** Kompensation
+
+=== Architecture
+==== Felder
+.Compute
+* Serverless Functions (werden nach Zeit Bezahlt)
+* Step Functions (Werden je Step bezahlt)
+* API Gaeway
+
+.Daten
+* RDBMS
+* File Storage
+* Cache Management
+
+.Messageing & Sreaming
+* Amazon Kinesis
+* AWS SNS
+
+.User Mgmt & Identity
+* User Management
+* Authentication & Authorization (sign-in/up, openID Connect)
+* Federal Identity (z.B. OpenID)
+
+.Monitoring & Deployment
+* Log-Management
+
+==== Scenarios
+
+. Restfull Microservice
+.. Elemente
+*** API-Gateway
+*** Lambdas
+*** DB-Zugriff  
+. Stream Processing
+.. Elemente
+*** Amazon Kinesis (Streaming/ Events)
+*** Lambdas
+*** DB-Zugriff
+*** Amazon QuickSight (Visualisierung)
+.. Probleme:
+*** Spitzen im Daenaufkommen
+*** Keine Fehlererkennung
+*** Indempotenz ist nicht sichergestellt?
+*** Laufzeitkosten können explodieren
+. Web Applikation
+.. Elemente
+*** API-Gateway
+*** Lambdas
+*** DB-Zugriff 
+*** Amazon Cognito (Login)
+*** S3 - fürs Deployment
+*** CloudFront - für Deployment
+.. Probleme:
+*** Sicherheits Angriffe
+*** Latenz für Verschiedene Regionen/Weltweit (Sync)
+*** SLAs für den Service
+. Mobile Backend
+.. Elemente
+*** API-Gateway
+*** API-Gateway-Cache
+*** Lambdas
+*** ElastiCache
+*** DB-Zugriff 
+*** Amazon Kinesis Data Sreams
+
+==== 5 Säulen der Serverlosen Architektur
+===== Operational Excelence
+* Run the System
+* Monitor the System
+** Was:
+*** Fehler voraussehen
+*** Fehlerquellen schnell identifizieren
+*** Automatische recovery anstoßen
+*** Alarm auslösen
+** Wie:
+*** Standard Metriken erfassen
+*** spezifische Metriken definieren und erfassen (Geschäftsmetrik)
+*** verteilte Traceing (Wie hängen die Systeme zusammen)
+*** Alarme definieren
+** Bestandteile:
+*** Logging
+**** DIY: Write Logfiles
+**** AWS CloudTrain + Amazon CloudWatch
+*** Traceing
+**** DIY: Lambda Funktion analysiert das Log und stellt Komprimierte informationen in DB bereit
+**** CloudWatch + Amazon XRay or Lambda + DB
+*** Metrics
+**** DIY: Lambda Funktion berechnet die Metriken aus dem LOG und stellen sie bereit
+**** CloudWatch + Amazon Kinesis + Lambda Function
+*** Alerting
+**** DIY: Lambda Funktion sendet Alarm mit AWS SN
+**** CloudWatch + AWS SNS -> Alarm
+* Improve the System
+* React to Issues
+
+NOTE: Wenn das umfeld herogener ist, z.B. mehrere Clouds -> klassische Stacks.
+z.B. ELK-Stack, Logz.io
+
+[TIP]
+====
+.Logging ist Teuer, daher sollte vorsichtig geloggt werden.
+* Ausreichend Daten sammeln um das System zu Monitoren
+** Metriken können nach der berechnung im Lambda ins CloudWatch zurückgeschrieben werden
+* Der Benutzer sollte durch das Logging keine Latenz spühren
+** Asynchron Loggen
+** Synchron später auswerten
+* Korrelation von Logs und Metriken (Correlation-ID)
+* Loglevel über Variablen einstallen (ggf. vom Gateway propagieren - analog Korrelation)
+====
+
+* separate code from configuration
+* Infrastructure as Code
+
+===== Security
+* Identity and Access Management
+** Authorize and Authenticate
+* Detective Control
+** Wie findet man Fehlersituationen und Schwachstellen (z.B. OWASP Dependency Check)
+* Infrastructure Protection
+** VPC - Virtual Private Cloud
+* Data Protection
+** Use TLS
+** encrypt Data
+
+===== Reliability
+* Timeouts - Bei Aufruf-Kaskaden
+** Asynchron wo möglich.
+* Fallbacks
+* Limits anpassen - Concurency
+** Warnung bei 80% Last
+* Zugriffsraten regulieren (Trotteling -> 409)
+
+===== Performance Efficiency
+* Optimale Kapazitäten finden
+** Daten sammeln und auswerten
+** Performacetest in Realer Umgebung
+* Maßnahmen:
+** Caching
+** DB: Query-Optimierung & Indizes
+
+===== Coast Optimization
+* Optimierung der Hardware um ein gutes Verhältnis aus Reaktionszeit der Anwendung und Kosten zu bekommen.
+* Nur sinnvolles Loggen, dafür LogLevel nutzen. (ggf. Logs Archivieren oder Löschen)
+* Welche direkte Integration sind möglich ohne eine Lambda zu nutzen
+* Funktionen auf Laufzeit optimieren.
+** Langlaufende Orchestrierung -> STEP Funktion mit mehreren Lambdas
+
+=== Summary
+* Kann sehr kompliziert werden
+* Strukturierung der Cloud-Komponenten?
+* Performance - Kosten - Tradeoff und Optimierung
+* Auslagern von nur Peak-Kritischen Funktionen

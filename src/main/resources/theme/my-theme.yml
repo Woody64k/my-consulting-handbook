@@ -115,6 +115,6 @@ footer:
 image:
   align: center
 caption:
-  align: center
+  align: left
   font_color: $base_font_color
   font_size: 10
