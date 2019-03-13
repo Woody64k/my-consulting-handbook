@@ -126,6 +126,11 @@ Ein Kernteil der Dokumentation muss aktuell gehalten werden, der Rest darf ggf. 
 
 === Kategorien der Dokumentation
 ==== Maps
+[NOTE]
+====
+* Überblick und Verständnis für die Komplexität
+* Gemeinsames Verständnis.
+====
 .Themen
 * Übersicht mit Einstiegspunkten (Kontext Diagramm)
 * Environments and Deployments
@@ -136,9 +141,20 @@ Ein Kernteil der Dokumentation muss aktuell gehalten werden, der Rest darf ggf. 
 * Geschäftsfeld (Fachlicher inhalt)
 
 ==== How-TOs
+[NOTE]
+====
+* Angst und Stress reduzieren
+====
 * Readmes
 * Run books
 
 ==== History
+[NOTE]
+====
+* Hilf in zukunft bessere Entscheidungen zu treffen.
+* Verhindere fehler zu wiederholen.
+====
+
+.Themen
 * <<ADR>> - <<Architecture Decission Notes>>
 * Commit messages

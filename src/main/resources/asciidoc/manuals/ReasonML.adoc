@@ -26,3 +26,9 @@ bsb -init my-project -theme react
 ----
 include::ReasonML/Hello-World.re[]
 ----
+
+
+[source,js]
+----
+include::ReasonML/folding.re[]
+----
