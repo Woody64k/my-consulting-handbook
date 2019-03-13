@@ -1,4 +1,4 @@
-== Microservices – Idee, Architektur, Umsetzung und Betrieb am Beispiel (Teil 1)
+== Microservices – Idee, Architektur, Umsetzung und Betrieb am Beispiel
 ....
 Webseite: http://ewolff.com
 mailto:   architecturesummit2019@ewolff.com

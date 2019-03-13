@@ -1,0 +1,52 @@
+== How we changed our world
+
+TIP: Buch: Langlebige Softwarearchitekturen (Carola Lilienthal)
+
+.Randgruppen des Developers:
+* Quality Manager / Tester -> Bugs
+* Project Manager -> Deadlines
+* Operations
+
+=== First Problem: Test
+Being a Software-Tester is a lot linke being a detective.
+
+.Bug-Report ist idR. zu spät.
+* -> *JUnit* wurde entwickelt um diesem Problem entgegen zu wirken.
+
+.Testpyramide:
+// TODO: Einfügen
+* UI-Test
+* Integration-Test
+* Unit-Test
+
+=== Second Problem: Project Manager
+Das *Agile Manifest* half dieses Problem zu lösen und Transparenz zu schaffen.
+
+.Architektur muss sich entwickeln
+image::sas2019/moving_target.png[Architecture as moving target, 512, 128]
+
+=== Thrid Problem: Kommunikation mit dem Benutzer
+War früher nicht möglich / unterbunden.
+Dafür hat Scrum den *Product Owne*r eingeführt.
+Dies führt zu einem Sinnvoll priorisierten Backlog.
+
+=== Fourth Problem: Im Code steckt nur das Wissen der Entwickler
+Hier soll *Domain-Driven Design* abhilfe schaffen.
+Um die Fachsprache zu verstehen und in den Code einfließen zu lassen.
+
+CAUTION: Der Anwender soll das Problem schildern und nie die Lösung vorgeben.
+
+* Event Storming
+* Domain Story Telling
+
+=== Fifth Problem: Operations
+*DevOps* soll durch stärkere Zusammenarbeit dieses Problem lösen.
+
+=== Aussichten & Prognose
+* Usability & UI-Design/ Interaktionsdesign
+** Hospitation
+** Mockups
+** UI-Konzept
+
+
+TIP: Prozessverbesserung führt immer zuerst zu einer Verschlechterung um dann zur Verbesserung zu führen.
