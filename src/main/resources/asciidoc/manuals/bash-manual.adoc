@@ -1,0 +1,20 @@
+= Bash
+
+== Keytool
+
+Generiert ein SSL-Zertifikat. Da dies nicht Verifiziert ist, wird es vom Browser als ungültig angezeigt, zum Entwickeln
+ist dies aber vorerst ausreichend.
+
+*/MyPath* → Pfad an dem das Zertifikat abgelegt wird. (z.B. */C/project/Java/MyKey*)
+
+*MyAlias* → Beliebiger Alias
+[source,bash]
+----
+keytool -genkey -alias MyAlias -keyalg RSA -keystore /MyPath
+----
+Im Anschluss fragt das Keytool nach den <<X.500>>-Daten des <<Verzeichnisdienstes>>.
+z.B.:
+[source,bash]
+----
+keytool -genkey -alias tomcat -keyalg RSA -keystore /c/Software/apache-tomcat-9/conf/.keystore
+----

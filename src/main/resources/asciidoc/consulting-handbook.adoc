@@ -1,7 +1,9 @@
 :title-separator: {sp}|
-:toclevels: 6
+
 :toc-title: Inhalt
-:source-highlighter: coderay
+:toclevels: 6
+:icons: font
+:source-highlighter:highlight
 
 = Consulting Lexikon | Wissen für Consultants
 Sebastian Sauerbier <s.sauerbier@mid.de>

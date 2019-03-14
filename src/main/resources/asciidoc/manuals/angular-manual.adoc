@@ -1,0 +1,625 @@
+= Angular - Handbuch
+== Installation (ng)
+=== Vorraussetzung (ng)
+* Installation von node.js
+
+==== Benötigte Dateien (ng)
+package.json:: identifies npm package dependencies for the project.
+tsconfig.json:: defines how the TypeScript compiler generates JavaScript from the project's files.
+
+* Add:
+** `+"strictNullChecks": true,+` (Ab Angular 4.2)
+** … TODO.
+
+typings.json:: provides additional definition files for libraries that the TypeScript compiler doesn't natively recognize.
+systemjs.config.js:: provides information to a module loader about where to find application modules, and registers all the necessary packages. It also contains other packages that will be needed by later documentation examples.
+
+==== Angular CLI (ng)
+[source,shell]
+----
+include::angular/installWithNpm.sh[lines=1]
+----
+==== Typescript (ng)
+[source,shell]
+----
+include::angular/installWithNpm.sh[lines=2..4]
+----
+
+== Typescript (ng)
+=== Variablen, Attribute & Parameter (ng)
+Variablen immer mit `let`. Konstanten mit `const`.
+Man kann `readonly` für Properties nutzen (final) auch `static` für übergreifende Werte ist möglich.
+Die Access-Modifier lauten `private`, `protected` und `public` (Standard). Versieht man die Parameter des
+Konstruktors mit Access-Modifiern, so werden daraus Attribute der Klasse.
+Attribute und Parameter können mit `?` als Optional gekennzeichnet sein. Parameter mit Standard-Wert sind
+immer Optional. (z.B.: `i = 2` bei Parameterübergabe)
+[source,js]
+----
+interface Person{
+	readonly a: number;
+	static b: number;
+	c?: number;
+	countFrom(i = 1);
+}
+----
+
+=== String Escaping (ng)
+Möglich mit `“`, `‘` oder ```.
+Letzters erlaubt Zeilenumbrüche und Variablenplatzhalter im String. (Template-String)
+[source,js]
+----
+include::angular/student.ts[]
+----
+=== Typen (ng)
+==== Typ-Zuweisung (ng)
+Die Basisklasse ist immer `Object`, wenn nicht anders abgegeben. Objekte ohne Typisierung sind auch Object.
+[source,js]
+----
+let obj = {
+	a: 1,
+	b: "Beh"
+};
+----
+Auch kann ein Objekt einen von mehreren Typen haben optionale Parameter sind immer zusätzlich vom Typ
+Undefined. Auch ist es möglich eine Variable so zu defineren.
+[source,js]
+----
+let campusPerson: Student | Professor;
+----
+==== Generics (ng)
+Typescript unterstützt Genreics analog zu Java.
+[source,js]
+----
+interface Array<T extends Something>{
+	reverse(): T[];
+}
+----
+
+==== Typ-Prüfung (ng)
+Typprüfungen erfolgen in Typescript nach dem Duck-Typing-Prinzip. Das bedeutet, wenn ein Objekt die Nötigen
+Attribute bzw. Methoden hat, wird es als Instanz akzeptiert.
+====
+Wenn es läuft wie ne Ente.
+
+Wenn es Quackt wie ne Ente.
+
+Dann ist es wohl ne Ente.
+====
+Typprüfungen können mit `instanceof` durchgeführt werden. Verlagert man die Typprüfung in eine Methode
+ist zu beachten, dass die Typprüfung über den Rückgabewert mittels `is` kommuniziert werden muss.
+[source,js]
+----
+private checkIsString(obj: any): obj is string{
+	retrun obj instanceof string;
+}
+----
+
+=== Module & Imports (ng)
+Ein Modul entspricht im Typescript einer Datei. Dieses Modul bietet über `export` seine Schnittstellenklassen
+& Objekte nach außen an.
+Importiert werden Module über relative oder absolute Pfade. Dabei greifen absolute Pfade auf konfigurierte
+Ordner zu (Standardmäßig: node_modules) während relative Pfade von der Verwendungsdatei aus Suchen.
+[source,js]
+----
+import {name} from "./lib"; // Läd aus ./lib
+import {name} from "global"; // Läd aus node_modules/global
+----
+Namespaceprobleme und massenimports können über eine Kapselung beim Import gelöst werden. Mit as
+wird der Präfix zum zugriff auf die Objekte und Klassen des Typescript-Moduls (Datei) definiert.
+[source,js]
+----
+import * as bla from „./bla“;
+...
+let obj: bla.A;
+----
+
+=== Klassen (ng)
+Klassen können über `extends` von anderen Klassen erben und über `implements` Interfaces implementieren.
+Auch abstrakte Klassen und Methoden sind mittels `abstract` möglich. Zugriff auf die Oberklasse erfolgt
+mittels `super`, was insbesondere bei Konstruktoren wichtig ist.
+[source,js]
+----
+@Injectable()
+export class TrainingServiceMock extends TrainingServiceInterface {
+	private subject: ReplaySubject<Training[]> = new ReplaySubject<Training[]>(1);
+	constructor() {
+		super();
+		this.subject.next(trainingListMock);
+	}
+}
+----
+
+=== Lambda (ng)
+Mit dem Arrow-Operator lassen sich Funktionen erstellen z.B. für die Übergabe von Callbacks.
+[source,js]
+----
+(a, b) => {…}
+----
+Vorteil, hier greift ein this-capturing, welches dafür sorgt, das `this` innerhalb der Methode dasselbe Objekt ist
+wie das außerhalb der Methode. (Bei JavaScript wäre es die Methode selbst)
+
+=== Kontrollstrukturen (ng)
+==== For … of Schleife (ng)
+Mit Hilfe einer `For .. of` Schleife kann über Listen iteriert werden.
+[source,js]
+----
+for (let i of list) {
+	console.log(list[i]);
+}
+----
+
+=== Decorators (ng)
+Dekoratoren sind aktive Annotationen, das bedeuten, dass sie den Funktionsumfang erweitern können. Dazu
+generieren sie zur Instanziierungs-Zeit zusätzlichen Code. Sie können an Klassen, Attributen, Methoden und
+Parametern verwendet werden.
+
+== Module (ng)
+Ein Modul ist in Angular eine leere Klasse, welche über die Annotation <<@NgModule>> und deren
+Parametern die Abhängigkeiten definiert.
+
+== Components (ng)
+Eine Komponente ist in Angular ein UI-Baustein.
+
+.Sie Besteht aus drei Bestandteilen:
+* HTML mit Template-Syntax
+* CSS-Stylesheet
+* TypeScript Klasse mit Decorator
+
+Für die Annotation siehe: <<@Component>>
+
+== Dependency Injection (ng)
+► <<Dependency Injection>>
+
+=== Injectables
+Jede Klasse die einmal injiziert werden soll sollte die Annotation @Injectable() haben. Technisch ist dies nicht
+notwendig, jedoch kann Angular nur in Klassen injizieren die es mittels Annotationen identifiziert.
+[source,js]
+----
+@Injectable()
+export class PersonenService {
+	…
+}
+----
+
+=== Konstruktor Injection
+Angular führt Dependency Injection auf basis der Konstruktoren durch. Das bedeutet, dass alle zu injizierenden
+Abhängigkeiten als Konstruktor-Parameter definiert werden.
+[source,js]
+----
+...
+@Component( {
+...
+})
+export class ProfilComponent {
+	constructor( private personenService: PersonenService, private router: Router) {}
+}
+----
+Das Schlüsselwort `private` sagt Typescript, dass es sich bei diesen Parametern gleichzeitig um Attribute der
+Klasse handelt. Man könnte es also auch wie folgt schreiben.
+
+[source,js]
+----
+export class ProfilComponent {
+	private personenService: PersonenService;
+	private router: Router;
+
+	constructor( personenService: PersonenService, router: Router) {
+		this.personenService = personenService;
+		this.router = router;
+	}
+}
+----
+
+=== Steuerung der Injection
+Über das Attribut `providers` an der Annotation der Klasse. Dabei sind <<@NgModule>> oder
+<<@Component>> gültig. Wichtig dabei ist, dass die injizierte Klasse nur innerhalb des Bereiches gültig
+ist, in dem sie deklariert wurde.
+[source,js]
+----
+...
+@Component( {
+...
+providers: [PersonenService],
+...
+})
+export class ProfilComponent {
+...
+}
+----
+Dabei ist `providers: [PersonenService]` eine Kurzschreibweise für folgende key-value-Zuordnung.
+[source,js]
+----
+providers: [{ provide: PersonenService, useClass: PersonenService }]
+----
+Wenn dabei nur ein Alias angelegt werden soll, kann statt `useClass` auch das Attribut `useExisting` verwendet
+werden. Dabei muss die Klasse aber bereits dem Injektor bekannt sein.
+
+=== Value Injection
+In diesem Fall injizieren wir keine Klasse, sondern wir injizieren direkt ein erzeugtes Objekt.
+[source,js]
+----
+let personFaker = {
+	personen: [new Person("Mustermann","Max"), new Person("Musterfrau","Maxime")],
+	getPerson: (id:number) => {return this.personen[id%this.personen.size];}
+};
+----
+Um dies zu tun, geben wir `useValue` an.
+[source,js]
+----
+providers: [{ provide: PersonenService, useValue: personFaker }]
+----
+
+=== Factory Injection
+Eine Factory ist bei Angular ein Funktionszeiger, dessen Funktion eine entsprechende Instanz zurückliefert. Es
+ist eine Best Practice, dass an dieser Stelle bereits das Provider-Objekt initialisiert wird, welches wir später verwenden.
+So muss auch nur das Provider-Objekt exportiert werden.
+[source,js]
+----
+let personenServiceFactory = ( http: Http ): PersonenService => {
+	this.service = new PersonenService( http );
+	this.service.addBaseFake( new Person( "Max", "Muster" ) );
+	return this.service;
+};
+export let personenServiceProvider =
+{ provide: PersonenService,
+	useFactory: personenServiceFactory,
+	deps: [Http]
+};
+----
+Da somit ein Provider-Objekt bereits vorliegt, müssen wir dies nicht mehr anlegen, sondern können es direkt
+eintragen.
+[source,js]
+----
+providers: [personenServiceProvider]
+----
+
+=== Opaque Token
+Der Wert hinter `provide` ist ein Token welches am Injektionsort vorgefunden wird und in der Map des Injektors
+als Schlüssel dient. Da Interfaces nur in Typescript existieren und im compilierten JavaScript fehlen, können
+sie nicht als Token verwendet werden. Es Ist jedoch möglich beliebige Objekte als Token heranzuziehen. Typischerweise
+nutzt man dafür spezielle `OpaqueToken`-Objekte.
+[source,js]
+----
+import { OpaqueToken } from '@angular/core';
+
+export let APP_CONFIG = new OpaqueToken('app.config');
+----
+Die provides zuweisungt erfolgt dann analog den Klassen.
+[source,js]
+----
+providers: [{ provide: APP_CONFIG, useValue: HERO_DI_CONFIG }]
+----
+Diese können jedoch nicht wie normale Klassen injiziert werden. Hierzu ist in diesem speziellen Fall erneut
+eine Annotation nötig. `@Inject(MY_TOKEN)` gibt in dem Fall an, das eine Instanz zum Schlüssel
+MY_TOKEN injiziert werden soll.
+[source,js]
+----
+constructor(@Inject(APP_CONFIG) config: AppConfig) {
+	this.title = config.title;
+}
+----
+
+=== Optionale Abhängigkeiten
+Es ist möglich, eine Abhängigkeit mit hilfer der Annotation @Optional() als Optional zu kennzeichnen.
+Damit ist es möglich Ein Objekt zu erzeugen, ohne dass eine entsprechende Abhängigkeit definiert ist. Das
+Objekt muss dann allerdings mit nullwerten für dieses Objekt rechnen und umgehen können.
+[source,js]
+----
+import { Optional } from '@angular/core';
+...
+constructor(@Optional() private logger: Logger) {
+	if (this.logger) {
+		this.logger.log(some_message);
+	}
+}
+----
+
+=== Inject the Injector
+In seltenen Anwendungsfällen, kann es sinnvoll sein, den Injector selbst zu injizieren. Dies sollte jedoch nur
+sehr selten genutzt werden, da es das Verstehen und das Testen erschwert.
+[source,js]
+----
+constructor(private injector: Injector) {
+	this.injector.get(PersonenService);
+}
+----
+Der getter des Injectors wirft eine Exception, wenn keine Instanz zum injizieren gefunden wurde. Für diesen
+Fall hat er einen Optionalen zweiten Parameter, welcher den Standard-Rückgabewert angibt, falls nichts gefunden
+wurde. z.B.:
+[source,js]
+----
+this.injector.get(PersonenService,new PersonenService());
+----
+
+== Templates
+=== Binding
+.Angular Binding
+image::angular/AngularBindings.svg[Shows Angular Binding Methods]
+
+==== Value Binding
+Einer Interpolation wird im Template durch `{{variablenname}}` definiert. An dieser Stelle wird der Wert
+der Variable Eingesetzt und zur Laufzeit aktuell gehalten (change Listener auf Variable).
+
+==== Property Binding (Interpolation)
+Bindet den Wert einer Variable an ein HTML-Property. Dies wird auch zur Übergabe von Daten an Subkomponenten
+genutzt.
+[source,html]
+----
+<release-card [release]="artist.firstRelease"></release-card>
+----
+
+==== Event Binding
+Komponenten können Events nach außen werfen;
+
+===== Eigene Events werfen.
+Werfende Komponente
+
+[options="header",cols="1a,1a"]
+|===
+| Template   | Typescript Snippet   
+//-------------
+| [source,html]
+----
+<li class="card" *ngFor="let training of trainings"
+(click)="selectTraining($event, training)">
+----   
+|
+[source,js]
+----
+@Output()
+public trainingSelected = new EventEmitter<Training>();
+
+selectTraining(event: Event, training: Training) {
+	this.trainingSelected.emit(training);
+}
+----    
+|===
+
+Fangende Komponente
+Wichtig, das gebundene event muss dem Namen der Output-Variable entsprechen.
+
+[options="header",cols="1a,1a"]
+|===
+| Template   | Typescript Snippet   
+//-------------
+| [source,html]
+----
+<app-training-list [trainings]="trainings"
+(trainingSelected)="onTrainingSelected($event)"></app-training-list>
+----
+|
+[source,js]
+----
+onTrainingSelected(event: Training) {
+	console.log(event);
+}
+----   
+|===
+
+==== Two-Way-Binding
+
+// TODO
+
+=== Direktiven
+.Es gibt zwei Arten von Direktiven:
+* strukturelle Direktiven (`*ngIf`, `*ngFor` und `*ngSwitch`) welche die Struktur des DOM-Baumes verändern.
+* Attribut-Direktiven die das Verhalten und aussehen der Elemente verändern
+
+==== ngClass
+Dient zum Bearbeiten der styleClasses an einem Element. Dabei wird der Direktive ein key:value JSON-Objekt
+zugewiesen.
+
+[options="header",cols="1a,1a"]
+|===
+| Template   | Typescript Snippet   
+//-------------
+| [source,html]
+----
+<div [ngClass]="setFormClass()">
+<form>
+...
+</form>
+----
+|
+[source,js]
+----
+setFormClass() {
+	let styleClasses = {
+		formValid: !this.isInvalid,		// true
+		formRequired: this.isRequired,	// true
+		formInvalid: this.isInvalid,	// false
+	};
+	return styleClasses;
+}
+----  
+|===
+
+==== ngStyle
+Funktioniert analog zu `ngClass`, nur mit dem Unterschied, dass die Schlüssel keine styleClass sondern direkt
+eine css-Eigenschaft adressieren. z.B.
+[options="header",cols="1a,1a"]
+|===
+| Template   | Typescript Snippet   
+//-------------
+| [source,html]
+----
+<div [ngStyle]="setItalic()">
+	Schräger Text.
+</div>
+----
+|
+[source,js]
+----
+setItalic() {
+	return {
+		'font-style': this.italic?'italic':'normal', // italic
+	};
+}
+----  
+|===
+
+==== *ngIf
+NgIf sorgt dafür, dass Teilbäume nur unter bestimmten Umständen im DOM enthalten sind. Ist der zugewiesene Wert null oder false so wird der Baum aus dem DOM entfernt.
+z.b.:
+[source,html]
+----
+<div *ngIf="person">Hello, {{person .firstName}}</div>
+----
+[source,html]
+----
+<personListe *ngIf="isActive"></personListe>
+----
+IMPORTANT: `*ngIf` entfernt die Elemente komplett aus dem Baum. Sie sind damit nicht mehr vorhanden und werden zerstört.
+
+==== NgSwitch & *ngSwitchCase
+Unterscheidet anhand des Wertes der `[ngSwitch]` Direktive welcher Unterbaum erzeugt und eingebunden wird.
+Im Beispiel ist moduloTwoOfNumer mit dem Rest der Division durch zwei belegt oder mit dem String
+Error. Andere fälle sollten eigentlich nicht auftreten.
+[source,html]
+----
+<span [ngSwitch]="moduloTwoOfNumer">
+	<span *ngSwitchCase="1">Ungerade</span>
+	<span *ngSwitchCase="0">Gerade</span>
+	<span *ngSwitchCase="'Error'">Fehler</span>
+	<span *ngSwitchDefault>Irgendwas ging schief.</span>
+</span>
+----
+==== *ngFor
+[source,html]
+----
+<ul *ngFor="let training of trainings">
+	<li>{{training.name}}</li>
+</ul>
+----
+
+
+
+== Pipes
+Pipes werden wie Komponenten als Deklaration eingebunden.
+[source,js]
+----
+@NgModule({
+...
+declarations: [
+TakePlaceSoonPipe
+],
+...
+})
+----
+Ansonsten ist eine Pipe eine Klasse mit der `@Pipe` Annotation welche das interface `PipeTransform` implementiert.
+[source,js]
+----
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+	name: 'takePlaceSoon'
+})
+export class TakePlaceSoonPipe implements PipeTransform {
+	private static readonly dayInMillSeconds: number = 1000 * 60 * 60 * 24;
+	
+	transform(value: Date, soon: number = 7): boolean {
+		const diff: number = (value.getTime() - new Date().getTime());
+		const soonInMilliSeconds = soon * TakePlaceSoonPipe.dayInMillSeconds;
+		return (diff > 0 && diff < soonInMilliSeconds);
+	}
+}
+----
+
+
+
+== Routing
+==== Multi Routing
+Mehrere Router in einer Page sind möglich. (Lässt sich aber über Submodule vermeiden.)
+[source,html]
+----
+<div>
+	<router-outlet #r1></router-outlet>
+	<router-outlet #r2></router-outlet>
+</div>
+----
+
+== Formulare
+.Sind hierarchisch gegliedert:
+* Formular
+* Gruppe
+* Feld
+
+
+== Testen
+describe → it → expect
+[source,js]
+----
+describe('Service: Trainings', () => {
+	beforeEach(() => { // @Before
+		TestBed.configureTestingModule({ // konfiguriert den Injector (Testumgebung)
+			providers: [TrainingService]
+		});
+	});
+
+	// Stellt einen Test dar
+	it('should ...', inject([TrainingService], (service: TrainingService) => {
+		expect(service).toBeTruthy();
+	}));
+});
+----
+
+
+== Libraries
+Libraries bestehen i.d.R. aus zu importierendem JavaScript und den sogennanten declaration-Files (*.d.ts). Dort
+werden über sogenannte Ambients Variablen und Klassen versprochen, die zur Laufzeit zur Verfügung stehen
+werden. Dazu bedienen sie sich des Schlüsselwortes `declare`. Diese werden vom Compiler automatisch
+erstellt, wenn die Option declaration auf true gesetzt wird.
+Die declaration in `tsconfig.json` auf true setzen.
+[source,js]
+----
+...
+"declaration": true,
+...
+----
+
+== Services
+=== Reactive (Observable)
+→ http://rxmarbles.com
+
+==== Subscribe
+.Hat 3 Callbacks:
+* Für Rückgabewerte.
+* Für Fehlerbehandlung
+* Für das compleate() des Observables
+[source,js]
+----
+o1.subscribe(
+	val => console.log('habe wert:' + val),
+	() => console.log('error'),
+	() => console.log('done'));
+----
+
+==== map
+Transformiert die Rückgabewerte.
+
+==== flatMap
+Kann zusätzliche Observables mit auflösen.
+
+==== switchMap
+Wie flatMap, aber bricht ab, wenn weitere, neue Observable-Werte ankommen.
+
+
+=== Caching
+.Um dinge zu cachen sollten folgende Möglichkeiten genutzt werden.
+* Das Observable speichern, um den request nur einmal abzusetzen.
+* publishReplay(1) um sichzustellen, dass der letzte Response gecacht und auch an neue Subscriber ausgeliefert
+wird.
+** Die methode wandelt das Observable in ein ReplaySubject um.
+* refCount() sorgt dafür, dass das Objekt nicht aufgeräumt wird, solange es Subscriber gibt.
+[source,js]
+----
+getFriends(){
+	if(!this._friends){
+		this._friends = this._http.get('./components/rxjs-caching/friends.json')
+			.map((res:Response) => res.json().friends)
+			.publishReplay(1)
+			.refCount();
+	}
+	return this._friends;
+}
+----

@@ -1,4 +1,14 @@
 == Handbücher
+:TOC:
+<<<
+include::angular-manual.adoc[leveloffset=+2]
+<<<
+include::bash-manual.adoc[leveloffset=+2]
+<<<
+include::git-manual.adoc[leveloffset=+2]
+<<<
 include::kubernetes-manual.adoc[leveloffset=+2]
+<<<
 include::ReasonML.adoc[leveloffset=+2]
+<<<
 include::security-manual.adoc[leveloffset=+2]

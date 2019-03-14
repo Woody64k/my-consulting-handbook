@@ -4,7 +4,7 @@
 [cols="2,6",options="header"]
 |====
 | Abkürzung		| Bedeutung
-| <<ADR>>		| <<Architecture Decission Notes>>
+| <<ADR>>		| <<Architecture Decission Record>>
 | <<CNCF>>		| <<Cloud Native Computing Foundation>>
 | <<DDD>>       | <<Domain Driven Design>>
 | <<k8s>>		| <<Kubernetes>>
