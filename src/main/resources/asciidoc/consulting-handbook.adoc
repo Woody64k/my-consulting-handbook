@@ -14,7 +14,7 @@ Für Autoren empfielt sich folgendes Kapitel zum Einstieg: <<Asciidoc>>
 ====
 
 // Lexikon
-include::lexicon/lexicon.adoc[]
+include::lexikon/lexikon.adoc[]
 
 // Handbücher
 include::manuals/manuals.adoc[]
