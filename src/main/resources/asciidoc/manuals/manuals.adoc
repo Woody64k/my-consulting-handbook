@@ -1,5 +1,4 @@
 == Handbücher
-:TOC:
 <<<
 include::angular-manual.adoc[leveloffset=+2]
 <<<

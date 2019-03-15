@@ -1,3 +1,111 @@
 = GIT - Handbuch
 
+TIP: Auf folgender Seite kann man GIT gut üben: http://learngitbranching.js.org
+
+
 == Installation und Einrichtung (GIT)
+=== Git Installieren
+Git Software von der Webseite laden und installieren.
+
+* Use Git from Git Bash only
+* Checkout as-is, commit as-is
+* Use MinTTY
+* Enable file System Caching
+
+=== Keygen durch die Nutzer
+Die nutzer müssen an ihrem Rechner die SSH-Keys generieren. Diese liegen im Benutzerverzeichniss
+unter .ssh/ ab. Die public (.pub) Datei sollte dann auf den Linux-Server kopiert werden. Im idealfall mit dem
+Usernamen versehen.
+[source,shell]
+----
+ssh-keygen
+----
+Aufgrund der Standard-Parameter ist dieser befehlt äquivalent zu folgendem.
+[source,shell]
+----
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+----
+
+
+=== Plain Git Server Aufsetzen
+WARNING: Nur notwendig, wenn kein Hoster verwendet wird.
+
+==== GIT User auf Server einrichten
+Als Admin via Putty mit dem Server verbinden.
+[source,shell]
+----
+sudo adduser git
+----
+==== SSH-Einrichten
+.SSH am Server vorbereiten
+[source,shell]
+----
+su git
+cd
+mkdir .ssh
+----
+==== Public Keys der User am Server einspielen
+Am Server kann der Admin bzw. der git-User die Public Keys der Nutzer in die authorized_keys-Datei eintra -
+gen.
+[source,shell]
+----
+cat /tmp/id_rsa.Woody64k.pub >> ~/.ssh/authorized_keys
+----
+
+==== Neues GIT-Repository auf Linux Server einrichten
+.Vorraussetzung
+* <<GIT User auf Server einrichten>>
+* <<Verbindung zum Server aufbauen>
+
+.Parameter:
+* *MeinProjekt* = Name des Projektes
+
+Als git-user anmelden (Wichtig damit der GIT-User auch der Besitzer der Dateien und Ordner ist).
+[source,shell]
+----
+su git
+# Projektverzeichnis erstellen und dort ein Repository anlegen.
+mkdir MeinProjekt
+cd MeinProjekt
+git init --bare
+exit
+----
+
+=== Repository initial hochladen
+.Parameter:
+* MeinProjekt = Name des Projektes
+* woody64k.de = Adresse des Servers
+
+.Aktuelles Repositor hochladen.
+[source,shell]
+----
+git remote add origin ssh://git@woody64k.de/home/git/MeinProjekt
+git push origin master:master
+git branch --set-upstream-to=origin/master master
+----
+
+== Konzepte
+=== Branches
+[NOTE]
+====
+Branches werden per Konvention mit Präfixes versehen.
+
+* *release* -> z.B. release/R2019-03
+* *feature* -> z.B. feature/Story-0815
+* *hotfix*  -> z.B. hotfix/Bug-7380
+====
+
+==== Lokalen Branch anlegen
+[source,shell]
+----
+git checkout -b feature/Ticket-17
+----
+
+
+==== Remote Branch anlegen
+[source,shell]
+----
+git checkout -b Woody64ks_Branch
+git push -u origin Woody64ks_Branch
+----
+

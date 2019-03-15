@@ -1,6 +1,6 @@
 = Bash
-
-== Keytool
+== Kryptografie
+=== Keytool
 
 Generiert ein SSL-Zertifikat. Da dies nicht Verifiziert ist, wird es vom Browser als ungültig angezeigt, zum Entwickeln
 ist dies aber vorerst ausreichend.
@@ -8,13 +8,98 @@ ist dies aber vorerst ausreichend.
 */MyPath* → Pfad an dem das Zertifikat abgelegt wird. (z.B. */C/project/Java/MyKey*)
 
 *MyAlias* → Beliebiger Alias
-[source,bash]
+[source,shell]
 ----
 keytool -genkey -alias MyAlias -keyalg RSA -keystore /MyPath
 ----
 Im Anschluss fragt das Keytool nach den <<X.500>>-Daten des <<Verzeichnisdienstes>>.
 z.B.:
-[source,bash]
+[source,shell]
 ----
 keytool -genkey -alias tomcat -keyalg RSA -keystore /c/Software/apache-tomcat-9/conf/.keystore
 ----
+
+=== md5sum
+Berechnet zur angegebenen Datei den md5-Hashwert.
+Typischer Anwendungsfall ist die Evaluation heruntergeladener Software.
+[source,shell]
+----
+md5sum MyFile
+----
+Beispiel:
+[source,shell]
+----
+md5sum tomcat_installer.exe
+----
+
+=== sha1sum
+Berechnet zur angegebenen Datei den SHA1-Hashwert.
+Typischer Anwendungsfall ist die Evaluation heruntergeladener Software.
+[source,shell]
+----
+sha1sum MyFile
+----
+Beispiel:
+[source,shell]
+----
+sha1sum tomcat_installer.exe
+----
+
+== Administration
+=== Prozess auf Port ermitteln
+==== Windows
+Portbelegung ermitteln.
+[source,cmd]
+----
+netstat -ano | findstr /r 0.0:8080
+----
+Prozess identifizieren (z.B. Prozess 4244)
+[source,cmd]
+----
+tasklist /FI "PID eq 4244" /FO TABLE
+----
+Prozess killen.
+[source,cmd]
+----
+taskkill /pid 4244 /f
+----
+
+==== Linux
+Zuerst sehen wir nach welche Ports geöffnet sind:[source,shell]
+[source,shell]
+----
+nmap localhost
+----
+Dann lassen wir uns die Prozessid des Prozesses ausgeben, der den Port offen hält:
+[source,shell]
+----
+fuser -n tcp 21
+----
+Das Ergebnis sieht dann so aus:
+[source,shell]
+----
+21/tcp: 2761
+----
+Jetzt schauen wir nach, wer oder was den Prozess mit der ID 2761 ausführt:
+[source,shell]
+----
+ps auxw | grep 2761
+----
+
+==== Folder analysieren
+[source,shell]
+----
+#!/bin/bash
+# Iteriert alle Ordner innerhalb des Verzeichnisses
+for folder in */ ; do
+	# Analysiert deren Subordner auf bestimmte Strukturen
+	indexDir="${folder}/Exports"
+	if [[ -d "$indexDir" && ! -L "$indexDir" ]]; then
+		echo "$folder"
+	fi
+done
+----
+
+
+
+

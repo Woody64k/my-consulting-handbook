@@ -1,0 +1,164 @@
+export GIT_BIN="/mingw64/bin/git";
+
+function all(){
+	ls -R -d */.git | sed 's,\/.git,,' | xargs -I{} git -C {} $@;
+}
+
+alias gs="$GIT_BIN status" 
+alias log="$GIT_BIN log --graph --pretty=format:':%C(yellow)%h%Creset%x09%ad%x09%Cgreen%aN%Creset%x09%s%x09%Cred%d%x09%Creset' --date=format:'%Y-%m-%d %H:%M:%S'"
+alias gmt="$GIT_BIN mergetool"
+alias amend="$GIT_BIN commit --amend --no-edit" 
+alias aa="$GIT_BIN add --all"
+alias commit="$GIT_BIN commit" 
+alias checkout="$GIT_BIN checkout" 
+alias branches="$GIT_BIN branch -v" 
+alias rbranches="$GIT_BIN branch -r"
+
+alias merge="$GIT_BIN merge" 
+alias rebase="$GIT_BIN rebase" 
+
+alias tag="$GIT_BIN tag" 
+
+alias cleanup="$GIT_BIN add --all && $GIT_BIN reset --hard" 
+
+alias stash="$GIT_BIN stash"
+alias pop="$GIT_BIN stash pop"
+
+alias pull="$GIT_BIN pull --all -p --tags"
+alias push="$GIT_BIN push" 
+alias fetch="$GIT_BIN fetch -p" 
+
+alias gdiff="$GIT_BIN difftool"
+
+######################################################################## Kleine Git-Helper. ##########################################################
+function newbranch(){
+	if [ ${#} = 0 ]; then
+		echo "Erzeugt einen neuen Branch und schiebt ihn nach origin"
+		echo "  Param 1: Name des neuen Branches z.B. feature/BUG-0815"
+	else
+		$GIT_BIN checkout -b $1 &&
+		$GIT_BIN push -u origin $1
+	fi
+}
+
+######################################################################## Pull-Requests fuer Bitbucket. ##########################################################
+function pullRequest(){
+	if [ ${#} = 0 ]; then
+		echo "Erstellt einen Pullrequest im Bitbucket."
+		echo "  Param 1: Name des Repositoties z.B. common-ng"
+		echo "  Param 2: Quellbranch z.B. feature/STORY-7783"
+		echo "  Param 3: Zielbranch z.B. release/R2019-03"
+		echo "  Param 4: Benutzername fuer Bitbucket z.B. Woody64k"
+		echo "  Param 5: ff: Nutzer fuer Review z.B. Woody64k MaxMuster"
+	else
+		repo=$1
+		source=$2
+		target=$3
+		username=$4
+		USERS=${@:6}
+
+		# Frage nach dem Passwort
+		read -s -p "Passwort fuer Bitbucket: " BITBUCKET_PASSWD
+		
+		jsonString="{\"title\": \"${source}\",\"description\": \"Automatisierter PR fuer ${source}\", \"state\": \"OPEN\", \"open\": true, \"closed\": false, \"fromRef\": { \"id\": \"refs/heads/${source}\" }, \"toRef\": { \"id\": \"refs/heads/${target}\"}, \"reviewers\": ["
+		first=0
+		for USER in "${USERS[@]}"
+		do
+			if [ $first == 0 ]; then
+				jsonString="${jsonString}{ \"user\": { \"name\": \"${USER}\" } }"
+				first=1
+			else
+				jsonString="${jsonString},{ \"user\": { \"name\": \"${USER}\" } }"
+			fi
+		done
+		jsonString="${jsonString} ]}"
+		# Only For Testing: echo "${jsonString}"
+		curl -s -u "${username}":"${BITBUCKET_PASSWD}" -X POST -H 'Content-Type: application/json' -d "${jsonString}" http://bitbucket.webapp.sdst.sbaintern.de/rest/api/1.0/projects/APOLLO/repos/$repo/pull-requests
+	fi
+}
+
+######################################################################## Helper. ##########################################################
+# Erzeugt einen Neuen Branch und pushed diesen auf das Remote Repository.
+# _ im Namen wegen Autocompleate.
+# Param 1: Branchname
+function _newbranchWithClean(){
+	branchname=$1
+	git push -d origin $branchname
+	git branch -D $branchname
+	git checkout -b $branchname && git push -u origin $branchname
+	echo "newBranch ${branchname}"
+}
+
+# Erstellt einen neuen Branch auf basis des bestehenden und mergt den zielbranch hinein.
+# Nutzt interaktiv das Mergetool und Loscht .orig-Dateien von P4Merge.
+# _ im Namen wegen Autocompleate.
+# Param 1: Branchname des Quellbranches
+# Param 2: Branchname des neu zu erstellenden Zielbranches
+function _mergeToNewBranch(){
+	lastBranch=$1
+	target=$2
+	echo "===> Merge ${lastBranch} into ${target}"
+	_newbranchWithClean "${target}"
+	git merge "${lastBranch}"
+	git mergetool
+	find . -name '*.orig' -delete
+	git add --all
+	git commit
+	git push
+}
+
+######################################################################## Mergt PR durch. ##########################################################
+function crossMerge(){
+	if [ ${#} = 0 ]; then
+		echo "Mergt Aenderungen durch und erstellt die Pullrequests."
+		echo "  Param 1: Arbeitsverzeichnis in das ausgecheckt wird z.B. /C/project/module"
+		echo "  Param 2: Name des Repositories z.B. my-consulting-handbook"
+		echo "  Param 3: Branch welcher gemergt wird z.B. feature/BUG-0815"
+		echo "  Param 4: Benutzername fuer Bitbucket z.B. Woody64k"
+		echo "  Param 5: ff: Liste der Kuerzel fuer die Releasebranches (release/... wird angenommen) z.B. R2018-11 R2019-03"
+		echo "Reviewer werden aus der .reviewer-Datei im Nutzerverzeichniss geladen."
+		echo "z.B."
+		echo "crossMerge /C/project/module my-consulting-handbook feature/BUG-0815 Woody64k R2018-11 R2019-03"
+	else
+		WORKDIR=$1
+		REPO=$2
+		branch=$3
+		USERNAME=$4
+		
+		# ermittle das Passwort
+		read -s -p "Passwort fuer Bitbucket: " BITBUCKET_PASSWD
+		
+		# Liest die Liste der Nutzer aus einer Datei
+		IFS=$'\r\n' GLOBIGNORE='*' command eval 'USERS=($(cat ~/.reviewers))'
+		
+		# Nimmt alle Attribute nach Attribut 5 als Liste der Releasebranches in die ausser develop gemergt werden soll
+		listOfreleases=("${@:5}")
+		cd "${WORKDIR}/${REPO}"
+		for i in "${!listOfreleases[@]}"; do
+			if [ $i == 0 ]; then
+				lastBranch=$branch
+			else
+				lastBranch="${branch}-${listOfreleases[$i-1]}"
+			fi
+			release="${listOfreleases[$i]}"
+			echo "checkout release/${release}"
+			git checkout "release/${release}" &&
+			git pull
+			target="${branch}-${release}"
+			_mergeToNewBranch "${lastBranch}" "${target}"
+			pullRequest $REPO "${target}" "release/${release}" "${USERNAME}" "${BITBUCKET_PASSWD}" $USERS
+			scope nur innerhalb der FOR-Schleife
+		done
+		git checkout "develop" &&
+		git pull
+		# Letzter Releasebranch
+		if [ ${#listOfreleases[@]} -eq 0 ]; then
+			lastBranch="${branch}"
+		else
+			lastBranch="${branch}-${listOfreleases[-1]}"
+		fi
+		target="${branch}-dev"
+		_mergeToNewBranch "${lastBranch}" "${target}"
+		pullRequest $REPO "${target}" "develop" "${USERNAME}" "${BITBUCKET_PASSWD}" $USERS
+	fi
+}
