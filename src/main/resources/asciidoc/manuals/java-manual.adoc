@@ -1,0 +1,17 @@
+== Java - Handbuch
+
+=== String (Java)
+==== StringBuffer vs StringBuilder (Java)
+StringBuffer:: Ist ThreadSafe aber Langsamer als StringBuilder.
+StringBuilder:: Schneller als StringBuffer aber nicht ThreadSafe.
+
+TIP: In den meisten Fällen ist Stringbuilder die richtige Wahl.
+
+==== Passwort Handling (Java)
+
+[source,java]
+----
+char[] password;
+
+Arrays.fill(password, null); // clear secrets from RAM
+----

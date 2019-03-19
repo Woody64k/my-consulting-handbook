@@ -6,6 +6,8 @@ include::bash-manual.adoc[leveloffset=+2]
 <<<
 include::git-manual.adoc[leveloffset=+2]
 <<<
+include::java-manual.adoc[leveloffset=+2]
+<<<
 include::kubernetes-manual.adoc[leveloffset=+2]
 <<<
 include::ReasonML.adoc[leveloffset=+2]

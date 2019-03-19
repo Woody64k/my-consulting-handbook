@@ -45,8 +45,7 @@ cd
 mkdir .ssh
 ----
 ==== Public Keys der User am Server einspielen
-Am Server kann der Admin bzw. der git-User die Public Keys der Nutzer in die authorized_keys-Datei eintra -
-gen.
+Am Server kann der Admin bzw. der git-User die Public Keys der Nutzer in die authorized_keys-Datei eintragen.
 [source,shell]
 ----
 cat /tmp/id_rsa.Woody64k.pub >> ~/.ssh/authorized_keys
