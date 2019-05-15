@@ -1,0 +1,19 @@
+= Carmunda - Handbuch
+
+TIP: Die Carmunda Doku findet sich hier: -> https://docs.camunda.org/manual/7.9/user-guide/
+
+== Installation und Einrichtung (Carmunda)
+
+== Konzepte (Carmunda)
+== Benutzung (Carmunda)
+Bootstraping der Engine.
+[source,java]
+----
+include::code/CarmundaConfig.java[lines=15..20]
+----
+Verwendung der Eingine
+Prozessstart:
+[source,java]
+----
+include::code/CarmundaConfig.java[lines=22..28]
+----
