@@ -1,0 +1,16 @@
+== Tactical Design (DDD)
+
+.Objektüberblick im <<Tactical Design (DDD)>>
+image::domain-driven-design/tactical-design.svg[Grafik zum Tactical Design,512,512]
+
+=== Fachliche Objekte
+Entities:: Haben eine Identität unabhängig ihrer Werte. Sie haben einen Lebenszyklus. 
+Value Object:: Identifiziert sich nur über seine Werte. Ändert sich der Wert, so ist es ein neues Objekt.
+Service:: Eine Aktion die auf oder für eine Entity ausgeführt wird.
+Aggregate:: Ein Abgeschlossenes System mit einem Definierten Kommunikationskanal.
+Aggregate Root:: Eine Jedes *Aggregate Root* ist eine *Entity*, welche auf *Domain Events* von außen reagiert. Ein *Aggregate* hat genau eine *Aggregate Root*.
+Domain Event:: Ein Event von außen, auf welches die *root Entity* reagiert.   
+
+=== Technische Objekte
+Repository:: Methoden zum Aufruf der Objekte 
+Factory:: Kapselt Methoden zur erzeugung der Objekte

@@ -1,0 +1,73 @@
+== Context Map (DDD)
+
+=== Bounded Contexts (DDD)
+
+IMPORTANT: Der Kontext ist keine Systemgrenze, er kann mehrere Systeme beinhalten.
+
+TIP: Komplexität beherrschen durch Teilung.
+
+Bounded Context:: Bereiche mit gleicher Spreche finden und 
+mittels Glossar zu einer einheitlichen Spreche finden. -> 
+Zwischen den Kontexten findet ein Begriffs-Mapping statt (Synonyme).
+
+Kontext:: Ein Kontext bildet die Grenze für die Gültigkeit eines Teilmodells. 
+(Teile der Fachlichkeit) Sie bilden eine Grenze für die (ubiqitäre) Sprache. -> Analog <<Namepace>>
+
+
+Domänenlandkarte:: Stellt die Kontexte und deren Beziehungen dar. (Grafische Darstellung)
+
+Context Mapping:: Bewusste Schnittstelle zur Übersetzung der Teilmodelle.
+
+Beziehungen:: Richtung entlang der Hierarchieebene vom Mächtigen zum weniger Mächtigen.
+(z.B. anzahl Nutzer, Größe der Betroffenen Gruppe, Macht der Betroffenen Gruppe -> im großen und ganzen subjektiv)
+Sie stellen keine Informationsflüsse dar
+
+
+=== Strategic Design (DDD)
+
+Auflistung nach steigendem Koordinationsaufwand.
+
+<<Strategic Design (DDD)>> -> führt zu -> <<Context Map (DDD)>>
+
+==== Shared Kernel
+
+Es kann Domänenübergreifende Systeme geben -> Shared Kernel
+
+==== Customer/Supplier
+Bilaterale Schnittstelle.
+
+* Customer = Downstream
+* Supplier = Upstream
+
+-> Spezifische Language jeweils zwischen zwei Modulen (Schnittstelle)
+
+Vorteile:
+
+* Löschen ist einfacher
+* Änderungen betreffen weniger Parteien
+
+Nachteile:
+
+* Mehr Schnittstellen
+
+==== Publish Language
+
+Gemeinsames Glossar. (-> Zusätzlich zu denen im einzelnen Kontext)
+
+==== Open Host Service
+
+Eine gemeinsame API für die Publish language. (-> gilt teilweise auch für zugekaufte Systeme)
+-> Upstream hat die Macht und Gestaltungshoheit.
+
+==== Conformist
+
+Übernimmt sprache des Host/Supplier
+
+==== Anti-Corruption-Layer (ACL)
+
+Upstream und Downstream kommen nicht zusammen -> es wird ein übersetzer zwischengeschaltet. 
+
+==== Separate Ways
+
+Consumer und Supplier kommen und wollen nicht technisch verbunden werden -> es wird ggf. manuell abgeglichen
+

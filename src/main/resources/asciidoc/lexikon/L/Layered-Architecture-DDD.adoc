@@ -1,0 +1,8 @@
+== Layered Architecture (DDD)
+
+. UI: Schnittstelle zum Benutzer -> Interaktion
+. Application: Koordiniert Aktionen auf der Donäne -> Geschäftsprozess
+. Domain: Domänenmodell -> Domänenlogik
+. Infrastruktur: Schnittstelle zur technischen Infrastruktur -> Datensenke
+
+-> Separierung des Domänenmodells

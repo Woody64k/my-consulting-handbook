@@ -154,7 +154,6 @@ Vorteile:
 
 * Löschen ist einfacher
 * Änderungen betreffen weniger Parteien
-* 
 
 Nachteile:
 
@@ -370,7 +369,7 @@ kubectl -f logging.yaml
 include::microservices/logback-spring.xml[]
 ----
 
-===== Traceing
+===== Tracing
 .Welcher Service ruft welchen Service auf?
 * Dazu müssen Metadaten analysiert werden.
 * Istio Liefert eine Traceing-Infrastruktur.

@@ -1,3 +1,55 @@
 == Domain Driven Design
 
-<<Synonym>>:: <<Domain Driven Design>> -> <<DDD>>
+<<Synonym>>:: <<Domain Driven Design>> -> *<<DDD>>*
+
+<<Definition>>:: Ist ein Vorgehensmodell für komplexe Softwareprojekte, 
+welches eine einheitliche Plattform für eine direkte Kommunikation bietet.
+
+=== Ziele (DDD)
+
+* weniger Missverständnisse
+* schnellere Umsetzung der Anforderungen
+* einheitliche Sprache im Projekt
+* Nachvollziehbarkeit & Transparenz ist besser
+* besserer Rückkanal in den Fachbereich (Enabling/neue Ideen)
+* bessere Zusammenarbeit
+* langfristige Ersparnisse durch bessere fachl. Software
+
+=== Domäne (DDD)
+
+* bildet Anwendungsgebiet des Systems ab
+* Fachlogik und Anforderungen
+
+Unterscheidung in *Core-Domain* & *Sub-Domain*.
+Sie wird durch <<Das Domänenmodell (DDD)>> beschrieben.
+Diese fachlichkeit wird durch Geschäftsprozessanalyse erschlossen.
+
+Core-Domain:: Kernbereich welcher in jedem Fall selbst Entwicklert werden sollte.
+
+Sub-Domain:: Untergeordnete Domänen, welche ggf. ausgelagert oder zugekauft werden.
+
+=== Das Domänenmodell (DDD)
+
+Objektorientierte Abbildung der wichtigesten Bestandteile der Domäne.
+Dies bildet die Grundlage für die Umsetzung (Fachlichkeit um Zentrum).
+
+IMPORTANT: Muss aktuell sein.
+
+==== Ebenen des Domänenmodells
+
+. Unternehmensarchitektur
+.. Domäne in Teilbereiche Aufbrechen -> <<Context Map (DDD)>>
+.. Es entstehen Bounded Contexts
+. Systemarchitektur
+.. <<Tactical Design (DDD)>> -> <<Layered Architecture (DDD)>>
+. Implementierung
+
+=== Herausforderungen
+
+* Zusammenarbeit zwischen Fachexperte & Entwicklern ermöglichen
+* Kompromisse finden beim Schnitt
+* Abstimmung zu Beziehungsverhalten
+* Zeitintensiv und Aufwändig
+* Pflege & Aktualisierung des Domänenmodells
+* Auf Fachlichkeit einlassen & gemeinsame Sprache entwickeln -> Lerneffekt
+* Abstrahierung des Domain Layers in bestehenden Systemen 

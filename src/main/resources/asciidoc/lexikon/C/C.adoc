@@ -2,3 +2,4 @@
 
 include::CloudNativeComputingFoundation.adoc[leveloffset=+1]
 include::CNCF.adoc[leveloffset=+1]
+include::Context-Map-DDD.adoc[leveloffset=+1]
