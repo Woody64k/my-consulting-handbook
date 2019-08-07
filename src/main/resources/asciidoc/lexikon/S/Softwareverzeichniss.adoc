@@ -1,0 +1,19 @@
+== Softwareverzeichniss
+=== Grafik
+
+==== Dia
+
+image::software/dia/icon.png[Krita-Icon,,256]
+
+Zum zeichnen von Diagrammen über schaltplänen.
+
+==== Krita
+
+image::software/krita/icon.png[Krita-Icon,,256]
+
+Zum Zeichnen von Vektorgrafiken.
+
+==== Synfig
+image::software/synfig/icon.png[Synfig-Icon,256,256]
+
+Software für 2D Animation.

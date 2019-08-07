@@ -1,8 +1,6 @@
-scp ~/.ssh/id_rsa.pub k8s@192.168.137.45:/tmp/id_rsa.ansible.pub
+scp ~/.ssh/id_rsa.pub k8s@192.168.137.45:/tmp/id_rsa.sebastian.pub
 
-mkdir ~/.ssh
-touch ~/.ssh/authorized_keys
-cat /tmp/id_rsa.ansible.pub >> ~/.ssh/authorized_keys
+mkdir ~/.ssh && touch ~/.ssh/authorized_keys && cat /tmp/id_rsa.sebastian.pub >> ~/.ssh/authorized_keys
 
 # Add k8s-user to sudo
 su root
@@ -29,13 +27,12 @@ iface eth0 inet dhcp
 #-> ersetzen mit
 #-----------------------------
 iface eth0 inet static
-        address 192.168.137.20
+        address 192.168.137.21
         netmask 255.255.255.0
-        gateway 192.0.1.1
+        gateway 192.168.137.1
 #-----------------------------
 # Anschließend
-service networking restart     
-ifup eth0
+service networking restart && ifup eth0
 
 
 
@@ -67,12 +64,27 @@ sudo systemctl enable docker
 
 # Install Kubernetes on all Nodes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
-sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-$(lsb_release -cs) main"
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial  main"
 sudo apt-get update
-sudo apt install kubectl
+apt-get install -y kubelet kubeadm kubectl # Installiert die Kubernetes Tools
+apt-mark hold kubelet kubeadm kubectl # Deaktiviert automatische Updates
+
+
+
+
 
 # Swap abschalten, sonst funktioniert Kubernetes nicht korrekt
 sudo swapoff -a
+sudo vi /etc/fstab
+# Comment the swap line out. -> Looks like this:
+# UUID=5470cd40-4d7a-404e-9c28-7ccec18b1f16 none            swap    sw              0       0
+
+# Reboot the Computer:
+cat /proc/swaps # Zeigt die swap-Devices an, wenn leer, dann war es erfolgreich.
+
+
+
+
 
 # Eindeutige Hostnamen sicherstellen
 sudo hostnamectl set-hostname k8s-master

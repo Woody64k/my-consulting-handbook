@@ -1,2 +1,4 @@
 == S
+include::Slf4j.adoc[leveloffset=+1]
+include::Softwareverzeichniss.adoc[leveloffset=+1]
 include::Synonym.adoc[leveloffset=+1]

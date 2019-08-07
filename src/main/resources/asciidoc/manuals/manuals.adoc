@@ -4,7 +4,7 @@ include::angular-manual.adoc[leveloffset=+2]
 <<<
 include::bash-manual.adoc[leveloffset=+2]
 <<<
-include::carmunda/carmunda-manual.adoc[leveloffset=+2]
+include::camunda/camunda-manual.adoc[leveloffset=+2]
 <<<
 include::git-manual.adoc[leveloffset=+2]
 <<<

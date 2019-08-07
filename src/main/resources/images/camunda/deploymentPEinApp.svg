@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="79.441528mm"
+   height="56.057388mm"
+   viewBox="0 0 281.48573 198.62854"
+   id="svg6256"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="deploymentPEinApp.svg">
+  <defs
+     id="defs6258">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path6363"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="39.959378"
+     inkscape:cy="68.531425"
+     inkscape:document-units="px"
+     inkscape:current-layer="g6334"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata6261">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-67.471417,-249.47648)">
+    <g
+       id="g6744">
+      <rect
+         rx="17.042267"
+         ry="18.523754"
+         y="250.64638"
+         x="68.641312"
+         height="113.78878"
+         width="279.14594"
+         id="rect6266"
+         style="fill:#ebf5ff;fill-opacity:1;stroke:#191970;stroke-width:2.33978987;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         rx="11.394557"
+         ry="11.410176"
+         y="282.49524"
+         x="79.0616"
+         height="70.091087"
+         width="254.01965"
+         id="rect6266-0"
+         style="fill:#c8dcff;fill-opacity:1;stroke:#191970;stroke-width:1.75176787;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text6283"
+         y="272.71933"
+         x="79.64286"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.75px;font-family:sans-serif;-inkscape-font-specification:sans-serif"
+           y="272.71933"
+           x="79.64286"
+           id="tspan6285"
+           sodipodi:role="line">jBoss</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text6287"
+         y="301.64789"
+         x="86.785713"
+         style="font-style:normal;font-weight:normal;font-size:13.75px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="301.64789"
+           x="86.785713"
+           id="tspan6289"
+           sodipodi:role="line">anwendung.war</tspan></text>
+      <rect
+         rx="7.9738727"
+         ry="8.1040659"
+         y="294.07828"
+         x="208.32323"
+         height="49.782124"
+         width="114.06783"
+         id="rect6266-0-9"
+         style="fill:#ff9999;fill-opacity:1;stroke:#191970;stroke-width:0.98930407;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text6308"
+         y="312.00504"
+         x="264.79126"
+         style="font-style:normal;font-weight:normal;font-size:13.75px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="312.00504"
+           x="264.79126"
+           id="tspan6310"
+           sodipodi:role="line">Camunda-</tspan><tspan
+           id="tspan6312"
+           y="329.19254"
+           x="264.79126"
+           sodipodi:role="line">Engine</tspan></text>
+      <g
+         transform="translate(2.1428572,-23.214286)"
+         id="g6334">
+        <ellipse
+           style="fill:#ffffcc;fill-opacity:1;stroke:#191970;stroke-width:2.20000005;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="path6314"
+           cx="266.25"
+           cy="458.43359"
+           rx="60.535713"
+           ry="11.785714" />
+        <rect
+           style="fill:#ffffcc;fill-opacity:1;stroke:#ffffcc;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect6331"
+           width="118.57143"
+           height="42.857143"
+           x="206.42857"
+           y="415.93362"
+           rx="0"
+           ry="0" />
+        <ellipse
+           style="fill:#ffffcc;fill-opacity:1;stroke:#191970;stroke-width:2.20000005;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="path6314-2"
+           cx="266.78571"
+           cy="416.29077"
+           rx="60.535713"
+           ry="11.785714" />
+      </g>
+      <text
+         sodipodi:linespacing="125%"
+         id="text6339"
+         y="418.79077"
+         x="269.17319"
+         style="font-style:normal;font-weight:normal;font-size:13.75px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="418.79077"
+           x="269.17319"
+           id="tspan6341"
+           sodipodi:role="line">Prozess-</tspan><tspan
+           id="tspan6343"
+           y="435.97827"
+           x="269.17319"
+           sodipodi:role="line">Datenbank</tspan></text>
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path6354"
+         d="m 267.85714,338.43361 0.71429,48.21429"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)" />
+    </g>
+  </g>
+</svg>

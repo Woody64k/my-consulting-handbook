@@ -1,0 +1,56 @@
+= Camunda - Handbuch
+
+TIP: Die Camunda Doku findet sich hier: -> https://docs.camunda.org/manual/7.9/user-guide/
+
+== Konzepte (Camunda)
+
+=== Architektur (Camunda)
+
+=== Deployment Modelle (Camunda)
+
+==== Prozessengine in der Applikation (Camunda)
+
+Bei dieser Methode wird die Prozess-Engine als Dependency in das war-File der Prozessandendung mit hinencompiliert.
+
+.Camunda Engine innerhalb einer Anwendung.war
+image::camunda/deploymentPEinApp.svg[Camunda Engine innerhalb einer Anwendung.war,300,opts=inline]
+
+.Maven Scope compile
+[source,xml]
+----
+<dependency>
+ 	...
+	<scope>compile</scope>
+</dependency>
+----
+==== Prozessengine in der Laufzeitumgebung (Camunda)
+Bei dieser Methode wird die Prozess-Engine als auf dem JavaEE-Server zentral als dependency bereitgestellt.
+
+.Camunda Engine innerhalb eines JavaEE-Servers
+image::camunda/deploymentPEinServ.svg[Camunda Engine innerhalb eines JavaEE-Servers,300,opts=inline]
+
+.Maven Scope provide
+[source,xml]
+----
+<dependency>
+ 	...
+	<scope>compile</scope>
+</dependency>
+----
+==== Prozessengine als eigener Server (Camunda)
+==== Geclusterte Prozessengine-Server (Camunda)
+==== Mehrmandentenbetireb (Camunda)
+
+== Installation und Einrichtung (Camunda)
+== Benutzung (Camunda)
+Bootstraping der Engine.
+[source,java]
+----
+include::code/CamundaConfig.java[lines=15..20]
+----
+Verwendung der Eingine
+Prozessstart:
+[source,java]
+----
+include::code/CamundaConfig.java[lines=22..28]
+----
