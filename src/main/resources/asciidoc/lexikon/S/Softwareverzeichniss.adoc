@@ -3,17 +3,18 @@
 
 ==== Dia
 
-image::software/dia/icon.png[Krita-Icon,,256]
+image::software/dia/icon.png[Krita-Icon,,128]
 
-Zum zeichnen von Diagrammen über schaltplänen.
+Zum zeichnen von Diagrammen und Schaltplänen.
 
 ==== Krita
 
-image::software/krita/icon.png[Krita-Icon,,256]
+image::software/krita/icon.png[Krita-Icon,,128]
 
 Zum Zeichnen von Vektorgrafiken.
 
 ==== Synfig
-image::software/synfig/icon.png[Synfig-Icon,256,256]
+
+image::software/synfig/icon.png[Synfig-Icon,,128]
 
 Software für 2D Animation.

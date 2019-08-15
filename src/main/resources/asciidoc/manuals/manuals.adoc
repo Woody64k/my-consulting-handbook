@@ -15,3 +15,5 @@ include::kubernetes-manual.adoc[leveloffset=+2]
 include::ReasonML.adoc[leveloffset=+2]
 <<<
 include::security-manual.adoc[leveloffset=+2]
+<<<
+include::spring-java-manual.adoc[leveloffset=+2]

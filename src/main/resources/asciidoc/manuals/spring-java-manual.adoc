@@ -1,0 +1,232 @@
+== Spring (Java) - Handbuch
+
+=== [#anchor-68]##Spring
+
+Siehe:
+
+link:#anchor-69[Lexikon] → link:#anchor-70[Spring] (Seite link:#anchor-70[588])
+
+==== Spring-Boot
+
+mvn spring-boot:run -Drun.profiles=local,dev
+
+==== Rest-Service
+
+===== REST-Schnittstelle
+
+Die REST-Schnittstelle für eine Ressource – in diesem Fall die Daten der Nutzer (users) kann durch einfache Annotationen erstellt werden. Einzig die Annotation @ApiOperation dient keinen Fachlichen zweck. Sie unterstützt die Dokumentationsgenerierung mittels link:#anchor-71[Swagger] (Seite link:#anchor-71[616]).
+
+[source,java]
+----
+/**
+ * Service zum Zugriff auf die Nutzer-Ressource.
+ * 
+ * @author snsauerb
+ */
+@RestController // Definiert den REST-Controller
+@RequestMapping("users") // Definiert den Pfad der Ressource
+@Produces({ "application/json" }) // Definiert die Art des Datentransfers
+public class UserService \{
+
+// DAO zum Zugriff auf die Datenbank.
+@Autowired // Sorgt dafür das das DAO von Spring injeziert wird
+private MitarbeiterDAO mitarbeiterDao;
+
+// Modellmapper zum Mappen zwischen Entyties und Daten.
+private ModelMapper mapper = new ModelMapper();
+
+/**
+ * Erstellt einen neuen Benutzer.
+ * @param user Nutzer aus dem RequestBody
+ * @return ID des neuen Nutzers.
+ */
+@PostMapping() // Definiert die Operation als POST
+@ApiOperation(value = "Erstellt einen neuen Nutzer", notes = "Fügt einen Nutzer hinzu.")
+public Long createNutzer(@RequestBody Nutzer user){
+	Mitarbeiter userForDb = mapper.map(user, Mitarbeiter.class);
+	userForDb.setId(null);
+	Long id = mitarbeiterDao.save(userForDb).getId();
+	return id;
+}
+
+/**
+ * Löscht einen Nutzer.
+ * @param id ID des Nutzers.
+ */
+@DeleteMapping("{id}") // id wird über Namensgleichheit auf den Parameter gemappt
+@ApiOperation(value = "Löscht einen Nutzer", notes = "Löscht einen Nutzer.")
+public void deleteNutzer(@PathVariable long id) {
+	mitarbeiterDao.delete(id);
+}
+----
+
+==== JPA-Schnittstelle
+
+===== Datenzugriff
+
+Für den Datenzugriff muss lediglich ein DAO-Interface definiert werden. Die Standard-Zugriffsmethoden sind hierbei bereits enthalten. Zur Erweiterung dieser – z.B. durch spezielle Finder - muss man sich an spezifische Konventionen bzgl. Methoden- und Attributnamen halten. Die nötigen Zugriffsmethoden und Querries können dann vom link:#anchor-70[Spring] generiert werden. Die link:#anchor-72[Spring Tool Suite] (Seite link:#anchor-72[589]) kann hierbei durch Autovervollständigung sehr gut Unterstützen. Die Generics des Interfaces CrudRepository<Mitarbeiter, Long> entsprechen der nötigen Entity und dem Typ des Primärschlüssels.
+
+[source,java]
+----
+/**
+ * Interface für das Data-Access-Object (wird von Spring generiert).
+ * @author snsauerb
+ */
+public interface MitarbeiterDAO extends CrudRepository<Mitarbeiter, Long> {
+	
+	/**
+	 * Findet einen Mitarbeiter anhand seines Kürzels.
+	 * @param kuerzel
+	 * @return
+	 */
+	public Collection<Mitarbeiter> findByKuerzel(String kuerzel);
+}
+----
+
+===== Spring-Konfiguration
+
+Die meisten Konfigurationen mit Ausnahme der server.contextPath betreffen die Datenbankverbindung für Spring-JPA. Hierfür nutzen wir die application.yml Datei.
+[source,yaml]
+----
+spring:
+  datasource:
+    # Keep the connection alive if idle for a long time (needed in production)
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    # JDBC-Verbindungsdaten
+    url: jdbc:mysql://ba-serverarchitektur.mid.de:3306/enterpriseplaning
+    username: root
+    password: pP8467zV-Pu_=B$s
+  # ===============================
+  # = JPA / HIBERNATE
+  # ===============================
+  # Use spring.jpa.properties.* for Hibernate native properties (the prefix is
+  # stripped before adding them to the entity manager).
+  jpa:
+    # Show or not log for each sql query
+    show-sql: true
+    hibernate:
+    # Hibernate ddl auto (create, create-drop, update): with "update" the database
+    # schema will be automatically updated accordingly to java entities found in
+    # the project
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      properties:
+        hibernate:
+          # Allows Hibernate to generate SQL optimized for a particular DBMS
+          dialect: org.hibernate.dialect.MySQL5Dialect
+server:
+  contextPath: /NutzerdatenService
+----
+
+==== Asynchrone Operationen
+
+===== JPA Asyncronous Repository
+
+This interface helps us do all CRUD functions for class Customer.
+
+If we the query method is executed asynchronously, just annotate it with @Async annotation and return a kind of Future object:
+
+[source,java]
+----
+package com.javasampleapproach.jpaasync.repo;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.scheduling.annotation.Async;
+import com.javasampleapproach.jpaasync.model.Customer;
+
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
+	@Async
+	Future<List<Customer>> findByLastName(String lastName);
+	
+	@Async
+	CompletableFuture<Customer> findOneById(Long id);
+	
+	@Async
+	@Query("select c from Customer c")
+	CompletableFuture<List<Customer>> findAllCustomers();
+}
+
+----
+===== Der Executor
+
+Standardmäßig verwendet Spring den SimpleAsyncTaskExecutor um Methoden Asyncron auszuführen.
+
+====== Den Executor punktuell wählen
+
+Der Executor muss in einer Konfigurations-Klasse erzeugt werden:
+
+[source,java]
+----
+@Configuration
+@EnableAsync
+public class SpringAsyncConfig {
+
+	@Bean(name = "threadPoolTaskExecutor")
+	public Executor threadPoolTaskExecutor() {
+		return new ThreadPoolTaskExecutor();
+	}
+}
+----
+
+Dessen Name kann dann bei @Async mit angegeben werden.
+
+[source,java]
+----
+@Async("threadPoolTaskExecutor")
+public void asyncMethodWithConfiguredExecutor() {
+	System.out.println("Execute method with configured executor - "
+	+ Thread.currentThread().getName());
+}
+----
+
+====== Den Standard-Executor ändern
+
+Erbt die Konfigurationsklasse von AsyncConfigurer so lässt sich durch überschreiben der getAsyncExecutor ()-Methode der Standard Executor überschreiben.
+
+[source,java]
+----
+@Configuration
+@EnableAsync
+public class SpringAsyncConfig implements AsyncConfigurer {
+
+	@Override
+	public Executor getAsyncExecutor() {
+		return new ThreadPoolTaskExecutor();
+	}
+}
+----
+
+===== Exception Handling
+
+Die Fehler der Asynchronen Prozesse werden bei Future.get() geworfen. Geben die Methoden void zurück, so wird die Exception nicht an den Aufrufenden Thread propagiert. Wir benötigen eine eigene Konfiguration um diese Fehler zu behandeln.
+Wir brauchen einen Exception-Handler, welcher das AsyncUncaughtExceptionHandler Interface implementiert. Das Handling wird dann in der Methode handleUncaughtException() definiert.
+
+[source,java]
+----
+public class CustomAsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
+
+	@Override
+	public void handleUncaughtException(Throwable throwable, Method method, Object... obj) {
+		System.out.println("Exception message - " + throwable.getMessage());
+		System.out.println("Method name - " + method.getName());
+		for (Object param : obj) {
+			System.out.println("Parameter value - " + param);	
+		}
+	}
+}
+----
+
+Um diesen zu registrieren nutzen wir den selben Mechanismus wie zuvor (link:#anchor-73[Den Standard-Executor ändern] - Seite link:#anchor-73[94]). Wir nehmen die Konfigurationsklasse, welche das AsyncConfigurer Interface implementiert und überschrieben die Methode getAsyncUncaughtExceptionHandler().
+
+[source,java]
+----
+@Override
+public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+	return new CustomAsyncExceptionHandler();
+}
+----
