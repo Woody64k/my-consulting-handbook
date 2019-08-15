@@ -6,6 +6,35 @@ TIP: Die Camunda Doku findet sich hier: -> https://docs.camunda.org/manual/7.9/u
 
 === Architektur (Camunda)
 
+=== Use Cases (Camunda)
+
+==== Dateihandling (Camunda)
+
+===== Datei Download
+Die Einbettung von Dokumenten erfolgt über eine Prozessvariable und das Property _cam-file-download_
+[source,html]
+----
+<a cam-file-download="myDownloadFile">Dateiname</a>
+----
+
+Die variable muss zuvor wie folgt gefüllt werden.
+[source,java]
+----
+byte[] content = Camunda_Dokumentenspeicher.doc1.toString().getBytes("UTF-8");
+FileValue fileContent = Variables.fileValue("Bestelliste.csv").file(content).mimeType("text/csv").encoding("UTF-8").create();
+retrieve.setVariable("myDownloadFile", fileContent);
+----
+
+===== Datei Upload
+
+[source,html]
+----
+<input type="file"
+       cam-variable-name="INVOICE_DOCUMENT"
+       cam-variable-type="File"
+       cam-max-filesize="10000000" />
+----
+
 === Deployment Modelle (Camunda)
 
 ==== Prozessengine in der Applikation (Camunda)
