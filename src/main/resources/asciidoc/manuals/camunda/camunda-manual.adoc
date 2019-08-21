@@ -6,6 +6,33 @@ TIP: Die Camunda Doku findet sich hier: -> https://docs.camunda.org/manual/7.9/u
 
 === Architektur (Camunda)
 
+==== History (Camunda)
+
+die Aufbewahrungsdauer wird als Custom-Attribute am Prozess gepflegt.
+
+[source,xml]
+----
+<process id="oneTaskProcess" name="The One Task Process" isExecutable="true" camunda:historyTimeToLive="P5D">
+----
+
+Das Loglevel muss in der processes.xml angegben werden.
+[source,xml]
+----
+<property name="history">audit</property>
+----
+Folgende Loglevel existieren:
+
+NONE:: Es werden keine Historienereignisse geloggt.
+
+ACTIVITY:: Veränderungen an folgenden Entitäten werden historisiert. Prozess-Instanzen, 
+Case-Instanzen, Activity-Instanzen, Case-Activity-Instanzen, Tast-Instanten
+
+AUDIT:: Zusätzlich zu Activity werden noch veränderungen an Variablen.
+
+FULL:: Zusätzlich zum level AUDIT werden veränderungen an folgenden Entitäten erfasst: Formular-Properties, Benutzerinteraktionen, 
+Incidents, Logs zu den gelaufenen Jobs, Decision Instance (EVALUATE), Batch (Start, Ende), Identity links, Historic External Task
+AUTO:: Das Deployment verwendet die Parameter der anderen Instanzen auf dem Server.
+
 === Use Cases (Camunda)
 
 ==== Dateihandling (Camunda)
