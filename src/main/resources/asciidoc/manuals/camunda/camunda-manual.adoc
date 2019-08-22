@@ -6,7 +6,88 @@ TIP: Die Camunda Doku findet sich hier: -> https://docs.camunda.org/manual/7.9/u
 
 === Architektur (Camunda)
 
-==== History (Camunda)
+== Installation und Einrichtung (Camunda)
+=== Deployment Modelle (Camunda)
+
+==== Prozessengine in der Applikation (Camunda)
+
+Bei dieser Methode wird die Prozess-Engine als Dependency in das war-File der Prozessandendung mit hinencompiliert.
+
+.Camunda Engine innerhalb einer Anwendung.war
+image::camunda/inAppEngine.svg[Camunda Engine innerhalb einer Anwendung.war,300,opts=inline]
+
+.Maven Scope compile
+[source,xml]
+----
+<dependency>
+ 	...
+	<scope>compile</scope>
+</dependency>
+----
+==== Prozessengine in der Laufzeitumgebung (Camunda)
+Bei dieser Methode wird die Prozess-Engine als auf dem JavaEE-Server zentral als dependency bereitgestellt.
+
+.Camunda Engine innerhalb eines JavaEE-Servers
+image::camunda/inServerEngine.svg[Camunda Engine innerhalb eines JavaEE-Servers,300,opts=inline]
+
+.Maven Scope provide
+[source,xml]
+----
+<dependency>
+ 	...
+	<scope>provide</scope>
+</dependency>
+----
+==== Prozessengine als eigener Server (Camunda)
+==== Geclusterte Prozessengine-Server (Camunda)
+==== Mehrmandentenbetireb (Camunda)
+
+== Benutzung (Camunda)
+=== Einrichtung der enfine im Projekt (Camunda)
+Bootstraping der Engine.
+[source,java]
+----
+include::code/CamundaConfig.java[lines=15..20]
+----
+Verwendung der Eingine
+Prozessstart:
+[source,java]
+----
+include::code/CamundaConfig.java[lines=22..28]
+----
+
+=== Use Cases (Camunda)
+
+==== Dateihandling (Camunda)
+
+===== Datei Download (Camunda)
+Die Einbettung von Dokumenten erfolgt über eine Prozessvariable und das Property _cam-file-download_
+[source,html]
+----
+<a cam-file-download="myDownloadFile">Dateiname</a>
+----
+
+Die variable muss zuvor wie folgt gefüllt werden.
+[source,java]
+----
+byte[] content = Camunda_Dokumentenspeicher.doc1.toString().getBytes("UTF-8");
+FileValue fileContent = Variables.fileValue("Bestelliste.csv").file(content).mimeType("text/csv").encoding("UTF-8").create();
+retrieve.setVariable("myDownloadFile", fileContent);
+----
+
+===== Datei Upload (Camunda)
+
+[source,html]
+----
+<input type="file"
+       cam-variable-name="INVOICE_DOCUMENT"
+       cam-variable-type="File"
+       cam-max-filesize="10000000" />
+----
+
+== Konfiguration (Camunda)
+
+=== History (Camunda)
 
 die Aufbewahrungsdauer wird als Custom-Attribute am Prozess gepflegt.
 
@@ -31,82 +112,5 @@ AUDIT:: Zusätzlich zu Activity werden noch veränderungen an Variablen.
 
 FULL:: Zusätzlich zum level AUDIT werden veränderungen an folgenden Entitäten erfasst: Formular-Properties, Benutzerinteraktionen, 
 Incidents, Logs zu den gelaufenen Jobs, Decision Instance (EVALUATE), Batch (Start, Ende), Identity links, Historic External Task
+
 AUTO:: Das Deployment verwendet die Parameter der anderen Instanzen auf dem Server.
-
-=== Use Cases (Camunda)
-
-==== Dateihandling (Camunda)
-
-===== Datei Download
-Die Einbettung von Dokumenten erfolgt über eine Prozessvariable und das Property _cam-file-download_
-[source,html]
-----
-<a cam-file-download="myDownloadFile">Dateiname</a>
-----
-
-Die variable muss zuvor wie folgt gefüllt werden.
-[source,java]
-----
-byte[] content = Camunda_Dokumentenspeicher.doc1.toString().getBytes("UTF-8");
-FileValue fileContent = Variables.fileValue("Bestelliste.csv").file(content).mimeType("text/csv").encoding("UTF-8").create();
-retrieve.setVariable("myDownloadFile", fileContent);
-----
-
-===== Datei Upload
-
-[source,html]
-----
-<input type="file"
-       cam-variable-name="INVOICE_DOCUMENT"
-       cam-variable-type="File"
-       cam-max-filesize="10000000" />
-----
-
-=== Deployment Modelle (Camunda)
-
-==== Prozessengine in der Applikation (Camunda)
-
-Bei dieser Methode wird die Prozess-Engine als Dependency in das war-File der Prozessandendung mit hinencompiliert.
-
-.Camunda Engine innerhalb einer Anwendung.war
-image::camunda/deploymentPEinApp.svg[Camunda Engine innerhalb einer Anwendung.war,300,opts=inline]
-
-.Maven Scope compile
-[source,xml]
-----
-<dependency>
- 	...
-	<scope>compile</scope>
-</dependency>
-----
-==== Prozessengine in der Laufzeitumgebung (Camunda)
-Bei dieser Methode wird die Prozess-Engine als auf dem JavaEE-Server zentral als dependency bereitgestellt.
-
-.Camunda Engine innerhalb eines JavaEE-Servers
-image::camunda/deploymentPEinServ.svg[Camunda Engine innerhalb eines JavaEE-Servers,300,opts=inline]
-
-.Maven Scope provide
-[source,xml]
-----
-<dependency>
- 	...
-	<scope>compile</scope>
-</dependency>
-----
-==== Prozessengine als eigener Server (Camunda)
-==== Geclusterte Prozessengine-Server (Camunda)
-==== Mehrmandentenbetireb (Camunda)
-
-== Installation und Einrichtung (Camunda)
-== Benutzung (Camunda)
-Bootstraping der Engine.
-[source,java]
-----
-include::code/CamundaConfig.java[lines=15..20]
-----
-Verwendung der Eingine
-Prozessstart:
-[source,java]
-----
-include::code/CamundaConfig.java[lines=22..28]
-----

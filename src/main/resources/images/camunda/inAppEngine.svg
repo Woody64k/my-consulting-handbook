@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="18cm" height="14cm" viewBox="-142 298 343 277" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ebf5ff" x="-140" y="300" width="340" height="140" rx="10" ry="10"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="-140" y="300" width="340" height="140" rx="10" ry="10"/>
+  </g>
+  <g>
+    <rect style="fill: #c8dcff" x="-120" y="340" width="300" height="80" rx="10" ry="10"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="-120" y="340" width="300" height="80" rx="10" ry="10"/>
+  </g>
+  <g>
+    <rect style="fill: #ff9999" x="20" y="360" width="140" height="40" rx="10" ry="10"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="20" y="360" width="140" height="40" rx="10" ry="10"/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-120" y="320">
+    <tspan x="-120" y="320">jBoss</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-100" y="360">
+    <tspan x="-100" y="360">Anwendung.war</tspan>
+  </text>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="90" y="384.45">
+    <tspan x="90" y="384.45">Camunda-Engine</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffcc" x="40" y="474.286" width="100" height="50"/>
+    <ellipse style="fill: #ffffcc" cx="90" cy="524.286" rx="50" ry="14.2857"/>
+    <ellipse style="fill: #ffffcc" cx="90" cy="474.286" rx="50" ry="14.2857"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 40 474.286 L 40,524.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 140 474.286 L 140,524.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 40 474.286 C 40,466.396 70.2757,460 90,460 C 109.724,460 140,466.396 140,474.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 40 474.286 C 40,482.175 70.2757,488.571 90,488.571 C 109.724,488.571 140,482.175 140,474.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 40 486.786 C 40,494.675 70.2757,501.071 90,501.071 C 109.724,501.071 140,494.675 140,486.786"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 40 499.286 C 40,507.175 70.2757,513.571 90,513.571 C 109.724,513.571 140,507.175 140,499.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 40 511.786 C 40,519.675 70.2757,526.071 90,526.071 C 109.724,526.071 140,519.675 140,511.786"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 40 524.286 C 40,532.175 70.2757,538.571 90,538.571 C 109.724,538.571 140,532.175 140,524.286"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="90" y="554.143">
+      <tspan x="90" y="554.143">Prozess-</tspan>
+      <tspan x="90" y="570.143">Datenbank</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="90" y1="401.005" x2="90" y2="449.361"/>
+    <polygon style="fill: #000000" points="90,456.861 85,446.861 90,449.361 95,446.861 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="90,456.861 85,446.861 90,449.361 95,446.861 "/>
+  </g>
+</svg>

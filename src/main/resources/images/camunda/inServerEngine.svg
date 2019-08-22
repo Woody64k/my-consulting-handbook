@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="18cm" height="15cm" viewBox="-142 298 343 297" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ebf5ff" x="-140" y="300" width="340" height="160" rx="10" ry="10"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="-140" y="300" width="340" height="160" rx="10" ry="10"/>
+  </g>
+  <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-120" y="320">
+    <tspan x="-120" y="320">jBoss</tspan>
+  </text>
+  <g>
+    <rect style="fill: #ffffcc" x="60" y="494.286" width="100" height="50"/>
+    <ellipse style="fill: #ffffcc" cx="110" cy="544.286" rx="50" ry="14.2857"/>
+    <ellipse style="fill: #ffffcc" cx="110" cy="494.286" rx="50" ry="14.2857"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 60 494.286 L 60,544.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 160 494.286 L 160,544.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 60 494.286 C 60,486.396 90.2757,480 110,480 C 129.724,480 160,486.396 160,494.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 60 494.286 C 60,502.175 90.2757,508.571 110,508.571 C 129.724,508.571 160,502.175 160,494.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 60 506.786 C 60,514.675 90.2757,521.071 110,521.071 C 129.724,521.071 160,514.675 160,506.786"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 60 519.286 C 60,527.175 90.2757,533.571 110,533.571 C 129.724,533.571 160,527.175 160,519.286"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 60 531.786 C 60,539.675 90.2757,546.071 110,546.071 C 129.724,546.071 160,539.675 160,531.786"/>
+    <path style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" d="M 60 544.286 C 60,552.175 90.2757,558.571 110,558.571 C 129.724,558.571 160,552.175 160,544.286"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="110" y="574.143">
+      <tspan x="110" y="574.143">Prozess-</tspan>
+      <tspan x="110" y="590.143">Datenbank</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="110" y1="441.004" x2="110" y2="469.288"/>
+    <polygon style="fill: #000000" points="110,476.788 105,466.788 110,469.288 115,466.788 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="110,476.788 105,466.788 110,469.288 115,466.788 "/>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #ff9999" x="40" y="400" width="140" height="40" rx="10" ry="10"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="40" y="400" width="140" height="40" rx="10" ry="10"/>
+    </g>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="110" y="424.45">
+      <tspan x="110" y="424.45">Camunda-Engine</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #c8dcff" x="-120" y="340" width="140" height="40" rx="10" ry="10"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="-120" y="340" width="140" height="40" rx="10" ry="10"/>
+    </g>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-50" y="364.45">
+      <tspan x="-50" y="364.45">Anwendung.war</tspan>
+    </text>
+  </g>
+  <g>
+    <g>
+      <rect style="fill: #c8dcff" x="-120" y="400" width="140" height="40" rx="10" ry="10"/>
+      <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x="-120" y="400" width="140" height="40" rx="10" ry="10"/>
+    </g>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-50" y="424.45">
+      <tspan x="-50" y="424.45">Anwendung.war</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-linejoin: round; stroke: #000000" x1="20.9766" y1="420" x2="29.2874" y2="420"/>
+    <polygon style="fill: #000000" points="36.7874,420 26.7874,425 29.2874,420 26.7874,415 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="36.7874,420 26.7874,425 29.2874,420 26.7874,415 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="5.97656" y1="380.991" x2="44.9073" y2="395.59"/>
+    <polygon style="fill: #000000" points="51.9297,398.224 40.8108,399.394 44.9073,395.59 44.3221,390.031 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="51.9297,398.224 40.8108,399.394 44.9073,395.59 44.3221,390.031 "/>
+  </g>
+</svg>

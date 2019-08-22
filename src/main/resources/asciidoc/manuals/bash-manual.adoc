@@ -8,13 +8,13 @@ ist dies aber vorerst ausreichend.
 */MyPath* → Pfad an dem das Zertifikat abgelegt wird. (z.B. */C/project/Java/MyKey*)
 
 *MyAlias* → Beliebiger Alias
-[source,shell]
+[source,bash]
 ----
 keytool -genkey -alias MyAlias -keyalg RSA -keystore /MyPath
 ----
 Im Anschluss fragt das Keytool nach den <<X.500>>-Daten des <<Verzeichnisdienstes>>.
 z.B.:
-[source,shell]
+[source,bash]
 ----
 keytool -genkey -alias tomcat -keyalg RSA -keystore /c/Software/apache-tomcat-9/conf/.keystore
 ----
@@ -22,12 +22,12 @@ keytool -genkey -alias tomcat -keyalg RSA -keystore /c/Software/apache-tomcat-9/
 === md5sum
 Berechnet zur angegebenen Datei den md5-Hashwert.
 Typischer Anwendungsfall ist die Evaluation heruntergeladener Software.
-[source,shell]
+[source,bash]
 ----
 md5sum MyFile
 ----
 Beispiel:
-[source,shell]
+[source,bash]
 ----
 md5sum tomcat_installer.exe
 ----
@@ -35,12 +35,12 @@ md5sum tomcat_installer.exe
 === sha1sum
 Berechnet zur angegebenen Datei den SHA1-Hashwert.
 Typischer Anwendungsfall ist die Evaluation heruntergeladener Software.
-[source,shell]
+[source,bash]
 ----
 sha1sum MyFile
 ----
 Beispiel:
-[source,shell]
+[source,bash]
 ----
 sha1sum tomcat_installer.exe
 ----
@@ -49,17 +49,17 @@ sha1sum tomcat_installer.exe
 === Prozess auf Port ermitteln
 ==== Windows
 Portbelegung ermitteln.
-[source,cmd]
+[source,bash]
 ----
 netstat -ano | findstr /r 0.0:8080
 ----
 Prozess identifizieren (z.B. Prozess 4244)
-[source,cmd]
+[source,bash]
 ----
 tasklist /FI "PID eq 4244" /FO TABLE
 ----
 Prozess killen.
-[source,cmd]
+[source,bash]
 ----
 taskkill /pid 4244 /f
 ----
