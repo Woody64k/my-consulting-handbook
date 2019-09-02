@@ -1,6 +1,6 @@
 = Camunda - Handbuch
 
-TIP: Die Camunda Doku findet sich hier: -> https://docs.camunda.org/manual/7.9/user-guide/
+TIP: Die Camunda Doku findet sich hier: -> https://docs.camunda.org/manual/7.11/user-guide/
 
 == Konzepte (Camunda)
 
@@ -43,7 +43,7 @@ image::camunda/inServerEngine.svg[Camunda Engine innerhalb eines JavaEE-Servers,
 ==== Mehrmandentenbetireb (Camunda)
 
 == Benutzung (Camunda)
-=== Einrichtung der enfine im Projekt (Camunda)
+=== Einrichtung der Engine im Projekt (Camunda)
 Bootstraping der Engine.
 [source,java]
 ----
@@ -56,11 +56,10 @@ Prozessstart:
 include::code/CamundaConfig.java[lines=22..28]
 ----
 
-=== Use Cases (Camunda)
 
-==== Dateihandling (Camunda)
+=== Dateihandling (Camunda)
 
-===== Datei Download (Camunda)
+==== Datei Download (Camunda)
 Die Einbettung von Dokumenten erfolgt über eine Prozessvariable und das Property _cam-file-download_
 [source,html]
 ----
@@ -75,7 +74,7 @@ FileValue fileContent = Variables.fileValue("Bestelliste.csv").file(content).mim
 retrieve.setVariable("myDownloadFile", fileContent);
 ----
 
-===== Datei Upload (Camunda)
+==== Datei Upload (Camunda)
 
 [source,html]
 ----
@@ -83,6 +82,45 @@ retrieve.setVariable("myDownloadFile", fileContent);
        cam-variable-name="INVOICE_DOCUMENT"
        cam-variable-type="File"
        cam-max-filesize="10000000" />
+----
+
+=== Fehlerhandling (Camunda)
+==== Einführung
+Grundsätzlich sollten technische Fehler nicht im Prozess, sondern im Code behandelt werden. 
+Fehlerbehandlung im Prozess ist die Ausnahme, wenn auf einen technischen Fehler fachlich 
+reagiert werden soll.
+
+Grund:: der Prozess sollte fachlich lesbar bleiben und nicht mit technischen Details 
+überfrachtet werden.
+
+==== Retry (Camunda)
+
+Um einen Service im Retry-Modus aufzurufen, muss er im Camunda-Modeller auf Asyncronous gestellt werden. 
+Anschließend kann der Retry-Cycle nach https://de.wikipedia.org/wiki/ISO_8601[ISO-8601] definiert werden.
+
+=== Zeitgesteuerte Prozesse (Camunda)
+Das Timer-Start-Event muss asyncBefore auf true gesetzt werden.
+
+[source,xml]
+----
+<bpmn:startEvent id="TimerStartEvent_6Uhr" name="Immer um 6 Uhr" camunda:asyncBefore="true">
+  ...
+  <bpmn:timerEventDefinition>
+    <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">0 0 6 * * ?</bpmn:timeCycle>
+  </bpmn:timerEventDefinition>
+</bpmn:startEvent>
+----
+
+Zusätzlich muss der JobExecutor aktiviert sein.
+[source,xml]
+----
+<process-archive>
+	...
+	<properties>
+		...
+		<property name="jobExecutorActivate">true</property>
+	</properties>
+</process-archive>
 ----
 
 == Konfiguration (Camunda)
