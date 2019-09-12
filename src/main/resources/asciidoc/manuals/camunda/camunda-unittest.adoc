@@ -1,0 +1,32 @@
+== Testen von Prozessen
+=== Vorbereitung
+.camunda-bpm-assert in der pom.xml importieren
+[source,xml]
+----
+<dependency>
+  <groupId>org.camunda.bpm.assert</groupId>
+  <artifactId>camunda-bpm-assert</artifactId>
+  <version>${version.bpm-assert}</version>
+  <scope>test</scope>
+</dependency>
+----
+
+=== Subprocess testen
+
+[source,java]
+----
+@Test
+@Deployment(resources = { "next_match.bpmn", "mock_plan_event_ride.bpmn" })
+public void shouldPlanEventRide() {
+	// given
+	ProcessInstance instance = runtimeService().createProcessInstanceByKey(PROCESS_KEY)
+			.startBeforeActivity("plan_event_ride_ca").execute();
+	ProcessInstance calledProcessInstance = calledProcessInstance(instance);
+	// assume
+	assertThat(calledProcessInstance).isActive().isWaitingAtExactly("plan_event_ride_task");
+	// when
+	complete(task(calledProcessInstance));
+	// then
+	assertThat(calledProcessInstance).isEnded();
+}
+----

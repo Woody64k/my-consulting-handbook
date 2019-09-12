@@ -43,8 +43,11 @@ image::camunda/inServerEngine.svg[Camunda Engine innerhalb eines JavaEE-Servers,
 ==== Mehrmandentenbetireb (Camunda)
 
 == Benutzung (Camunda)
+=== Benutzung mit Spring-Boot
+TIP: https://start.camunda.com
+
 === Einrichtung der Engine im Projekt (Camunda)
-Bootstraping der Engine.
+Bootstraping der Engine. (Mit Camunda Spring-boot starter nicht nötig.)
 [source,java]
 ----
 include::code/CamundaConfig.java[lines=15..20]
@@ -55,7 +58,6 @@ Prozessstart:
 ----
 include::code/CamundaConfig.java[lines=22..28]
 ----
-
 
 === Dateihandling (Camunda)
 
@@ -122,6 +124,8 @@ Zusätzlich muss der JobExecutor aktiviert sein.
 	</properties>
 </process-archive>
 ----
+
+include::camunda-unittest.adoc[leveloffset=+1]
 
 == Konfiguration (Camunda)
 

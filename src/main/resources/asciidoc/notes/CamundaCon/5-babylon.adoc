@@ -1,0 +1,24 @@
+== Camunda@Babylon
+* Use Camunda for clinical savety.
+* Used Spreadsheeds before
+
+* Erster Schritt, menschliche Abläufe loordinieren
+* Zweiter Schritt, atomatieren einzelner Tasks
+* Eigene Oberfläche für die Anzeige von Tasks
+
+=== Was Camunda tut
+* Es versteht BPMN
+* Macht die richteigen Dinge zur richtigen Zeit
+* Es kann Mandanten trennen
+* Es kann prozesse von Ende zu Ende managen
+* hat eine sehr gute Dokumentation
+* hat einen guten Support
+
+=== Was ich nicht gut an Camunda
+* Lastverhalten -> Mitarbeiter haben die Taskliste mit Auto-Refresh offen -> Jeder Browser-Tab pollt die Anwendung/ Datenbank.
+** Rest-Api wurde nicht genutzt (caching)
+* Debugging
+** REST-Endpint -> DB-Querry (MyBatis?)
+** Sehr große Querries
+
+
