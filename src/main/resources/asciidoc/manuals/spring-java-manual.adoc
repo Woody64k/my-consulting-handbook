@@ -1,18 +1,17 @@
 = Spring (Java) - Handbuch
 
-== [#anchor-68]##Spring
-
 Siehe:
 
-link:#anchor-69[Lexikon] → link:#anchor-70[Spring] (Seite link:#anchor-70[588])
+<<Lexikon>> -> <<Spring>>
 
-=== Spring-Boot
-
+== Spring-Boot
+[source,bash]
+----
 mvn spring-boot:run -Drun.profiles=local,dev
+----
+== Rest-Service
 
-=== Rest-Service
-
-==== REST-Schnittstelle
+=== REST-Schnittstelle
 
 Die REST-Schnittstelle für eine Ressource – in diesem Fall die Daten der Nutzer (users) kann durch einfache Annotationen erstellt werden. Einzig die Annotation @ApiOperation dient keinen Fachlichen zweck. Sie unterstützt die Dokumentationsgenerierung mittels link:#anchor-71[Swagger] (Seite link:#anchor-71[616]).
 
@@ -60,9 +59,9 @@ public void deleteNutzer(@PathVariable long id) {
 }
 ----
 
-=== JPA-Schnittstelle
+== JPA-Schnittstelle
 
-==== Datenzugriff
+=== Datenzugriff
 
 Für den Datenzugriff muss lediglich ein DAO-Interface definiert werden. Die Standard-Zugriffsmethoden sind hierbei bereits enthalten. Zur Erweiterung dieser – z.B. durch spezielle Finder - muss man sich an spezifische Konventionen bzgl. Methoden- und Attributnamen halten. Die nötigen Zugriffsmethoden und Querries können dann vom link:#anchor-70[Spring] generiert werden. Die link:#anchor-72[Spring Tool Suite] (Seite link:#anchor-72[589]) kann hierbei durch Autovervollständigung sehr gut Unterstützen. Die Generics des Interfaces CrudRepository<Mitarbeiter, Long> entsprechen der nötigen Entity und dem Typ des Primärschlüssels.
 
@@ -83,7 +82,7 @@ public interface MitarbeiterDAO extends CrudRepository<Mitarbeiter, Long> {
 }
 ----
 
-==== Spring-Konfiguration
+=== Spring-Konfiguration
 
 Die meisten Konfigurationen mit Ausnahme der server.contextPath betreffen die Datenbankverbindung für Spring-JPA. Hierfür nutzen wir die application.yml Datei.
 [source,yaml]
@@ -119,9 +118,9 @@ server:
   contextPath: /NutzerdatenService
 ----
 
-=== Asynchrone Operationen
+== Asynchrone Operationen
 
-==== JPA Asyncronous Repository
+=== JPA Asyncronous Repository
 
 This interface helps us do all CRUD functions for class Customer.
 
@@ -152,11 +151,11 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 }
 
 ----
-==== Der Executor
+=== Der Executor
 
 Standardmäßig verwendet Spring den SimpleAsyncTaskExecutor um Methoden Asyncron auszuführen.
 
-===== Den Executor punktuell wählen
+==== Den Executor punktuell wählen
 
 Der Executor muss in einer Konfigurations-Klasse erzeugt werden:
 
@@ -184,7 +183,7 @@ public void asyncMethodWithConfiguredExecutor() {
 }
 ----
 
-===== Den Standard-Executor ändern
+==== Den Standard-Executor ändern
 
 Erbt die Konfigurationsklasse von AsyncConfigurer so lässt sich durch überschreiben der getAsyncExecutor ()-Methode der Standard Executor überschreiben.
 
@@ -201,7 +200,7 @@ public class SpringAsyncConfig implements AsyncConfigurer {
 }
 ----
 
-==== Exception Handling
+=== Exception Handling
 
 Die Fehler der Asynchronen Prozesse werden bei Future.get() geworfen. Geben die Methoden void zurück, so wird die Exception nicht an den Aufrufenden Thread propagiert. Wir benötigen eine eigene Konfiguration um diese Fehler zu behandeln.
 Wir brauchen einen Exception-Handler, welcher das AsyncUncaughtExceptionHandler Interface implementiert. Das Handling wird dann in der Methode handleUncaughtException() definiert.
