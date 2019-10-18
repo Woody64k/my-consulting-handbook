@@ -1,6 +1,6 @@
-== ReasonML
+= ReasonML
 
-=== Grundlagen
+== Grundlagen
 Eine Datei = ein Modul
 Für rekursive Funktionen muss das schlüsselword reg genutzt werden.
 
@@ -8,14 +8,14 @@ IDE: VS-Code
 Extention -> OCaml and Reason IDE
 
 
-=== Install (ReasonML)
+== Install (ReasonML)
 
 [source,shell]
 ----
 npm install --global bs-platform
 ----
 
-=== Verwendung (ReasonML)
+== Verwendung (ReasonML)
 
 [source,shell]
 ----

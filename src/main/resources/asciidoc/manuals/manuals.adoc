@@ -1,4 +1,5 @@
-== Handbücher
+= Handbücher
+
 <<<
 include::angular-manual.adoc[leveloffset=+2]
 <<<
