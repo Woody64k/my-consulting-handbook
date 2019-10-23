@@ -1,0 +1,14 @@
+= Innovator - Handbuch
+
+== Umgebungsvariablen
+
+[cols="2,4,3",options="header"]
+|====
+|Variable					| Erklärung | Beispiel
+|PLUGINS_PATH
+|Der Pfad unter dem die Plugins lokal abgelegt und ausgeführt werden.
+|C:/temp/innovator/plugins
+|PLUGINS_DEPLOYMENT_PATH
+|Der Pfad von dem die Plugins geladen werden.
+|//server.mid.de/share/innovator/plugins
+|====
