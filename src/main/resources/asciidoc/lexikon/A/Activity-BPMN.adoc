@@ -18,25 +18,17 @@ Eine Activity beschreibt eine Aufgabe, die in einem Geschäftsprozess zu erledig
 image::bpmn/activity-overview.svg[]
 
 
-Aktivitäten
-Bezeichnung
-Beschreibung
-Struktur
-
-Ist eine atomare Aktivität.
-atomar
-
-Ist ein Sub-Process welcher durch ein Transaktionsprotokoll gesteuert wird. Hat üblicherweise 2 Angeheftete Ereignisse Fehler und Abbruch.
-verfeinert
-
-Ist ein Sub-Process welcher durch ein Event getriggert wird. Er hat keine eingehenden Sequenzflüsse. (wird nur durch Auslösung des Ereignisses gestartet)
-verfeinert
-
-Ist ein Subprozess ohne feste Reihenfolge der Aktivitäten. Die Reihenfolge wird von den Ausführenden festgelegt.
-verfeinert
-
-Ist eine Aktivität, die auf einen globalen Task oder Prozess referenziert. (Ziel: Wiederverwendbarkeit)
-atomar or verfeinert
+=== Aktivitäten
+[options="header",cols="1a,2,1",]
+|===
+|Bezeichnung |Beschreibung |Struktur
+//----------------------
+|image::bpmn/activity-task.svg[] |Ist eine atomare Aktivität. |**atomar**
+|image::bpmn/activity-transaction.svg[] |Ist ein Sub-Process welcher durch ein Transaktionsprotokoll gesteuert wird. Hat üblicherweise 2 Angeheftete Ereignisse **Fehler** und **Abbruch**. |**verfeinert**
+|image::bpmn/activity-subprocess.svg[] |Ist ein Sub-Process welcher durch ein Event getriggert wird. Er hat keine eingehenden Sequenzflüsse. (wird nur durch Auslösung des Ereignisses gestartet) |**verfeinert**
+|image::bpmn/activity-ad-hoc.svg[] |Ist ein Subprozess ohne feste Reihenfolge der Aktivitäten. Die Reihenfolge wird von den Ausführenden festgelegt. |**verfeinert**
+|image::bpmn/activity-call.svg[] |Ist eine Aktivität, die auf einen globalen Task oder Prozess referenziert. (Ziel: Wiederverwendbarkeit) |**atomar** or **verfeinert**
+|===
 
 Aktivitätstypen
 Bezeichnung
