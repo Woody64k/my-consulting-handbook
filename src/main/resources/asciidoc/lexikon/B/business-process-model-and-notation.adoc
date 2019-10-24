@@ -1,0 +1,24 @@
+== Business Process Model and Notation
+
+=== Beziehungen
+
+==== Synonym (Gleiches)
+
+* <<BPMN>> = *<<Business Process Model and Notation>>*
+
+Elemente:
+
+* link:#anchor-180[Activity (BPMN)] (Seite link:#anchor-180[124])
+* link:#anchor-293[Event (BPMN)] (Seite link:#anchor-293[269])
+* link:#anchor-294[Gateway (BPMN)] (Seite link:#anchor-294[292])
+* Sequence Flow
+* Message Flow
+
+Diagrammarten:
+
+* link:#anchor-182[Prozessdiagramm (BPMN)] (Seite link:#anchor-182[482])
+* link:#anchor-295[Konversationsdiagramm (BPMN)] (Seite link:#anchor-295[395])
+* link:#anchor-296[Choreographie-Diagramm (BPMN)] (Seite link:#anchor-296[212]) → für Schnittstellen zwischen Beteiligten
+* link:#anchor-297[Kollaborationsdiagramm (BPMN)] (Seite link:#anchor-297[392])
+
+/**TODO*/

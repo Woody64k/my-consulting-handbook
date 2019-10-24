@@ -1,0 +1,109 @@
+== Activity (BPMN)
+=== Instanzrelation (ist vom Typ)
+
+* Notationselemente (Seite 448)
+    
+=== Holonym (Beziehung zum Ganzen)
+
+* Business Process Model and Notation (Seite 211)
+** Prozessdiagramm (BPMN) (Seite 485)
+
+=== Beschreibung
+
+Eine Activity beschreibt eine Aufgabe, die in einem Geschäftsprozess zu erledigen ist. Sie wird als Rechteck mit abgerundeten Ecken dargestellt. Eine elementare Activity heißt Task, komplexere Activities werden als Subprocess bezeichnet. Sie unterscheiden sich in der Notation durch ein +-Symbol. Subprocesses können in kollabiertem oder expandiertem Zustand dargestellt werden. (Zu finden in der BPMN-Spezifikation Kapitel 10.2)
+
+=== Aussehen
+
+.Überblick über den aufbau einer Aktivität
+image::bpmn/activity-overview.svg[]
+
+
+Aktivitäten
+Bezeichnung
+Beschreibung
+Struktur
+
+Ist eine atomare Aktivität.
+atomar
+
+Ist ein Sub-Process welcher durch ein Transaktionsprotokoll gesteuert wird. Hat üblicherweise 2 Angeheftete Ereignisse Fehler und Abbruch.
+verfeinert
+
+Ist ein Sub-Process welcher durch ein Event getriggert wird. Er hat keine eingehenden Sequenzflüsse. (wird nur durch Auslösung des Ereignisses gestartet)
+verfeinert
+
+Ist ein Subprozess ohne feste Reihenfolge der Aktivitäten. Die Reihenfolge wird von den Ausführenden festgelegt.
+verfeinert
+
+Ist eine Aktivität, die auf einen globalen Task oder Prozess referenziert. (Ziel: Wiederverwendbarkeit)
+atomar or verfeinert
+
+Aktivitätstypen
+Bezeichnung
+Beschreibung
+Ausführung
+
+Send Task
+Sendet eine Nachricht an einen externen Teilnehmer.
+-
+
+Receive Task
+Receive Task (Start)
+Empfängt eine Nachricht von einem externen Teilnehmer.
+Kann Startelement eines Prozesses sein.
+-
+
+User Task
+Die Aktivität wird vom Nutzer mit Hilfe einer Software ausgeführt.
+Teilautomatisch
+(→ GUI nötig)
+
+Manual Task
+Die Aktivität die ohne jede Softwareunterstützung ausgeführt wird.
+Händisch
+
+Business Rule Task
+Schnittstelle zu einer Geschäftsregel-Anwendung. Sie führt lediglich die Aktionen einer gewissen Geschäftsregel aus.
+Automatisch
+
+Service Task
+Die Aktivität wird automatisch ausgeführt.
+Die Ausführung erfolgt durch eine Software.
+Automatisch
+
+Script Task
+Tätigkeit, die von der Geschäftsprozess-Engine automatisch bearbeitet wird. Die Schritte sind in einem Skript hinterlegt.
+Automatisch
+
+Markierungen
+Bezeichnung
+Beschreibung
+Regeln
+
+loop
+Eine schleife. Sie wird solange wiederholt wie die hinterlegte Bedingung (Attribut) den booleschen Wert true inne hat. (WHILE-, UNTIL- or FOR-Schleife)
+    • multi-instance
+
+compensation
+Eine durch ein compensation-Event getriggerte Aktivität. Sie macht eine andere Aktivität Rückgängig. (Rollback)
+
+
+multi-instance
+Erzeugt mehrere Instanzen einer Aktivität. Diese Instanzen werden parallel zueinander oder sequentiell hintereinander ausgeführt.
+    • loop
+
+(parallel)
+
+
+
+(sequential)
+
+
+
+Sub-Process marker
+Eine aufklappbare Aktivität des Typs Sub-Process (enthält weiteres Prozessdiagramm (BPMN)).
+Nur für Teilprozesse
+
+ad-hoc
+Ist ein Subprozess ohne feste Reihenfolge der Aktivitäten. Die Reihenfolge wird von den Ausführenden festgelegt.
+    • Sub-Process marker

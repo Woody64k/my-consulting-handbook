@@ -4170,14 +4170,6 @@ Manchmal lassen Proxies nur **POST** und **GET** Methoden durch. Um dann weiterh
 
 * link:#anchor-222[Black Box] (Seite link:#anchor-222[199])
 
-==== [#anchor-2]##BPMN
-
-===== link:#anchor-17[Beziehungen]
-
-====== link:#anchor-84[Synonym (Gleiches)]
-
-* link:#anchor-2[BPMN] (Seite link:#anchor-2[200]) = _*_*link:#anchor-117[Business Process Model and Notation]*_*_ (Seite link:#anchor-117[208])
-
 ==== [#anchor-287]##broadcast
 
 link:#anchor-287[broadcast] (Seite link:#anchor-287[201])
@@ -4316,31 +4308,6 @@ Dokumente:
 * rolle
 
 ===== Wirkt mit
-
-==== [#anchor-117]##Business Process Model and Notation
-
-===== link:#anchor-17[Beziehungen]
-
-====== link:#anchor-84[Synonym (Gleiches)]
-
-* link:#anchor-2[BPMN] (Seite link:#anchor-2[200]) = _*_*link:#anchor-117[Business Process Model and Notation]*_*_ (Seite link:#anchor-117[208])
-
-Elemente:
-
-* link:#anchor-180[Activity (BPMN)] (Seite link:#anchor-180[124])
-* link:#anchor-293[Event (BPMN)] (Seite link:#anchor-293[269])
-* link:#anchor-294[Gateway (BPMN)] (Seite link:#anchor-294[292])
-* Sequence Flow
-* Message Flow
-
-Diagrammarten:
-
-* link:#anchor-182[Prozessdiagramm (BPMN)] (Seite link:#anchor-182[482])
-* link:#anchor-295[Konversationsdiagramm (BPMN)] (Seite link:#anchor-295[395])
-* link:#anchor-296[Choreographie-Diagramm (BPMN)] (Seite link:#anchor-296[212]) → für Schnittstellen zwischen Beteiligten
-* link:#anchor-297[Kollaborationsdiagramm (BPMN)] (Seite link:#anchor-297[392])
-
-/**TODO*/
 
 === [#anchor-298]##C
 

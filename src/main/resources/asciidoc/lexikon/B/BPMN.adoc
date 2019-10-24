@@ -1,0 +1,5 @@
+== BPMN
+
+=== Beziehungen
+==== Synonym (Gleiches)
+* <<BPMN>> = *<<Business Process Model and Notation>>*

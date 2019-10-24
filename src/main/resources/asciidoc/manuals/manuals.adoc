@@ -1,4 +1,4 @@
-= Handbücher
+== Handbücher
 
 <<<
 include::angular-manual.adoc[leveloffset=+2]
@@ -8,6 +8,8 @@ include::bash-manual.adoc[leveloffset=+2]
 include::camunda/camunda-manual.adoc[leveloffset=+2]
 <<<
 include::git-manual.adoc[leveloffset=+2]
+<<<
+include::innovator-mid.adoc[leveloffset=+2]
 <<<
 include::java-manual.adoc[leveloffset=+2]
 <<<
