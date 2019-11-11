@@ -1,3 +1,4 @@
 == M
 
 include::Microservices.adoc[leveloffset=+1]
+include::Microsoft-Teams.adoc[leveloffset=+1]

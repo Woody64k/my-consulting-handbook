@@ -17,85 +17,62 @@ Eine Activity beschreibt eine Aufgabe, die in einem Geschäftsprozess zu erledig
 .Überblick über den aufbau einer Aktivität
 image::bpmn/activity-overview.svg[]
 
-
 === Aktivitäten
+
 [options="header",cols="1a,2,1",]
 |===
-|Bezeichnung |Beschreibung |Struktur
+| Bezeichnung | Beschreibung | Struktur
 //----------------------
-|image::bpmn/activity-task.svg[] |Ist eine atomare Aktivität. |**atomar**
-|image::bpmn/activity-transaction.svg[] |Ist ein Sub-Process welcher durch ein Transaktionsprotokoll gesteuert wird. Hat üblicherweise 2 Angeheftete Ereignisse **Fehler** und **Abbruch**. |**verfeinert**
-|image::bpmn/activity-subprocess.svg[] |Ist ein Sub-Process welcher durch ein Event getriggert wird. Er hat keine eingehenden Sequenzflüsse. (wird nur durch Auslösung des Ereignisses gestartet) |**verfeinert**
-|image::bpmn/activity-ad-hoc.svg[] |Ist ein Subprozess ohne feste Reihenfolge der Aktivitäten. Die Reihenfolge wird von den Ausführenden festgelegt. |**verfeinert**
-|image::bpmn/activity-call.svg[] |Ist eine Aktivität, die auf einen globalen Task oder Prozess referenziert. (Ziel: Wiederverwendbarkeit) |**atomar** or **verfeinert**
+| image::bpmn/activity-task.svg[Task,256,opts=inline] | Ist eine atomare Aktivität. | *atomar*
+| image::bpmn/activity-transaction.svg[Transaktion,256,opts=inline] | Ist ein Sub-Process welcher durch ein Transaktionsprotokoll gesteuert wird. Hat üblicherweise 2 Angeheftete Ereignisse *Fehler* und *Abbruch*. | *verfeinert*
+| image::bpmn/activity-subprocess.svg[Subprozess,256,opts=inline] | Ist ein Sub-Process welcher durch ein Event getriggert wird. Er hat keine eingehenden Sequenzflüsse. (wird nur durch Auslösung des Ereignisses gestartet) | *verfeinert*
+| image::bpmn/activity-ad-hoc.svg[Embedded,256,opts=inline] | Ist ein Subprozess ohne feste Reihenfolge der Aktivitäten. Die Reihenfolge wird von den Ausführenden festgelegt. | *verfeinert*
+| image::bpmn/activity-call.svg[Embedded,256,opts=inline] | Ist eine Aktivität, die auf einen globalen Task oder Prozess referenziert. (Ziel: Wiederverwendbarkeit) | *atomar* oder *verfeinert*
 |===
 
-Aktivitätstypen
-Bezeichnung
-Beschreibung
-Ausführung
+=== Aktivitätstypen
 
-Send Task
-Sendet eine Nachricht an einen externen Teilnehmer.
--
-
+[cols=",,,",]
+|===
+|Bezeichnung |Beschreibung |Ausführung |
+| |Send Task |Sendet eine Nachricht an einen externen Teilnehmer. |-
+| a|
 Receive Task
-Receive Task (Start)
-Empfängt eine Nachricht von einem externen Teilnehmer.
-Kann Startelement eines Prozesses sein.
--
 
-User Task
-Die Aktivität wird vom Nutzer mit Hilfe einer Software ausgeführt.
+Receive Task (Start)
+
+a|
+Empfängt eine Nachricht von einem externen Teilnehmer.
+
+Kann Startelement eines Prozesses sein.
+
+|-
+| |User Task |Die Aktivität wird vom Nutzer mit Hilfe einer Software ausgeführt. a|
 Teilautomatisch
+
 (→ GUI nötig)
 
-Manual Task
-Die Aktivität die ohne jede Softwareunterstützung ausgeführt wird.
-Händisch
-
-Business Rule Task
-Schnittstelle zu einer Geschäftsregel-Anwendung. Sie führt lediglich die Aktionen einer gewissen Geschäftsregel aus.
-Automatisch
-
-Service Task
+| |Manual Task |Die Aktivität die ohne jede Softwareunterstützung ausgeführt wird. |Händisch
+| |Business Rule Task |Schnittstelle zu einer Geschäftsregel-Anwendung. Sie führt lediglich die Aktionen einer gewissen Geschäftsregel aus. |Automatisch
+| |Service Task a|
 Die Aktivität wird automatisch ausgeführt.
+
 Die Ausführung erfolgt durch eine Software.
-Automatisch
 
-Script Task
-Tätigkeit, die von der Geschäftsprozess-Engine automatisch bearbeitet wird. Die Schritte sind in einem Skript hinterlegt.
-Automatisch
+|Automatisch
+| |Script Task |Tätigkeit, die von der Geschäftsprozess-Engine automatisch bearbeitet wird. Die Schritte sind in einem Skript hinterlegt. |Automatisch
+|===
 
-Markierungen
-Bezeichnung
-Beschreibung
-Regeln
+=== Markierungen
 
-loop
-Eine schleife. Sie wird solange wiederholt wie die hinterlegte Bedingung (Attribut) den booleschen Wert true inne hat. (WHILE-, UNTIL- or FOR-Schleife)
-    • multi-instance
-
-compensation
-Eine durch ein compensation-Event getriggerte Aktivität. Sie macht eine andere Aktivität Rückgängig. (Rollback)
-
-
-multi-instance
-Erzeugt mehrere Instanzen einer Aktivität. Diese Instanzen werden parallel zueinander oder sequentiell hintereinander ausgeführt.
-    • loop
-
-(parallel)
-
-
-
-(sequential)
-
-
-
-Sub-Process marker
-Eine aufklappbare Aktivität des Typs Sub-Process (enthält weiteres Prozessdiagramm (BPMN)).
-Nur für Teilprozesse
-
-ad-hoc
-Ist ein Subprozess ohne feste Reihenfolge der Aktivitäten. Die Reihenfolge wird von den Ausführenden festgelegt.
-    • Sub-Process marker
+[cols=",,,",]
+|===
+|Bezeichnung |Beschreibung |Regeln |
+| |loop |Eine schleife. Sie wird solange wiederholt wie die hinterlegte Bedingung (Attribut) den booleschen Wert _true_ inne hat. (WHILE-, UNTIL- or FOR-Schleife) |
+| |compensation |Eine durch ein _compensation_-Event getriggerte Aktivität. Sie macht eine andere Aktivität Rückgängig. (Rollback) |
+| |multi-instance |Erzeugt mehrere Instanzen einer Aktivität. Diese Instanzen werden parallel zueinander oder sequentiell hintereinander ausgeführt. |
+| |(parallel) | |
+| |(sequential) | |
+| |Sub-Process marker |Eine aufklappbare Aktivität des Typs Sub-Process (enthält weiteres link:#anchor-182[Prozessdiagramm (BPMN)]). |Nur für Teilprozesse
+| |ad-hoc |Ist ein Subprozess ohne feste Reihenfolge der Aktivitäten. Die Reihenfolge wird von den Ausführenden festgelegt. |
+|===

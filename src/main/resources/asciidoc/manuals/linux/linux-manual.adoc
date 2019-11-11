@@ -1,0 +1,172 @@
+== Linux (Handbuch)
+=== Installation
+Im Auswahlmenü von Grub: *e* drücken und das folgende an die linux-Zeile anhängen: 
+[source,bash]
+----
+pci=noacpi
+----
+
+=== Bootoptionen
+Diese Liste stellt Bootoptionen vor, die bei den meisten Problemen helfen.
+
+Quelle:: https://wiki.ubuntuusers.de/Bootoptionen/
+
+[options="header",cols="1a,1,4a"]
+|===
+| Option	| Komponente bzw. Zweck		| Beschreibung 
+//----------------------
+| nomodeset	| Grafik, Mode-Setting
+| Gibt den Video-Modus wieder an den XServer ab.
+Ab Kernel 2.6.28 wurde der Video-Modus der Grafikkarten vom XServer in den Kernel verlagert. Dadurch wurde es möglich, dass ein hochauflösender "Boot Splash" (siehe Plymouth (Abschnitt „Deaktivieren“)) flackerfrei angezeigt werden kann. Bei einigen Karten bleibt dieser "Boot Splash" hängen oder endet in einem schwarzen Bildschirm. Dieses Verhalten tritt z.B. bei nVidia-Karten und dem "nouveau"-Treiber auf - nach Installation des proprietären nVidia-Treibers kann diese Option oft wieder entfernt werden.
+| xforcevesa	| Grafik	| Der XServer (graphische Oberfläche) wird unabhängig von der verwendeten Hardware nur für VESA konfiguriert.
+| all_generic_ide	| Kernel	| Beim Booten werden die generischen IDE-Treiber für alle Geräte verwendet, die vom BIOS erkannt wurden.
+| forcepae	| Kernel	| Erzwingt das Laden des Kernels auch bei Prozessoren, die keine Physical Address Extension anzeigen. Dies ist sinnvoll für Prozessoren, welche diese Erweiterung besitzen, aber fälschlicherweise nicht anzeigen. Betroffen sind verschiedene Modelle der Serien Pentium M und Celeron M. Diese Bootoption funktioniert nur bei der 32-bit-Variante.
+| nodmraid	| Software-RAID deaktivieren
+| Es kann vorkommen, dass die Installationsroutine keinen Datenträger findet. Um diesen Umstand zu beheben, kann man beim Booten bereits RAID deaktivieren, oder man deinstalliert direkt im Live-System in einem Terminal [2] das Paket dmraid.
+[source,bash]
+----
+sudo apt-get purge dmraid
+----
+| acpi=off	| Hardware[3], ACPI, X86	| acpi=off sollte ganz zuletzt und nur zur Installation genutzt werden. Das komplette ACPI wird deaktiviert, d.h. auch wichtige Teile wie z.B. die Lüftersteuerung werden abgeschaltet, und es kann zur Überhitzung und im schlimmsten Fall zu bleibenden Hardwareschäden kommen.
+| acpi_osi=
+acpi_osi="Linux"	| Hardware, ACPI	| Löscht die Liste der unterstützten Betriebssysteme bzw. setzt sie, z.B. "Linux" oder auch "Windows 2007". Diese Option bezieht sich auf BIOS-Änderungen, die speziell für Windows (meist Vista) vorgenommen, aber fehlerhaft implementiert wurden.
+|===
+
+=== Optionen für Bootmeldungen
+
+[options="header",cols="1a,1,4a"]
+|===
+| Option	| Komponente bzw. Zweck		| Beschreibung 
+//----------------------
+|
+splash
+
+nosplash
+
+noplymouth	| "Boot Splash"	| Steuert, ob und wie ein Splashscreen beim Start erscheint.
+Seit der Einführung von Plymouth muss der "Boot Splash" mit noplymouth (anstatt nosplash) abgeschaltet werden. Möchte man die Kernelmeldungen beim Ladeprozess mitverfolgen, dann muss zusätzlich quiet entfernt werden.
+| quiet	| Kernel	| quiet=still: unterdrückt die Log-Meldungen des Kernels. Löscht man diese Option, bekommt man den gesamten Startverlauf angezeigt und kann besser Hinweise auf weitere Problemfälle identifizieren. Seit Plymouth arbeitet diese Option mit splash zusammen, d.h. man sollte beim Entfernen dieser Option auch noplymouth einsetzen.
+| BOOT_DEBUG=2
+BOOT_DEBUG=3	| Boot	| Schaltet den Debug-Modus ein – nützlich für die Fehlersuche beim Startvorgang.
+| debug
+debug=vc	| Boot	| Erzeugt sehr viele Debug-Informationen, die unter /run/initramfs/initramfs.debug abgelegt werden.
+debug=vc: Leitet alle Debug-Informationen auf eine virtuelle Konsole um.
+|
+text
+
+textonly	| Boot	| Bootet in eine virtuelle Konsole mit Netzwerk ohne Start des XServers. Funktioniert nur bis einschließlich Ubuntu 14.04.
+Bei Lubuntu 17.10 kann text als temporärer Workaround gegen Intel Mobile Graphics 945 shows 80 % black screen 🇬🇧 eingesetzt werden.
+|===
+
+=== Weitere Bootoptionen
+[options="header",cols="1a,1,4a"]
+|===
+| Option	| Komponente bzw. Zweck		| Beschreibung 
+//----------------------
+| ro	| Boot, Kernel	| Hängt das root=-Device während des Bootens mit "nur lesen" (ro) ein.
+| root=	| Boot, Kernel	| Definiert das root-Device, z.B. root=UUID=, root=/dev/...
+| noacpi	| X86, ACPI, IRQ	| Unterbindet das IRQ-Routing bzw. das Suchen nach PCI-Anschlüssen für ACPI. Diese Option kann bei einem älteren BIOS hilfreich sein.
+| acpi=force
+
+acpi=noirq
+
+acpi=copy_dsdt	| Hardware, ACPI, X86	| force - aktiviert ACPI zwangsweise – hilfreich bei einem BIOS-Datum vor 2000, bei denen ACPI abgeschaltet ist.
+
+* noirq - schaltet ACPI für das IRQ-Routing ab.
+* copy_dsdt - kopiert die DSDT in den RAM – hilfreich bei Toshiba-Notebooks.
+| acpi_backlight=vendor	| ACPI	| Nutzt einen spezifischen Herstellertreiber für die Hintergrundbeleuchtung bei LCDs.
+| nolapic	| X86-32, APIC, IRQ	| Schaltet das lokale APIC wird ab. In Kombination mit noacpi beeinflusst es die Tastatur- und Maussteuerung, sowie den Schlafmodus – hilfreich bei Notebooks mit 32-bit-Systemarchitektur.
+| nolapic-timer	| X86-32, APIC, IRQ	| Deaktiviert den lokalen APIC-Timer, um Instabilitäten durch den Timer zu umgehen, der Rest von APIC bleibt voll funktionsfähig – hilfreich bei Notebooks mit 32-bit-Systemarchitektur, da das Energiemanagement funktional bleibt.
+| edd=on	| EDD	| Aktiviert "Enhanced Disk Drive Services" (ein Standard, der wichtige BIOS-Funktionen zum Verwenden von Laufwerken beschreibt: ATA-/IDE-/SCSI- …).
+| vt.handoff=7	| Virtuelles Terminal	| Verweist auf das virtuelle Terminal (hier 7), in der der XServer gestartet und der Plymouth-Hintergrund erzeugt wird (eine ebenfalls mit Plymouth eingeführte Option).
+| single	| Kernel	| Startet den Kernel im Einbenutzer-Modus (single mode). Bei Ubuntu ist das die Wiederherstellungskonsole (Rettungskonsole).
+| treibername.blacklist=yes
+
+sdhci.blacklist=yes	| bestimmte Treiber	| Deaktiviert bestimmte Treiber.
+Oft kommt es vor, dass ein bestimmter Treiber beim Booten der Live-CD oder auch der Alternate-CD große Probleme macht und das System an genau dieser Stelle hängen bleibt. Das Laden dieses Treibers kann man durch Blacklist-Option verhindern, wie hier am Beispiel des sdhci-Treibers gezeigt.
+| agp=off
+ agp=try_unsupported	| Grafik, AGP	| Steuert AGP, eine ältere Anschlussnorm auf PC-Mainboards zur direkten Verbindung der Grafikkarte mit dem Chipsatz/Northbridge. Sie basiert technologisch auf dem PCI-Bus.
+| apm=off	| APM	| Steuert APM, ein Standard zur Energieverbrauchssteuerung, der bei neuen PCs durch ACPI abgelöst worden ist.
+| bootchart=disable	| Boot	| Deaktiviert den manuell installierten Boot-Chart.
+| elevator=...	| Block Device	| Gewünschter Scheduler für Blockgeräte (Massenspeicher). Zur Auswahl stehen cfq, deadline und noop. Insbesondere bei SSD-Festplatten empfiehlt sich der "Deadline Scheduler" statt des "Completely Fair Schedulers" bzw. deadline-iosched.txt 🇬🇧). deadline ist als Standard voreingestellt, während cfq bei klassischen Festplatten besser geeignet ist.
+| gpt	| EFI	| Erzwingt das Auswerten der Partitionstabelle als gültige GPT – nützlich wenn Datenträger zwar die GPT-Signatur "EFI PART" hat, der "Protective MBR" aber ungültige Werte enthält.
+| noefi	| EFI, X86	| Deaktiviert die EFI-Unterstützung.
+
+CAUTION: Die Verwendung dieser Bootoption sollte nur zur Installation verwendet werden, da sie sonst unter Umständen zu einem nicht mehr bootbaren System führt. Siehe auch: EFI Grundlagen (Abschnitt „Starten-der-Installations-Medien“) und EFI Installieren (Abschnitt „Installation-im-BIOS-Modus“)
+| hpet=force	| X86-32, HPET	| Erzwingt die Aktivierung des HPET-Timers – hilfreich zum Energiesparen bei Laptops, dessen BIOS den "High Precision Event Timer" vor dem Betriebssystem verstecken, z.B. IBM Thinkpad X31.
+| ht=on	| SMP, Multicore[5]	| Schaltet Hyper-Threading (mehrere CPUs) ein – wird bei der Installation von Ubuntu in seltenen Fällen nicht automatisch aktiviert.
+| iommu=	| IOMMU	| Kann beispielsweise bei Nichterkennung von USB 2.0 Abhilfe bringen. Parameter 🇬🇧
+| irqpoll	| Hardware, IRQ	| IRQ ist eine Unterbrechungsanforderung per Leitung an den Prozessor. Polling ist das Verfahren zur Steuerung des Zugriffs auf angeschlossene Geräte.
+| md=	| RAID	| auch: raid=
+
+siehe dazu die raid/md.txt 🇬🇧
+| noapic	| SMP, IRQ, Multicore	| Deaktiviert die automatische Erkennung von APIC (IRQ-Verwaltung).
+| nosmp	| SMP, Multicore	| Deaktiviert die Unterstützung für Multicore-CPUs.
+| maxcpu=	| SMP, Multicore	| Steuert, wie viele Kerne das System benutzen soll, z.B. bei maxcpus=1 nur einen Kern.
+| pci=
+
+pci=noacpi
+ 
+pci=noaer
+ 
+pci=nocrs
+ 
+pci=nomsi
+ 
+pci=routeirq	| PCI, PCIE ...	| Beeinflusst verschiedene PCI-Subsysteme:
+ 
+* noacpi - schaltet die ACPI-Erkennung während der PCI-Konfiguration aus – hilfreich bei manchen VIA-Chipsätzen.
+* noaer - schaltet "PCIe Advanced Error Reporting" ab.
+* pci=nocrs - verwirft PCI-ACPI-Informationen, kann Boot-Probleme umgehen.
+* nomsi - schaltet "Message Signaled Interrupts" ab – hilfreich bei Problemen mit dem SATA-Controller auf neueren Mainboards.
+* routeirq - schaltet IRQ-Autorouting ein – hilfreich für einige Mainboards, z.B. Asus A7N8X.
+| pcie_aspm=force	| PCIE	| Erzwingt "Active State Power Management" bei PCI Express (ab Kernel 2.6.38).
+| processor.max_cstate=3	| Hardware	| Umgeht das Problem des C4-Fiepens.
+| ramdisk_size=...	| RAM, ramdisk	| Legt die Größe der RAM-Disk (ein virtueller, temporärer Datenträger im Arbeitsspeicher) fest.
+| rootdelay=	| Boot	| Bestimmt, wie lange (in Sekunden) mit dem Einhängen von / (root) gewartet wird (vgl. dazu kernel-parameters.txt 🇬🇧).
+| toram	| Boot	| Lädt eine Live-CD/DVD in das RAM. Ermöglicht flüssiges arbeiten mit dem Live-System. Nur empfohlen ab 2GB RAM. Der Datenträger muss nach erfolgreicher Installation in das RAM ausgehängt werden.
+| video=
+
+video=SVIDEO-1:d	| Framebuffer	| Steuert den Video-Support/Bildschirmauflösung (vgl. dazu framebuffer/modedb.txt 🇬🇧)
+.
+* SVIDEO-1:d - verhindert auf alten Intel-IGPs verlangsamtes Booten mit Black Screen. Der korrekte Port kann über xrandr abgefragt werden.
+| vga=...	| Boot, X86-32	| Setzt entsprechende Video-Modi für die virtuellen Konsolen (vgl. auch boot.txt 🇬🇧 und svga.txt 🇬🇧).
+| vmalloc=	| Kernel, Boot	| Ermöglicht Angaben von nnK/M/G. Bei einigen 32 Bit-Systemen können keine Treiber aus Mangel an virtuellem Adressraum geladen werden. Fehlermeldung:
+[source,bash]
+----
+allocation failed: out of vmalloc space ...
+----
+Durch Angabe von z.B. 128M kann dieser Adressraum im RAM verkleinert/vergrößert werden.
+|===
+
+=== Notes to analyze
+
+These are the steps that worked for me
+
+ When you burn your OS (Ubuntu 16/18, Elementary, or any Ubuntu derived distribution) onto the USB stick, go to WHATEVER_USB_DRIVE_LETTER:\boot\grub and open the "grub.cfg" file. There you will see all possible options to run on boot, so go there and look for every line that contains "quiet splash", and right after splash, add "acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2".
+(if you cant boot at all at these lines to while in grub) 
+I'll give you an example,
+Before:
+linux /casper/vmlinuz  file=/cdrom/preseed/ubuntu.seed boot=casper quiet splash ---
+After:
+linux /casper/vmlinuz  file=/cdrom/preseed/ubuntu.seed boot=casper quiet splash acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2 ---
+
+There is a firmware problem with internal routing and memory tables. This fix applies to all AN515-42 models with latest BIOS.
+
+4. Restart your PC, try to boot your newly installed Linux, notice it will fail.
+
+5. Restart your PC and boot the USB stick (F12 key).
+
+6. So now, you boot the USB stick again and select "Try Ubuntu / Elementary / whatever".
+
+7. Click on the file browser and go to your installed Linux drive, the file browser will automount the partition, and go to /boot/grub (/media/ubuntu/some-serial-number-123123123/boot/grub). Careful! There will be YOUR_USB_DRIVE/boot/grub, YOUR_CURRENT_LINUX_SESSION/boot/grub, MOUNTED_PARTITION_FROM_PREVIOUS_LINUX_BOOT/boot/grub, and you want the last one.
+
+8. Open grub.cfg and redo what you did at point 3.
+
+9. Whenever using "sudo apt update && sudo apt upgrade -y", as in whenever you upgrade your Linux, make sure the "acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2" doesn't get removed from "/boot/grub/grub.cfg"!!! This can happen when grub gets upgraded. To try and avoid this, go to /usr/lib/grub-legacy/update-grub and look for defoptions="quiet splash" and add "acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2". Also in the /etc/default/grub look for the GRUB_CMDLINE_LINUX="quiet splash" and add make it GRUB_CMDLINE_LINUX="quiet splash acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2"
+
+10. Restart, pull out USB stick, and enjoy your Linux.
+
+11. Optionally, wherever you see quiet splash you can delete quiet splash, if you want to see verbose logs whenever booting, instead of the logo splash loader.
+
+PS: Let me know if it worked.
