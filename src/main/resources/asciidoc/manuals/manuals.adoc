@@ -1,24 +1,24 @@
 == Handbücher
 
 <<<
-include::angular-manual.adoc[leveloffset=+2]
+include::angular/angular-manual.adoc[leveloffset=+2]
 <<<
 include::bash-manual.adoc[leveloffset=+2]
 <<<
 include::camunda/camunda-manual.adoc[leveloffset=+2]
 <<<
-include::git-manual.adoc[leveloffset=+2]
+include::git/git-manual.adoc[leveloffset=+2]
 <<<
-include::innovator-mid.adoc[leveloffset=+2]
+include::innovator/innovator-mid-manual.adoc[leveloffset=+2]
 <<<
-include::java-manual.adoc[leveloffset=+2]
+include::java/java-manual.adoc[leveloffset=+2]
 <<<
-include::kubernetes-manual.adoc[leveloffset=+2]
+include::kubernetes/kubernetes-manual.adoc[leveloffset=+2]
 <<<
 include::linux/linux-manual.adoc[leveloffset=+2]
 <<<
-include::ReasonML.adoc[leveloffset=+2]
+include::reason-ml/ReasonML.adoc[leveloffset=+2]
 <<<
-include::security-manual.adoc[leveloffset=+2]
+include::security/security-manual.adoc[leveloffset=+2]
 <<<
-include::spring-java-manual.adoc[leveloffset=+2]
+include::java-spring/spring-java-manual.adoc[leveloffset=+2]

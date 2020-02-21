@@ -6,5 +6,5 @@
 Erstellung einen Zertifikates wie es z.B. für SSL verwendet wird.
 [source,shell]
 ----
-include::security/createCertificate.sh[]
+include::createCertificate.sh[]
 ----

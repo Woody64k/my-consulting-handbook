@@ -1,0 +1,155 @@
+= Innovator - Handbuch
+
+== Umgebungsvariablen
+
+[cols="2,4,3",options="header"]
+|====
+|Variable					| Erklärung | Beispiel
+|PLUGINS_PATH
+|Der Pfad unter dem die Plugins lokal abgelegt und ausgeführt werden.
+|C:/temp/innovator/plugins
+|PLUGINS_DEPLOYMENT_PATH
+|Der Pfad von dem die Plugins geladen werden.
+|//server.mid.de/share/innovator/plugins
+|====
+
+== Innovator API
+=== Suchen
+
+Methode - ELElementHelper.GetXFind
+
+Term Parameter:
+AND -> ARG_XFindAndTerm
+History -> ARG_XFindHistoryTerm 3
+
+=== Innovator
+
+==== Installation
+
+\\na1\tfs_release\MID.Innovator\Deployment.Rel.13.0\Deployment.Rel.13.0_20160905.1\Enterprise_64\x64
+
+==== Doku
+
+===== Konfiguration
+
+* Ansicht Dokumentationsstrukturen
+** Neue Dokumentationsstruktur anlegen
+** Dokumentationsstruktur aufbauen
+* Ansicht Dokumentation
+** Auswahl anlegen
+** Auswahl mit Dokumentationsstruktur verknüpfen
+** Dokumentationskommando anlegen
+** Dokumentationskommando mit Auswahl verknüpfen
+
+===== Nachbearbeitunsgkommando
+
+Als Pfade können hierbei keine Netzlaufwerke angegeben werden. Um die Netzlaufwerke aufzulösen kann folgender Befehl verwendet werden.
+
+net use
+
+Somit lässt sich der vollständige Pfad rekonstruieren.
+
+image:extracted-media/Pictures/100000000000045F0000018E00459E338DE22A88.png[ +
+Abbildung 2: Konfiguration Nachbearbeitungskommando.,title="fig:",width=604,height=215]WICHTIG: Ergebnisdatei öffnen muss auf NIE gesetzt werden, da sonst kein Nachbearbeitungskommando möglich ist. Das Dokument kann aber vom Kommando geöffnet werden, wenn man es entsprechend programmiert.(z.B. in Java mit: _Desktop.getDesktop().edit(new File (pfad))_)
+
+[cols=",",]
+|===
+|Nachbearbeitungskommando: |java
+|Nachbearbeitungsargumente: |-jar "\\Ntserver10\Org_Einheiten\Professional Services\Engineering\Rödl&Partner\XmlExcelTransformation.jar" $(INFILE) $(TMP) true
+|Java-Kommando: |
+|Ergebnissdatei öffnen: |Nie
+|===
+
+==== Konfiguration
+
+===== Anlegen eines Modellelementes
+
+====== Anlegen des Stereotyps
+
+_Ansicht_/_Stereotype_ auswählen.
+
+* Stereotyp auswählen von dem geerbt werden soll
+* _Erstellen_/_Stereotyp_ (F8)
+** Im Eigenschaften-Dialog den Namen und ähnliches anpassen
+** WICHTIG: Es sollte ein unter _Symbol_ Icon vergeben werden, sonst ist das Element später im Menü unsichtbar.
+
+====== Definieren der gültigen Beziehungen
+
+_Ansicht_/_Beziehungen_ auswählen.
+
+Die Zuweisung kann via Drag & Drop vorgenommen werden und bezieht sich immer auf den ausgewählten Stereotypen.
+
+[.image]# +
+Abbildung 3: Gültige Beziehungen konfigurieren#
+
+Wichtige Beziehungen::
+* Besitzer → Die Elemente in denen das Objekt abgelegt werden soll. (Bei gerichteten Kanten ist dies die Quelle)
+* Diagramm → Das Diagramm in dem das Element genutzt werden soll.
+* Ziel → Ziel der Kante (Bei gerichteten Kanten)
+* Zugeordnete Elemente → Mögliche zuordenbare Abhängigkeiten werden hier definiert
+
+====== Erzeugen der Anlegeschablone
+
+_Ansicht_/_Schablonen_ auswählen.
+
+* Erstellen/Anlegeschablone (Umschalt + F8)
+
+In den Eigenschaften der Schablone können auch die Standardwerte beim Anlegen definiert werden.
+
+[.image]# +
+Abbildung 4: Definition des Namens einer Klasse die mit der Anlegeschablone erzeugt wird#
+
+====== Vergeben der Berechtigung für die Nutzung der Anlegeschablone
+
+_Ansicht_/_Ausführungsrechte_ auswählen.
+
+[.image]# +
+Abbildung 5: Anlegeschablonen zu den Rollen zuordnen#
+
+====== Einfügen der Anlegeschablone in das Menü des Innovators
+
+_Ansicht_/_Menüs_ auswählen.
+
+* Wähle aus → *Diagrammtyp* oder falls es sich um ein Diagramm → **Innovator-Modell**
+* Wähle aus → Menü (Ziel Menü)
+* Ziehe → Anlegeschablone von rechts nach links
+
+.Hinzufügen des Elements zum Menü
+image::software\innovator\config\add-element-to-menu-2.svg[Innovator Screenshot]
+
+===== Anzeige des Elements Konfigurieren
+
+_Ansicht_/_Stereotype_ auswählen.
+
+* Diagrammtyp Selektieren
+* Bearbeiten/Anzeigeoptionen
+* Wähle aus → Abschnittsinhalt
+* Klicke → * (Neu)
+
+===== Sonderfall Assoziation
+
+Zusätzlich zu link:#anchor-54[Anlegen eines Modellelementes] (Seite link:#anchor-54[58]) sind bei der Assoziation zwei weitere Beziehungen zu Pflegen.
+
+====== Definieren der gültigen Beziehungen
+
+_Ansicht_/_Beziehungen_ auswählen.
+
+Weitere Beziehungen:
+
+* Zugeordnete Elemente → Attribut für das Assoziationsende (nur bei Assoziation)
+* Typisiertes Element → Attribut welches das Assoziationsende aufnehmen kann (nur bei Klasse)
+** WICHTIG: Es muss derselbe Attribut-Stereotyp zugewiesen werden
+
+===== Stereotypeigenschaften mit Icons hinzufügen
+
+Zu den Stereotypeigenschaften und Labels lassen sich, sofern es Arten von Aufzählungen sind, Icons hinzufügen.
+
+==== API (Java)
+
+* link:#anchor-62[InnoApi – Elemente anlegen] (seite link:#anchor-62[85])
+
+===== Modellverbindung aufbauen
+[source,java]
+----
+include::InnoAppRunner.java[]
+----

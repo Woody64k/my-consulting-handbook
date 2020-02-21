@@ -1,0 +1,27 @@
+== TES Construction Set
+
+=== Intro
+
+=== Morrowind
+
+==== Scripting
+
+[source,cpp]
+----
+include::example_script[]
+----
+
+==== MOD List
+
+===== Adventurer Clothing(TES)
+
+Requires:: <<Better bodies (TES)>>
+
+Description::
+Cleaned and tested, requires Better Bodies. This is a collection of adventurer's clothing for males and females of the Better Body. There are four color variations, and these outfits can be found inside a home northwest of Caldera.
+"Look outside of Caldera for a clothier of a special Adventurer's clothing line. You will find the house was left cluttered with a bunch of notes and some outfits. Clean up and take what you will as your own."
+
+===== Better bodies (TES)
+
+Description::
+This is version 2.2 of Better Bodies. It replaces both the males and the females of all eight humanoid races in Morrowind. You do not need to have Tribunal or Bloodmoon installed to use Better Bodies. The meshes are now in their final states (really this time), so anybody who wants to can make clothing or armor for these bodies.

@@ -16,8 +16,8 @@
 				<maven.compiler.source>10</maven.compiler.source>
 				<maven.compiler.target>10</maven.compiler.target>
 				<asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
-				<asciidoctorj.pdf.version>1.5.0-beta.6</asciidoctorj.pdf.version>
-				<asciidoctorj.version>2.0.0</asciidoctorj.version>
+				<asciidoctorj.pdf.version>1.5.0</asciidoctorj.pdf.version>
+				<asciidoctorj.version>2.2.0</asciidoctorj.version>
 				<jruby.version>9.2.8.0</jruby.version>
 				<adoc.folder>src${file.separator}main${file.separator}resources</adoc.folder>
 				<adoc.mainfile>consulting-handbook</adoc.mainfile>

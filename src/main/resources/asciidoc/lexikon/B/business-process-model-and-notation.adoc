@@ -8,7 +8,7 @@
 
 Elemente:
 
-* link:#anchor-180[Activity (BPMN)] (Seite link:#anchor-180[124])
+* <<Activity (BPMN)>>
 * link:#anchor-293[Event (BPMN)] (Seite link:#anchor-293[269])
 * link:#anchor-294[Gateway (BPMN)] (Seite link:#anchor-294[292])
 * Sequence Flow

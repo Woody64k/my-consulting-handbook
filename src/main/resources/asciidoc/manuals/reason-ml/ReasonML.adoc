@@ -24,11 +24,11 @@ bsb -init my-project -theme react
 
 [source,js]
 ----
-include::ReasonML/Hello-World.re[]
+include::Hello-World.re[]
 ----
 
 
 [source,js]
 ----
-include::ReasonML/folding.re[]
+include::folding.re[]
 ----

@@ -153,20 +153,20 @@ linux /casper/vmlinuz  file=/cdrom/preseed/ubuntu.seed boot=casper quiet splash 
 
 There is a firmware problem with internal routing and memory tables. This fix applies to all AN515-42 models with latest BIOS.
 
-4. Restart your PC, try to boot your newly installed Linux, notice it will fail.
+. Restart your PC, try to boot your newly installed Linux, notice it will fail.
 
-5. Restart your PC and boot the USB stick (F12 key).
+. Restart your PC and boot the USB stick (F12 key).
 
-6. So now, you boot the USB stick again and select "Try Ubuntu / Elementary / whatever".
+. So now, you boot the USB stick again and select "Try Ubuntu / Elementary / whatever".
 
-7. Click on the file browser and go to your installed Linux drive, the file browser will automount the partition, and go to /boot/grub (/media/ubuntu/some-serial-number-123123123/boot/grub). Careful! There will be YOUR_USB_DRIVE/boot/grub, YOUR_CURRENT_LINUX_SESSION/boot/grub, MOUNTED_PARTITION_FROM_PREVIOUS_LINUX_BOOT/boot/grub, and you want the last one.
+. Click on the file browser and go to your installed Linux drive, the file browser will automount the partition, and go to /boot/grub (/media/ubuntu/some-serial-number-123123123/boot/grub). Careful! There will be YOUR_USB_DRIVE/boot/grub, YOUR_CURRENT_LINUX_SESSION/boot/grub, MOUNTED_PARTITION_FROM_PREVIOUS_LINUX_BOOT/boot/grub, and you want the last one.
 
-8. Open grub.cfg and redo what you did at point 3.
+. Open grub.cfg and redo what you did at point 3.
 
-9. Whenever using "sudo apt update && sudo apt upgrade -y", as in whenever you upgrade your Linux, make sure the "acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2" doesn't get removed from "/boot/grub/grub.cfg"!!! This can happen when grub gets upgraded. To try and avoid this, go to /usr/lib/grub-legacy/update-grub and look for defoptions="quiet splash" and add "acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2". Also in the /etc/default/grub look for the GRUB_CMDLINE_LINUX="quiet splash" and add make it GRUB_CMDLINE_LINUX="quiet splash acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2"
+. Whenever using "sudo apt update && sudo apt upgrade -y", as in whenever you upgrade your Linux, make sure the "acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2" doesn't get removed from "/boot/grub/grub.cfg"!!! This can happen when grub gets upgraded. To try and avoid this, go to /usr/lib/grub-legacy/update-grub and look for defoptions="quiet splash" and add "acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2". Also in the /etc/default/grub look for the GRUB_CMDLINE_LINUX="quiet splash" and add make it GRUB_CMDLINE_LINUX="quiet splash acpi=noirq pci=noacpi ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2"
 
-10. Restart, pull out USB stick, and enjoy your Linux.
+. Restart, pull out USB stick, and enjoy your Linux.
 
-11. Optionally, wherever you see quiet splash you can delete quiet splash, if you want to see verbose logs whenever booting, instead of the logo splash loader.
+. Optionally, wherever you see quiet splash you can delete quiet splash, if you want to see verbose logs whenever booting, instead of the logo splash loader.
 
 PS: Let me know if it worked.

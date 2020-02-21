@@ -18,18 +18,18 @@ function mkCert(){
 		
 		# Generate Certificate 
 		openssl req -new -key ${NAME}.key -out ${NAME}.csr
-			# Country Name (2 letter code) [AU]: DE
-			# State or Province Name (full name) [Some-State]: BAVARIA
-			# Locality Name (eg, city) []: Nuernberg
-			# Organization Name (eg, company) [Internet Widgits Pty Ltd]:MID GMBH
-			# Organizational Unit Name (eg, section) []:Consulting
-			# Common Name (e.g. server FQDN or YOUR name) []:tools.mid.de
-			# Email Address []:s.sauerbier@mid.de
+			# Country Name (2 letter code): DE
+			# State or Province Name (full name): BAVARIA
+			# Locality Name (eg, city): Nuernberg
+			# Organization Name (eg, company):MID GMBH
+			# Organizational Unit Name (eg, section):Consulting
+			# Common Name (e.g. server FQDN or YOUR name):tools.mid.de
+			# Email Address:s.sauerbier@mid.de
 		 
 			# Please enter the following 'extra' attributes
 			# to be sent with your certificate request
-			# A challenge password []:
-			# An optional company name []:
+			# A challenge password: **************
+			# An optional company name:
 		
 		openssl x509 -req -sha256 -days 365 -in ${NAME}.csr -signkey ${NAME}.key -out ${NAME}.crt
 			# Signature ok

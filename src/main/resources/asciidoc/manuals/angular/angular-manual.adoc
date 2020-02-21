@@ -18,12 +18,12 @@ systemjs.config.js:: provides information to a module loader about where to find
 ==== Angular CLI (ng)
 [source,shell]
 ----
-include::angular/installWithNpm.sh[lines=1]
+include::installWithNpm.sh[lines=1]
 ----
 ==== Typescript (ng)
 [source,shell]
 ----
-include::angular/installWithNpm.sh[lines=2..4]
+include::installWithNpm.sh[lines=2..4]
 ----
 
 == Typescript (ng)
@@ -49,7 +49,7 @@ Möglich mit `“`, `‘` oder ```.
 Letzters erlaubt Zeilenumbrüche und Variablenplatzhalter im String. (Template-String)
 [source,js]
 ----
-include::angular/student.ts[]
+include::student.ts[]
 ----
 === Typen (ng)
 ==== Typ-Zuweisung (ng)
@@ -529,7 +529,7 @@ export class TakePlaceSoonPipe implements PipeTransform {
 
 
 == Routing
-==== Multi Routing
+=== Multi Routing
 Mehrere Router in einer Page sind möglich. (Lässt sich aber über Submodule vermeiden.)
 [source,html]
 ----

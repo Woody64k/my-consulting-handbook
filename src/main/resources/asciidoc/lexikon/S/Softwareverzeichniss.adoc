@@ -1,4 +1,4 @@
-== Softwareverzeichniss
+== Softwareverzeichnis
 === Grafik
 
 ==== Dia
@@ -18,3 +18,7 @@ Zum Zeichnen von Vektorgrafiken.
 image::software/synfig/icon.png[Synfig-Icon,,128]
 
 Software für 2D Animation.
+
+==== Sourcetrail
+
+Link: https://www.sourcetrail.com

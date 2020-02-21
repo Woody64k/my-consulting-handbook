@@ -13,5 +13,5 @@ Vorraussetzung ist die erstellung von Zertifikaten mittels <<Zertifikate erstell
 
 [source,shell]
 ----
-include::kubernetes/installKubernetesUI.sh[]
+include::installKubernetesUI.sh[]
 ----
