@@ -1,0 +1,6 @@
+== Comic Blogs for IT-People
+
+* https://xkcd.com[XKCD]
+* https://dilbert.com[Dilbert]
+* http://turnoff.us[TurnOff]
+* https://www.monkeyuser.com[Monkeyuser]
