@@ -1,11 +1,12 @@
-:title-separator: {sp}|
-:doctype: book
-:toc-title: Inhalt
-:toclevels: 6
-:icons: font
-:source-highlighter:highlight
-
 = Consulting Lexikon | Wissen für Consultants
+:toc-title: Table of Contents
+:toc: left
+:toclevels: 3
+:sectnums:
+:sectnumlevels: 5
+:imagesdir: ./images
+:icons: font
+:source-highlighter: coderay
 Sebastian Sauerbier <s.sauerbier@mid.de>
 
 == Einführung

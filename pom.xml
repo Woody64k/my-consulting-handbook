@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.woody64k.consulting.doc</groupId>
@@ -7,57 +8,64 @@
 	<packaging>pom</packaging>
 	<description>Ein Consultinghandbucht zum nachschlagen und Probleme lösen.</description>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>10</maven.compiler.source>
+		<maven.compiler.target>10</maven.compiler.target>
+		<asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
+		<asciidoctorj.pdf.version>1.5.0</asciidoctorj.pdf.version>
+		<asciidoctorj.version>2.2.0</asciidoctorj.version>
+		<jruby.version>9.2.8.0</jruby.version>
+		<adoc.folder>src${file.separator}docs${file.separator}asciidoc</adoc.folder>
+		<adoc.mainfile>consulting-handbook</adoc.mainfile>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.asciidoctor</groupId>
+				<artifactId>asciidoctor-maven-plugin</artifactId>
+				<version>${asciidoctor.maven.plugin.version}</version>
+				<configuration>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+					<sourceDirectory>${adoc.folder}</sourceDirectory>
+					<imagesDir>images</imagesDir>
+					<headerFooter>true</headerFooter>
+					<sourceDocumentName>${adoc.mainfile}.adoc</sourceDocumentName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<profiles>
 		<profile>
-			<id>doc</id>
-			<properties>
-				<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-				<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-				<maven.compiler.source>10</maven.compiler.source>
-				<maven.compiler.target>10</maven.compiler.target>
-				<asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
-				<asciidoctorj.pdf.version>1.5.0</asciidoctorj.pdf.version>
-				<asciidoctorj.version>2.2.0</asciidoctorj.version>
-				<jruby.version>9.2.8.0</jruby.version>
-				<adoc.folder>src${file.separator}main${file.separator}resources</adoc.folder>
-				<adoc.mainfile>consulting-handbook</adoc.mainfile>
-			</properties>
-
+			<id>pdf</id>
 			<build>
 				<defaultGoal>process-resources</defaultGoal>
 				<plugins>
 					<plugin>
 						<groupId>org.asciidoctor</groupId>
 						<artifactId>asciidoctor-maven-plugin</artifactId>
-						<version>${asciidoctor.maven.plugin.version}</version>
 						<dependencies>
 							<dependency>
 								<groupId>org.asciidoctor</groupId>
 								<artifactId>asciidoctorj-pdf</artifactId>
 								<version>${asciidoctorj.pdf.version}</version>
 							</dependency>
-							<!-- Comment this section to use the default jruby artifact provided by the plugin -->
+							<!-- Comment this section to use the default jruby artifact provided 
+								by the plugin -->
 							<dependency>
 								<groupId>org.jruby</groupId>
 								<artifactId>jruby-complete</artifactId>
 								<version>${jruby.version}</version>
 							</dependency>
-							<!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+							<!-- Comment this section to use the default AsciidoctorJ artifact 
+								provided by the plugin -->
 							<dependency>
 								<groupId>org.asciidoctor</groupId>
 								<artifactId>asciidoctorj</artifactId>
 								<version>${asciidoctorj.version}</version>
 							</dependency>
 						</dependencies>
-						<configuration>
-							<outputDirectory>${project.build.directory}</outputDirectory>
-							<sourceDirectory>${adoc.folder}${file.separator}asciidoc</sourceDirectory>
-							<sourceDocumentName>${adoc.mainfile}.adoc</sourceDocumentName>
-							<!-- Attributes common to all output formats -->
-							<attributes>
-								<sourcedir>${project.build.sourceDirectory}</sourcedir>
-							</attributes>
-						</configuration>
 						<executions>
 							<execution>
 								<id>generate-pdf-doc</id>
@@ -67,14 +75,15 @@
 								</goals>
 								<configuration>
 									<backend>pdf</backend>
-									<!-- Since 1.5.0-alpha.9 PDF back-end can use 'rouge' as well as 'coderay' for source highlighting -->
-									<!-- Due to a known issue on windows, it is recommended to use 'coderay' until an new version of 'rouge' is released. see discussions: https://github.com/asciidoctor/asciidoctor-maven-examples/pull/58 
+									<!-- Since 1.5.0-alpha.9 PDF back-end can use 'rouge' as well as 
+										'coderay' for source highlighting -->
+									<!-- Due to a known issue on windows, it is recommended to use 'coderay' 
+										until an new version of 'rouge' is released. see discussions: https://github.com/asciidoctor/asciidoctor-maven-examples/pull/58 
 										https://github.com/asciidoctor/asciidoctorj-pdf/issues/3 https://github.com/jneen/rouge/issues/661 -->
 									<sourceHighlighter>coderay</sourceHighlighter>
 									<doctype>book</doctype>
 									<attributes>
 										<pdf-stylesdir>${project.basedir}${file.separator}${adoc.folder}${file.separator}theme</pdf-stylesdir>
-										<imagesdir>${project.basedir}${file.separator}${adoc.folder}${file.separator}images</imagesdir>
 										<pdf-style>my</pdf-style>
 										<icons>font</icons>
 										<pagenums />
@@ -105,6 +114,38 @@
 										</artifact>
 									</artifacts>
 								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>html</id>
+			<build>
+				<defaultGoal>process-resources</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctor-maven-plugin</artifactId>
+						<configuration>
+							<backend>html5</backend>
+							<sourceHighlighter>coderay</sourceHighlighter>
+							<attributes>
+								<b>multipage_html5</b>
+							</attributes>
+							<!--attributes> <stylesheet>my-theme.css</stylesheet> </attributes -->
+							<requires>
+								<require>${project.basedir}${file.separator}src${file.separator}ruby-lib${file.separator}asciidoctor-multipage.rb</require>
+							</requires>
+						</configuration>
+						<executions>
+							<execution>
+								<id>output-html</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>process-asciidoc</goal>
+								</goals>
 							</execution>
 						</executions>
 					</plugin>
