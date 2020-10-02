@@ -11,3 +11,16 @@ image::Kubernetes-logo.svg[Ein weißes Steurrad in einem blauen Sieben-Eck,128,1
 
 === Weitere Anleitungen
 <<Kubernetes - Handbuch>>
+
+=== Hilfreiche Links
+
+Kurse::
+* https://www.udemy.com/course/kubernetesmastery/
+
+Bücher::
+* https://www.rheinwerk-verlag.de/skalierbare-container-infrastrukturen-das-handbuch-fuer-administratoren/
+* https://www.rheinwerk-verlag.de/skalierbare-container-infrastrukturen_5149/
+
+Online-Tutorials::
+* https://www.katacoda.com/learn?q=kubernetes
+* https://labs.play-with-k8s.com/
