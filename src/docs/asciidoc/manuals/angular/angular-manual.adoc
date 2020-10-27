@@ -4,6 +4,15 @@
 === Vorraussetzung (ng)
 * Installation von node.js
 
+npm setup for linux:
+[source,shell]
+----
+mkdir '~/code/.npm-global'
+npm config set prefix '~/code/.npm-global'
+export PATH=~/code/.npm-global/bin:$PATH
+source ~/.profile
+----
+
 ==== Benötigte Dateien (ng)
 package.json:: identifies npm package dependencies for the project.
 tsconfig.json:: defines how the TypeScript compiler generates JavaScript from the project's files.
