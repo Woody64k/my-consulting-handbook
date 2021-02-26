@@ -1,0 +1,108 @@
+== Service Scope
+=== Einführung
+
+Der Service Scope beschreibt de Umfang der Daten die über eine Schnittstelle gesendet werden. Will man hier einigermaßen redundanzfrei bleiben, so steht man vor Krümelmosters großen Dilemma: Ein großer Keks oder viele Kleine Kekse. 
+
+Schauen wir uns einen großen Keks an einem Beispiel aus der Praxis an.
+
+
+=== Fallbeispiel
+Für einen Kunden soll das Kundenmanagement-System mit der Abrechnung und dem neuen Kundenportal integriert werden.
+Hierfür sollen schnittstellen entworfen werden, um die Daten auszutauschen. 
+Das Kundenportal enthält Daten zu Kunden und deren Addressen, die Beratungsgepräche und Protokolle sowie die Bestellungen des Kunden. 
+
+.Stark vereinfachtes Datenmodell der Kundendaten.
+image::architecture/Customer-data-example.svg[Example for Customer Data,,256]
+
+Der Architekt des Kundenmanagements entschied, dass eine Schnittstelle ausreichend ist, um einen 
+umfassenden Datenaustausch sicherzustellen.
+Daher lieferte das Interface zum laden von Kundendaten alle Daten des Kunden auf einmal. 
+Vom Namen über die Adressen bis zu den Bestelungen und Beratungsprotokollen wird alles zurückgeliefert.
+Ein Aufruf dauert zwischen 5 und 15 Sekunden und liefert 5 - 20 MB Daten.
+
+Das Abrechnungssystem führt einmal in der Woche immer Nachts um 1 
+Uhr einen Batchlauf aus um die Daten zu syncronisieren.
+Dieser lauf dauert mit der Schnittstelle 3 Stunden und solange sich die Kundenzahl nicht signifikant erhöht, 
+kann das Abrechnungssystem mit der Schnittstelle arbeiten. Die gefahr künfitger Performanceprobleme zwichnet sich jedoch ab, sollten weitere System ebenfalls Nachts Daten syncronisieren
+
+Das Kundenportal verfügt über keine eigene Datenhaltung.
+Es ruft nach der Anmeldung durch den Kunden den Service auf, um den Kunden zu begrüßen und seinen Nahmen am Profil-Icon anzuzeigen.
+In den Unterseiten des Portals kann der Kunde seine Stammdaten verwalten sowie seine offenen Besellungen einsehen.
+Die Laufzeit von bis zu 15 Sekunden bis zu Start der Seite ist für das Kundenportal problematisch.
+Außerden gerät wird die Kundenverwaltung merklich langsame, wenn ein Kunde sich im Portal anmeldet.
+
+Auch der Jurist des Hauses hat Datenschutzbedenken, wenn jeder Aufrufer die Beratungsprotokolle und Bestellhistorie erhält.
+
+=== Analyse
+
+In diesem Beispiel tritt die Bedeutung eines richtigen Daten-Umfanges (Data-Scope) in Schnittstellen sehr deutlich zu tage.
+Während sich den Performanceproblemen über clevere replikation Herr werden ließe, bleiben die Effizienz und Zugriffsprobleme erhalten.
+Ein anderer "Schnitt" der Schnittstelle ist hier gefragt. Also brechen wir den Großen Keks in mehrere Teile und schauen uns die neuen Daten der Schnittstellen an.
+
+.Fokusierter Scope auf die Kerndaten des Kunden.
+image::architecture/Customer-data-focus-example.svg[Example for only Customer Data,,256]
+
+Die Schnittstelle zu abrufen des Kunden stellt nun eine möglichkeit zum abrufen der Kerndaten bereit.
+Diese hat einen wesentlich verringerten Umfang. Damit verursacht sie weniger last im Kundenverwaltungs-System und schont netzwerk-Ressourcen.
+Außerdem werden die Beratungsprotokolle nun in eine separate Schnittstelle ausgelagert und dort speziellen zugriffsrechten unterworfen.
+
+.Fokusierter Scope auf die Kerndaten des Kunden.
+image::architecture/Customer-data-Order-example.svg[Example for Order Data,,256]
+
+Die Order Schnittselle bleibt jedoch relativ mächtig.
+
+
+
+=== Zusammenfassung
+Der Servie Scope ist der Umfang der Daten die über eine Schnittstellen bereitgestellt werden und wie sich die Daten auf die Operationen verteilen.
+Die passende Scope bzw. der passende Schnitt von Schnittstelle ist dabei ein wesentlicher 
+Faktor für den Erfolg einer Integrations- und Software-Architektur.
+
+Für den Konsumenten des Services ist der Schnitt der Operationen besonders wichtig.
+Idealerweise würde der Konsument Alle von ihm zu einem Zeitpunkt benötigten Daten mit einer 
+Operation abrufen können. Dann wäre die Schnittstelle für den Konsumenten optimal.
+Jedem Konsumenten ein Optimales Interface anzubieten ist jedoch nicht wirtschaftlich.
+Daher ist es notwendig, dass dieselbe Schnittstelle von verschiedenen Konsumenten genutzt wird.
+
+Für den Konsumenten hat dies zwei mögliche Folgen:
+
+. die Operation liefert mehr daten als benötigt. Das bedeutet ineffizienz durch unnötig geladene Daten und unnötiger mehraufwand beim Quellsystem.
+. die Operation liefert weniger daten als benötigt. In diesem Fall muss der Konsument weitere Calls ausführen um die daten zusammenzustellen. Die zusammenstellung dieser Service Orchestrierung bedeutet Aufwand für den Konsumenten verursacht mehr Datenverkehr durch viele Aufrufe.
+
+Daher ist der Schnitt von Operationen und Services immer eine Abwägung von Interessen und Anforderungen der Konsumenten. Dabei sind folgende Faktoren einzubeziehen:
+
+*	Der geschäftliche Bedeutung der Anwendungsfälle, welche die Servicenutzer durch Aufruf der Serviceoperation erfüllen wollen
+*	Häufigkeit der Durchführung des Anwendungsfalles und daraus resultierend des Operationsaufrufs
+*	Nicht funktionale Rahmenbedingungen
+**	Performanceanforderungen
+**	Sicherheitsanforderungen
+**	Struktur- und Architekturziele
+
+
+Außerdem sollten Standardfunktionalitäten vom Serviceanbieter eingefordert werden, spezifi-sche Funktionen jedoch zu den Servicenutzern verlagert werden. Dies reduziert die Bedarfs-streuung und erhöht die Standardisierung.
+1.1.1.1	Vorgehen beim Operationsschnitt
+Zunächst sollten die Anwendungsfälle der Servicenutzer betrachtet werden, um Gemeinsam-keiten in deren Anforderungen an den Service zu identifizieren. Hierfür betrachtet man die Anwendungsfälle inklusive ihrem Kontext und versucht durch einen veränderten Zuschnitt oder der Verlagerung von Funktionalitäten zwischen verschiedenen Anwendungsfällen, diese zu vereinheitlichen. Ziel dieses Schrittes ist es, die Anzahl der notwendigen Serviceoperatio-nen zu reduzieren.
+Danach erfolgt der Abgleich zwischen den Anwendungsfällen und Serviceoperationen, d. h. es wird ermittelt, welche existierenden Operationen welche Anwendungsfälle bereits abde-cken und welche Operationen neu erstellt werden müssen.
+Aus funktionaler Sicht ist der Schnitt einer Serviceoperation natürlich am effizientesten, wenn sie exakt die Funktionalität bereitstellt, welche der Servicenutzer benötigt. Geht der Umfang der Operation darüber hinaus, so führt dies zu einer erhöhten Belastung im Bereich der Infra-struktur: 
+-	des Netzwerkes (z. B. durch der Transport unnötiger Daten)
+-	der Server (z. B. durch das Ausführen nicht benötigter Funktionalitäten bzw. Laden unnötiger Daten)
+-	des Clients (z. B. durch das notwendige Ermitteln der Daten aus der Serviceantwort)
+Auch eine zu hohe Granularität hat Konsequenzen für die Nutzung des Services. Ist der Leis-tungsumfang zu gering, müssen mehrere Serviceaufrufe durchgeführt werden. Auch dies hat negative Auswirkungen auf die Infrastruktur:
+-	des Netzwerkes (z. B. durch unnötig viele Operationsaufrufe)
+-	der Server (z. B. durch die Bearbeitung vieler Anfragen)
+-	des Clients (z. B. durch die Zusammenführung der Daten)
+Da also sowohl Serviceanbieter, als auch Servicenutzer negativ von einem schlechten Ser-viceschnitt betroffen sind, ist es in beider Interesse, Serviceoperation möglichst bedarfsorien-tiert zu schneiden.
+Das Problem beim exakten Zuschneiden von Serviceoperationen auf die Anforderungen sind die meist heterogenen Bedürfnisse der unterschiedlichen Servicenutzer. Die Anzahl der not-wendigen Operationen treibt den Entwicklungs- und Wartungsaufwand sehr schnell in nicht gewünschte Höhen. Außerdem würden folgende zentralen Ziele einer SOA verletzt werden:
+-	Wartbarkeit
+-	Durchgängigkeit
+-	Wiederverwendung
+-	Standardisierung
+Abhängig von der Anzahl und Heterogenität der Anwendungsfälle kann es notwendig sein, diese durch bewusst zu groß oder zu klein geschnittene Operationen zu erfüllen. Bei häufig genutzten oder zeitkritischen Anwendungsfällen bzw. Serviceoperationen ist es dagegen sinnvoll, auf eine höhere Passgenauigkeit zu achten. Letztlich lautet die Zielsetzung, eine gute Balance zwischen Passgenauigkeit und den genannten Zielen zu erreichen.
+1.1.1.2	Beispiel eines Operationsschnittes
+Das Beispiel in Abbildung 2 stellt vier Anwendungsfälle einer Anwendung dar: Es dient der Erstellung von Verträgen und Rechnungen, außerdem können Angebote versendet und Sup-port geleistet werden.
+  
+Abbildung 2: Anforderungen der Servicenutzer
+Auf der horizontalen Achse sind unterschiedliche Kundendaten angebracht, die Position und Länge der darüber liegenden Anwendungsfälle geben an, ob diese die Kundendaten benöti-gen. Die vertikale Achse stellt die Nutzungshäufigkeit der Anwendungsfälle dar. So gehört der Support zum Tagesgeschäft, während nur selten neue Verträge abgeschlossen werden.
+Die Abbildung 3 stellt einen möglichen Serviceschnitt für das beschriebene Beispiel dar. Auf-grund der häufigen Nutzung wurde für den Support-Anwendungsfall eine speziell zugeschnit-tene Operation bereitgestellt. Für das Versenden eines Angebotes müssen hingegen zwei Serviceoperationen aufgerufen werden, um die notwendigen Daten zu erhalten. Für die Rechnungs- und Vertragserstellung sind dagegen drei Operationsaufrufe erforderlich. Zudem liefert der gewählte Operationsschnitt für den Anwendungsfall „Rechnung erstellen“ unnötige Daten. Dies wird jedoch für den selten genutzten Anwendungsfall bewusst in Kauf genom-men.
+ 
+Abbildung 3: Möglicher Operationsschnitt zu den Beispielanforderungen
