@@ -1,0 +1,86 @@
+== Asynchronony Patterns für modernes Software Architecture Design
+
+Komplexität entspringt meist eher der fachlichen Domäne als der Technik.
+
+Bounded Context für isolierte Domänen-Modelle. -> Module
+
+Systeme werden immer stärker verteilt -> mehr komplexität.
+
+Idee: Modulith -> Modular geschnittener Monolith (wie in der guten alten Zeit)
+
+
+Daten intensiv - gegenteil zu rechenintensiv:
+
+* die Menge der Daten
+* die Komplexität der daten
+* die Änderungsgeschwindigkeit der Daten
+
+Cluster-Computing -> horizontale Skalierung.
+
+
+=== To Phase Commits
+
+Üblicherweise nutzen wir 2-phase-commit für die modulübergreifende Transaktionssicherung.
+
+* -> Starker kommunikationsoverhead -> Performance
+* -> höhere ausfallwahrscheinlichkeit, weil alles fehlschlägt, wenn eine aussteigt.
+
+-> mehr asyncronität
+
+//TODO: Draw 1
+
+[WARNING]
+====
+ACID-Rain Attack: Provozieren von Transaktions-Anomalien im System.
+
+-> Zum erhalten von Produkten ohne zu bezahlen.
+====
+
+==== Transacton Isolation
+
+Typical behavior
+
+* default
+* use Read Commited -> performance
+* Serializable -> protect anomalies
+* depends on the usecase
+
+NOTE: Meist nicht korrekt eingesetzt, weil es sehr Komplex ist und teilweise unterschiedlich implementiert.
+
+=== Asychrone Patterns
+
+* Saga Pattern
+* Aggregate Pattern
+** -> Zusammenfassung von Daten die gemeinsames updateverhalten haben - Aggregate
+** -> Aggregat gemeinsam updaten
+* CQRS (Comman Query Responsbility Seggregation) -> https://de.wikipedia.org/wiki/Command-Query-Responsibility-Segregation
+** Eigene Modelle für Schreiben (command) und lesen (query)
+** Lesemodel wird nach dem Update schrittweise aktualisiert
+* Asyncronous processing of Domain Events & Transaction Outbox Pattern
+** Events werden publiziert (message, event/outbox-table) und können asynchron konsumiert werden.
+
+==== Saga
+
+Die calls werden zu einer Saga (Geschichte) hintereinander geschaltet.
+Der Zustand der Saga läuft z.B. über einen Message Broker.
+Bei der Kompentation im Fehlerfall müssen nur schreibende, keine lesenden kompensiert werden.
+
+//TODO: Draw 2
+
+===== Concurrency
+
+Wenn zwei sagas parallel auf den selben daten laufen, bekommt man durch parallelisierung lost updates.
+Denn die Sagas können einander Überholen.
+
+Lösungen:
+
+* collision detection: z.B. über Versionsnummern
+
+CAUTION: Komplexität steigt, weil man damit die Konsistenz sicherstellen muss.
+
+[TIP]
+====
+Ein guter fachlicher Prozess, kann viele Probleme vermeiden.
+
+z.B. Stornieren ist erst nach erfolgreicher Bestellung möglich.
+====

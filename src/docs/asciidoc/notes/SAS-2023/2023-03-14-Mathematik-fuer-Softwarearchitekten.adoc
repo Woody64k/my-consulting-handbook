@@ -1,0 +1,123 @@
+== Mathermatik für Softwarearchitekten
+TIP: Buch https://algebradriven.design
+
+NOTE: use https://racket-lang.org (execute DrRacket.exe)
+
+Tests testen generell nur bestimmte Szenarien. Unbekannte szenarian werden nicht getestet und fallen erst in Produktion auf.
+
+Mathematik soll die Korrektheit von Software beweisen.
+
+NOTE: Mathematisch lassen sich bestimmte Domänen sehr gut modellieren und abbilden.
+
+=== Begriffe
+
+NOTE: Gleichheit bedeutet, dass beide Seiten semantisch das Selbe bedeuten.
+
+==== Assoziativität
+
+Klammersetzung ist bei der operation egal. Das heißt egal die die Operation gruppiert wird, das Ergebniss ist das gleiche.
+z.B. Map Reduce.
+
+a*(b*c) = (a*b)*c
+
+==== Kommutativität
+
+Die Reihenfolge der Parameter ist egal.
+
+a*b = b*a
+
+==== Distributivität
+
+Gruppierung lässt sich auflösen. (Dabei tritt ein Element mehrfach auf.)
+
+a*(b+c) = a*b + a*c
+
+==== Substitution
+
+Einsetzen und umstellen von Formeln.
+
+==== Idempotenz
+
+=== Algebra
+
+* semigroup = menge + operation (z.B. Reele Zahlen und addition)
+* monoid = semigroup + neutrales element
+* group
+* ring
+* feld
+
+==== neutrales Element
+
+Wenn es in einer Funktion vorkommt, erfolgt keine Veränderung.
+z.B. 1 bei Multiplikation oder 0 bei Addition.
+
+=== In der Entwicklung
+
+public abstract void drawOval(inx x, int x, int width, int height)
+
+-> Zeichnet ein Oval, dass im nachgang gesehen wird. Das zu testen ist schwierig.
+
+* optimierung / parallelisierung
+* caching
+* property based testing
+* beweisen (via induktion)
+
+[NOTE] 
+====
+Wir nutzen für Funktionen das Lamba-Kalkül.
+Das lambda war ursprünglich ein ^ zum markeiten von ableitungen.
+Wurd beim handschrftlichen lesen falsch Interpretiert als Lambda.
+====
+
+TIP: z.B. Kombination von Funktion & Kompensation für Testfälle-
+
+
+=== Racket
+
+[source,lisp]
+----
+#lang deinprogramm/sdp
+(require deinprogramm/sdp/image)
+
+(define x
+  (+ 23
+   (* 12 14)))
+
+;("Definiert gemetrische formen")
+(define circle1
+  (circle 50 "solid" "red"))
+(define star1
+  (star 50 "solid" "green"))
+(define rectangle1
+  (rectangle 100 50 "outline" "blue"))
+
+(define overlay1
+  (overlay star1 circle1))
+
+(define above1 (above
+                (beside star1 circle1)
+                (beside circle1 star1)))
+
+;("Definiert eine funktion -tile- für kacheln")
+(define tile (lambda (image1 image2) (above
+                (beside image1 image2)
+                (beside image2 image1))))
+
+(define tiles (lambda (image1 image2) (tile (tile image1 image2) (tile image1 image2))))
+
+(define clockwise (lambda (image) (rotate -90 image)))
+(define counterclockwise (lambda (image) (rotate 90 image)))
+
+;("Definiert eine Eigenschaft")
+(define full-rotate (for-all ((i image)) (image=? (clockwise (clockwise (clockwise (clockwise i)))) i)))
+;("Definiert eine Eigenschaft")
+(define rotate-back (for-all ((i image)) (image=? (clockwise (counterclockwise i)) i)))
+
+;("Definiert eine falsche Eigenschaft")
+(define wrong-rotate (for-all ((i image)) (image=? (clockwise (clockwise (clockwise i))) i)))
+
+;("Testet die Eigenschaft")
+;(check-property wrong-rotate)
+(check-property full-rotate)
+(check-property rotate-back)
+----

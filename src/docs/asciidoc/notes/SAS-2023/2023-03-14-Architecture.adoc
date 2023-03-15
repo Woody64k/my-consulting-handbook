@@ -1,0 +1,43 @@
+== Warum Softwarearchitektur so schwierig ist
+
+=== Practices
+
+==== Universelle vs spezifische Modelle
+
+Generisch:
+
+* Günstigere implementierung bei vielen Partnern
+
+Spezifisch:
+
+* Änderugngen sind lokal begrenzt
+* Risiko lässt sich begrenzen
+
+TIP: Es kommt darauf an, was in der Domäne behandelt wird. Sind es fachlich die selben Daten oder nicht?
+
+
+=== Quality
+
+Konflikte der Qualitätsziele (DIN 25010)
+
+* Funktionale Nachhaltigkeit
+* Zuverlässigkeit
+* Performance / Effizient
+* Verwendbarkeit / Benutzbarkeit
+* Sicherheit
+* Kompatibilität
+* Wartbarkeit
+* Übertragbarkeit
+
+Architektur ist eher en Hygienefaktor für die Qualitäsziele. Architektur allein kann die Erreichungs der Ziele nicht sicherstellen.
+
+
+=== Konfliktmanagement
+
+Verstehen was der Andere erreichen will.
+z.B. Projektleiter muss Deadlines einhalten -> mehrere Teams auf einen Microservice
+
+* Intention verstehen und lösungen suchen
+* erwarteten Kommunikations-overhead kommunizieren
+* ggf. Modularisierung innerhalb des Services
+* ggf. Sinnvoller Kompromiss

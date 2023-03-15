@@ -1,0 +1,116 @@
+== Softwarearchitektur in Großen Projekten
+
+=== How do Architects work?
+
+Theory:
+
+* analysieren wie die Qualitätsanforderungen sind und was die fachliche Motivation ist
+* eine passende Entwicklungsmethode, Architektur und Technologien wählen
+* entscheidungen evaluieren, korrigieren und dokumentieren 
+
+
+Praktisch:
+
+* Sind technologische entscheidungen schon getroffen
+
+
+Market Problem:
+
+* Firmen zahlen mehr für hippe und in ihrem fall unbrauchbare Techologien
+
+=== What good Architecs do
+
+* Technische Arbeiten
+** Entwickler coachen
+** Technologien abwägen und auswählen
+** a
+** a
+* Architektur verteidigen
+* Architektur verkaufen
+* involviert werden
+
+=== 7 Empfehlungen
+
+==== Eigene Perspektve Wählen
+
+Perspektiven:
+
+* Domänen Architektur -> Schnitt der Module im System. Diese sind meist fachlich getrieben. + Interaktion dieser Module untereinander.
+** Fachlicher Schnitt
+* Kommunikationsarchitektur
+* Mikroarchiektur -> innenaufbau undTechnologie der Module
+
+==== Teamstruktur
+
+Welches Team verantwortet welches Modul.
+Idealerweise verantwortet ein Team mehrere miteinander verbundene Module.
+
+TIP: Buchempfehlung -> https://teamtopologies.com
+
+Grundsätzliche Topologien:
+
+* Steam-aligned team -> Interdisziplinäres Full-Stack team
+* Enabling Team (Service Team) -> UI / Datenbank
+* Plattform Team
+* Complicated-subsysem team (z.B. für komplexe legacy Systeem)
+
+Das gute an Team Topologien
+
+* Team first approach -> Teamstruktur planen
+* Autonomie ist zentral zum schaffen von Werten -> direktes Kundenfeedback
+* Technologieunabhängigkeit
+* Langlebige Teams
+* Basiert auf erfahgung, forschung und zusammenarbeit
+
+==== Passe die Organisationsstruktur and Projktgröße, -kontext & -kultur
+
+Spannweite:
+
+* Kleine Teams
+** nachen Architektur nebenbei
+* Wenige Kollaborative Teams
+** Architektur Board mit Team-Mitgliedern
+* Viele unabhängige Teams
+** explizite Rolen
+** Eigenes Architektur Team
+** Architektur Team schickt Personen in Teams
+
+==== Keine Angst vor zentralen Entscheidungen
+
+* Entscheidng was Zentralisiert werden muss
+* Welche Teams existieren und welche Verantwortlichkeiten sie haben
+* Alles was Teamübergreifend Relevant ist
+* Wichtige globale richtlinien und strategische aspekte
+
+==== Wäge gut ab, welche Schlachten du schlägst
+
+* Fokussiere dich auf den größten Painpoint
+* Gehe Schritt für Schritt vor und nicht mehreres auf einmal
+* Gut abwägen, was zentral Standardisiert wird und was die Teams entscheiden können
+** Damit können schwerpunkte definiert werden
+** Teamentscheidungen mit best practices untrstützen
+
+==== Finde den kleinstmöglichen nützlichen Set an regeln
+
+Wenige regeln und diese duchsetzen. Zu viele Regeln führen zu wiederständen und ignoranz.
+
+Manches muss man festlegen:
+
+* Privacy
+* Accessibility
+* Security
+* Compliance
+
+==== Balance zwischen prescriptver und descriptiver Architektur
+
+Architektur wird allein durch Dokumentation nicht besser. Das treffen von Entscheidungen ist zentral. Entscheidungen für eine Option, sind manchmal besser als schlechte Kompromisse, auch wenn es einem wehtut.
+
+//TODO: Draw.io -> 02
+
+=== Zusammefassung
+
+Architektur ist eine der Wichtigsten und spannensten dinge in der IT.
+Wenn man fehler macht, ist alles kaputt, macht man alles gut, kann es gut werden. (Architektur ist "Hygiene")
+
+* Vermeide eines für Alle lösungenn.
+* Sei immer bereit für Weiterentwicklung & Verbesserung

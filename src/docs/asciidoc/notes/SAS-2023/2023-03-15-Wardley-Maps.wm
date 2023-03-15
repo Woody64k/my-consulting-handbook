@@ -1,0 +1,48 @@
+title Nizzapizza
+style handwritten
+
+// Components
+market M. Gourmet [0.99, 0.44] label [23, 3]
+component gute Pizza essen [0.90, 0.44]
+component im restaurant essen [0.79, 0.44]
+component Pizza [0.60, 0.48]
+component Tomatensoße [0.47, 0.32]
+component Gewürzmischung [0.36, 0.20]  inertia // Intertia
+component Zutaten (frisch, italienisch) [0.42, 0.74]
+component Steinofen [0.30, 0.62]
+
+// Inertia seems to be always placed on last border
+component ? [0.03, 0.02] inertia
+
+// Relations
+M. Gourmet -> gute Pizza essen
+gute Pizza essen-> im restaurant essen
+
+im restaurant essen -> Pizza
+zuhause Backen -> Pizza
+Pizza liefern -> Pizza
+
+Pizza -> Tomatensoße
+Pizza -> Steinofen
+Tomatensoße -> Gewürzmischung
+Gewürzmischung -> ?
+Pizza -> Zutaten (frisch, italienisch)
+
+
+// Risiko-Reduktion
+evolve Tomatensoße 0.47
+evolve Gewürzmischung 0.52
+evolve ? 0.8
+
+annotation 1 [0.03, 0.25] A miracle Happens. Nobody knows the secret.
+annotations [0.81, 0.01]
+
+// Neues Geschäftsmodell -> Delivery
+note Neues Geschäftsmodell -> Delivery [0.92, 0.57]
+pioneers [0.91, 0.57, 0.70, 0.94]
+component zuhause essen [0.84, 0.59]
+component zuhause Backen [0.76, 0.63] label [5, -11]
+component Pizza liefern [0.79, 0.84] label [6, -11]
+gute Pizza essen-> zuhause essen
+zuhause essen -> zuhause Backen
+zuhause essen -> Pizza liefern

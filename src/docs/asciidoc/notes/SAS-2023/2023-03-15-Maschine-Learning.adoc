@@ -1,0 +1,45 @@
+== Maschine Learning Canvas
+
+=== Wann Maschine Learning
+
+Erfolgsfaktoren:
+
+* Ergebniss muss nicht erklärbar sein
+* Algorithmus muss nicht verifizierbar sein
+* Es existieren aktuell keine Algorithmen für die Lösung
+* Wir arbeiten mit Wahrscheinlichkeiten
+* Es existieren viele Daten aus der Vergangenheit als Trainingsdaten
+
+NOTE: 10 % der ML PoCs sind erfolgreich
+
+=== Pre PoC Screening
+
+Kosten sind meist sehr gut nachvollziehbar
+Nutzen ist meist schwieriger.
+
+=== Event Storming
+
+* Evens sammeln
+* Evens gruppieren nach Usecase / Prozess
+* Pivotal Events und Boundaries identifizieren
+** - schnittstellen Events, die an Prozessgrenzen / liegen | grundsätzlicher Status change
+* Systeme und Personen idenrtifizieren und mit den Prozessen verbinden.
+* Explicit workflow
+** Gesamt durchfluss
+** z.B. revcerse Walktrough (Rückwärts durch den prozess gehen -> verzweigungen werden identifiziert, aber NOCH nicht vertieft)
+* Pick your Problem -> Problem selektieren, dessen Lösung den größten Benefit (ROI) bringt.
+
+=== Value Proposition Canvas for Maschine Learning
+
+[TIP]
+====
+See:
+
+* https://medium.com/@louisdorard
+* https://www.ownml.co/blog/machine-learning-canvas-v11-change-log
+* https://ml-ops.org
+====
+
+
+
+

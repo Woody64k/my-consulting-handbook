@@ -1,0 +1,36 @@
+== Hands.On Einstieg Wardley Maps
+
+TIP: https://onlinewardleymaps.com/
+
+* Entstehung (Genesis) -> Ich habe noch keien Ahnung und muss Wissen aufbauen
+* Eigenbau (Custom Build) -> Ich probiere es auch und schreibe ein kleines tool (z.B. Excel)
+* Product -> Programmierung eines Tools (z.B. mit Datenbank und Frontend)
+* Gebrauchsgut (Commodity) -> Standard-Software, typischerweise as a Service zugekauft
+
+=== Bestandteile
+
+Welche Elemente und selche Flughöhe hat die Map?
+Einheitliche Flughöhe finden. Einheitlich verwendung ver Komponenten der Map.
+
+Abhängig von der Aussage die getroffen werden soll.
+Zweck -> Painpoints aufzeigen und Roadmap verdeutlichen
+
+TIP: Wichtig ist es den Zeck zu definieren.
+
+=== Checkliste
+
+[TIP]
+====
+* Zweck und Scope der Map?
+* Orientierung klar?
+* Komponentenarten definiert?
+* Abstraktionsebenen konsisten?
+** Alternaive: Welchsel der ebenen kennzeichnen?
+* Ist die Mapping tiefe angemessen?
+====
+
+ „Alles entwickelt sich durch den Wettbewerb von Angebot und Nachfrage“ – Simon Wardley
+
+=== Patterns
+
+Klima: 

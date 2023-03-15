@@ -1,0 +1,51 @@
+== APIs: semi-permeable, osmotic interfaces
+
+=== Definitions
+
+==== API
+API is a mechanism to connect systems:
+
+* transfer
+* transform -> interessant, dass transform als teil der API gesehen wird, macht aus abstraktionssciht aber durchaus Sinn
+
+Assumption:
+  Ist eine Aussage die als wahr angenommen wird, ohne es zu beweisen.
+
+TIP: "All models are wrong, some are useful." - George Box wrote
+
+
+
+=== Membrane of API
+
+Betrachte das Problem als Raum mit verschiednen Perspektiven.
+
+* Complicated
+* Plane
+* Boundary
+* Dimentions
+** Minimale anzahl an Informationen (Koordinaten) um einen Punkt zu identifizieren
+* Complexity
+* Interface
+
+
+=== User Interface design
+
+Sinnvolles schneiden einer sehr großen "Unendlichen" Benutzeroberfäche.
+Aus dem Lösungsraum Komplexer Modelle werden Flache benutzeroberflächen geschnitten.
+Die Wege zwichen den Flächen spannen einen neuen Raum auf.
+
+TIP: Der UI-Raum sollte dem Modell-Raum entsprechen.
+
+NOTE: Atomic Design -> https://bradfrost.com/blog/post/atomic-web-design/
+
+=== Secenaria
+
+Content Model -> Daten wie sie vom System verwaltet werden (eg 12190041094201)
+Content Controller -> Transformiert die Daten in ein Nutzerzentriertes format (eg 2023-01-23)
+View Model -> Hält die Daten für die Anzeige vor. z.B. cache, UI-Syncronisation
+View Particle -> Syle und Layout ... Kleines element der UI
+View -> Baut einzelne - wiederverwendbare - UI Komponenten aus View Particles zusammen.
+Composite -> Baut Segmente aus den Views zusammen.
+Composite Layers -> Baut Bereiche aus den Segmenten
+Template Layer -> Baut eine Seite aus den Bereichen
+Page Layer -> Wie der Screen dann aussieht.

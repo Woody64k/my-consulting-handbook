@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="472.5pt" height="172.5pt" viewBox="0 0 472.5 172.5" version="1.1">
+<defs>
+<pattern id="imagePattern0_BCD1A0FAFC8CFEDAB25FEA646681A616" patternUnits="userSpaceOnUse" width="32" height="32" >
+    <image width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAN9SURBVFhH5VffSxRRFJ7ZrYSggjAMfOt1KYKoEBJlCRVJFEUkFR+0JCLwH+jBPyCICDGRfiAaFWUr5ktPUtAf0B/gcw8lFdKSOzvT952ZM3v37uyuqdVD3/J5zzn3zDnnnj17cZz/Hi7/BEHAVXhzrM+D7gQ+7PxQpo9vyNiEKDoFuIZ7oocyPGJZqbYzF7ONeOTb9PS0pwWkfN8/XywWT05NDObuzj8vwJwGZf93wEQmqLuuy5Ub3uhA1yEU0A/5PQr4nBIvJCoUCo1wvBUFYHLuxZ3ZCxGTK+MdiOIfp0yBG9KBGyO9Rcq1cO/Ri0iqjSiJwJKDkf5O92zL5etQ36ADn7QD4oYEGzMLy1uzizn/wdKKY7IUZvdgMVE9cnBCCkDrYQ6cdDp9NJVKHYYeO5Sw9xKiWYi0EFIAjJLQ87zvGMYfbBX1v4F4BiaHe+rOwP3HLyOpOsza7XPgcMHVvg733KWOSairnAGZRMCdmLo9ms/nxxfn7mRnnrziT1vnY1eo2kTLLEnW19ddVOc1NDS83ZdpM8BCyhjZFfEpM5mM39zc/LNq5TtE0vwyJg7o4KIT2YQU0N7eHuAXEDQ1NXWJdR+ghZjJudo9iIdwfKi77hDOLryOpNpgUmWcOJSDscEr7oW2rngI9SvAfsAEG/NPV7cePlvzQcck93cKJjRbXkarA/EMMD4uoSPmRaQPhScQt5qgrybVk5urxjMhBSAf7AEvok045+Ec8AESNqH9oI2wyPJho6y6yvbPIB7ZsYHOumecW8xFUvmQKZnATGySdh5sYrjfbcl2V1xEzqnTLSewtG58/LA8t7TCYtgW2UsCgxJJyXVNoh0xngHgK/guDJsMMxlptjaJZkEq299BXADa4YFfIlUesGEmJ1mA0rZXW+24ZgcE+r+fCTOxHZQDSlmpfib5vMa0j1VZgOVSK7lJe8/2oU7ah6sogPnVyQyQxGpJq60St14BeuKdBlXaukkzppU/oQMAHPFM6TZThgFKX4kpK00fex+w0icUgMfojNnyfBYCOYAsK3XKqnNVG1f8a1+mq29Ef3t724tmLC4kvgkVQz1ZFB5OrRA2rhSQk9dTuMp+GMkXQf3xkRtXdcjGWxV32jp6r0FY401YUQCMfG1qBfnywP0Knz1A6gE3QXkzSiqA1/Mx8KAY/gz46ifvhqH6z+A4vwALBoshiaHk2gAAAABJRU5ErkJggg=="/>
+</pattern>
+</defs>
+<g transform="matrix(1,0,0,1,11.25,11.25)">
+<g transform="matrix(1,0,0,1,142.5,52.5)">
+<g transform="matrix(0,-1,1,0,0,15)">
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:0.0627450980392157;stroke:none;" d="M0 0L20 0 20 20 0 20z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:1;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M19.25 10C19.25 15.11 15.11 19.25 10 19.25 4.89 19.25 0.75 15.11 0.75 10 0.75 4.89 4.89 0.75 10 0.75 15.11 0.75 19.25 4.89 19.25 10z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M12.25 6.5C12.25 9.68 9.68 12.25 6.5 12.25 3.32 12.25 0.75 9.68 0.75 6.5 0.75 3.32 3.32 0.75 6.5 0.75 9.68 0.75 12.25 3.32 12.25 6.5z " transform="matrix(0.75,0,0,0.75,2.62,2.62)" />
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:1;stroke:none;" d="M0 0L3.1 0 3.1 8 0 8z " transform="matrix(0.75,0,0,0.75,0,4.5)" />
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:0;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M0 10L4 10 " transform="matrix(0.75,0,0,0.75,0,0)" />
+</g >
+</g >
+<g transform="matrix(1,0,0,1,315,52.5)">
+<g transform="matrix(0,-1,1,0,0,15)">
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:0.0627450980392157;stroke:none;" d="M0 0L20 0 20 20 0 20z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:1;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M19.25 10C19.25 15.11 15.11 19.25 10 19.25 4.89 19.25 0.75 15.11 0.75 10 0.75 4.89 4.89 0.75 10 0.75 15.11 0.75 19.25 4.89 19.25 10z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M12.25 6.5C12.25 9.68 9.68 12.25 6.5 12.25 3.32 12.25 0.75 9.68 0.75 6.5 0.75 3.32 3.32 0.75 6.5 0.75 9.68 0.75 12.25 3.32 12.25 6.5z " transform="matrix(0.75,0,0,0.75,2.62,2.62)" />
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:1;stroke:none;" d="M0 0L3.1 0 3.1 8 0 8z " transform="matrix(0.75,0,0,0.75,0,4.5)" />
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M0 10L4 10 " transform="matrix(0.75,0,0,0.75,0,0)" />
+</g >
+</g >
+<g transform="matrix(1,0,0,1,75,52.5)">
+<g transform="matrix(0,-1,1,0,0,15)">
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:0.0627450980392157;stroke:none;" d="M0 0L20 0 20 20 0 20z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:1;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M19.25 10C19.25 15.11 15.11 19.25 10 19.25 4.89 19.25 0.75 15.11 0.75 10 0.75 4.89 4.89 0.75 10 0.75 15.11 0.75 19.25 4.89 19.25 10z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M12.25 6.5C12.25 9.68 9.68 12.25 6.5 12.25 3.32 12.25 0.75 9.68 0.75 6.5 0.75 3.32 3.32 0.75 6.5 0.75 9.68 0.75 12.25 3.32 12.25 6.5z " transform="matrix(0.75,0,0,0.75,2.62,2.62)" />
+<path style="fill-rule:evenodd;fill:rgb(255,255,255);fill-opacity:1;stroke:none;" d="M0 0L3.1 0 3.1 8 0 8z " transform="matrix(0.75,0,0,0.75,0,4.5)" />
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M0 10L4 10 " transform="matrix(0.75,0,0,0.75,0,0)" />
+</g >
+</g >
+<g transform="matrix(1,0,0,1,232.5,90)">
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M1 2C1 1.45 1.45 1 2 1L258 1C258.55 1 259 1.45 259 2L259 48C259 48.55 258.55 49 258 49L2 49C1.45 49 1 48.55 1 48z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,1.5,1.5)">
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L256 0 256 46 0 46z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L256 0 256 44 0 44z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,1.5,1.5)">
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L252 0 252 40 0 40z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,15.75,0)">
+<text font-family="Calibri" font-size="12" font-weight="bold"  fill="rgb(0,0,0)" x="0.31" y="11.42" >
+Customer Relatonship Man</text>
+<text font-family="Calibri" font-size="12" font-weight="bold"  fill="rgb(0,0,0)" x="135.52" y="11.42" >
+-</text>
+<text font-family="Calibri" font-size="12" font-weight="bold"  fill="rgb(0,0,0)" x="47.84" y="26.07" >
+agement</text>
+</g >
+<g transform="matrix(1,0,0,1,171,6)">
+<g transform="matrix(0.75,0,0,0.75,0,0)">
+<path style="stroke:none;fill-rule:evenodd;fill:url(#imagePattern0_BCD1A0FAFC8CFEDAB25FEA646681A616);" d="M0 0L32 0 32 32 0 32z " transform="matrix(0.75,0,0,0.75,0,0)" />
+</g >
+</g >
+</g >
+</g >
+</g >
+<g transform="matrix(1,0,0,1,15,90)">
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M1 2C1 1.45 1.45 1 2 1L238 1C238.55 1 239 1.45 239 2L239 48C239 48.55 238.55 49 238 49L2 49C1.45 49 1 48.55 1 48z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,1.5,1.5)">
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L236 0 236 46 0 46z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L236 0 236 32 0 32z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,1.5,3)">
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L232 0 232 24 0 24z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,28.12,1.5)">
+<text font-family="Calibri" font-size="12" font-weight="bold"  fill="rgb(0,0,0)" x="0.25" y="11.42" >
+Personalverwaltung</text>
+</g >
+<g transform="matrix(1,0,0,1,156,0)">
+<g transform="matrix(0.75,0,0,0.75,0,0)">
+<path style="stroke:none;fill-rule:evenodd;fill:url(#imagePattern0_BCD1A0FAFC8CFEDAB25FEA646681A616);" d="M0 0L32 0 32 32 0 32z " transform="matrix(0.75,0,0,0.75,0,0)" />
+</g >
+</g >
+</g >
+</g >
+</g >
+<g transform="matrix(1,0,0,1,15,0)">
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(156,98,0);stroke-opacity:1;stroke-miterlimit:10;" d="M1 2C1 1.45 1.45 1 2 1L548 1C548.55 1 549 1.45 549 2L549 38C549 38.55 548.55 39 548 39L2 39C1.45 39 1 38.55 1 38z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,1.5,1.5)">
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L546 0 546 36 0 36z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L546 0 546 32 0 32z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,1.5,3)">
+<path style="fill-rule:evenodd;fill:rgb(253,212,143);fill-opacity:1;stroke:none;" d="M0 0L542 0 542 24 0 24z " transform="matrix(0.75,0,0,0.75,0,0)" />
+<g transform="matrix(1,0,0,1,160.88,1.5)">
+<text font-family="Calibri" font-size="12" font-weight="bold"  fill="rgb(0,0,0)" x="0.11" y="11.42" >
+Zeiterfassung</text>
+</g >
+<g transform="matrix(1,0,0,1,388.5,0)">
+<g transform="matrix(0.75,0,0,0.75,0,0)">
+<path style="stroke:none;fill-rule:evenodd;fill:url(#imagePattern0_BCD1A0FAFC8CFEDAB25FEA646681A616);" d="M0 0L32 0 32 32 0 32z " transform="matrix(0.75,0,0,0.75,0,0)" />
+</g >
+</g >
+</g >
+</g >
+</g >
+<g transform="matrix(1,0,0,1,3.38,54.75)">
+<text font-family="Calibri" font-size="8"   fill="rgb(0,0,0)" x="0.34" y="7.62" >
+Abwesenheit Service</text>
+</g >
+<g transform="matrix(1,0,0,1,330,54.75)">
+<text font-family="Calibri" font-size="8"   fill="rgb(0,0,0)" x="0.13" y="7.62" >
+Auftrags Service</text>
+</g >
+<g transform="matrix(1,0,0,1,159.75,54.75)">
+<text font-family="Calibri" font-size="8"   fill="rgb(0,0,0)" x="0.3" y="7.62" >
+Mitarbeiter Service</text>
+</g >
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(51,63,66);stroke-opacity:1;stroke-miterlimit:10;" d="M110 40L110 70 " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(51,63,66);stroke-opacity:1;stroke-miterlimit:10;" d="M200 120L200 90 " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(51,63,66);stroke-opacity:1;stroke-miterlimit:10;" d="M430 120L430 90 " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(51,63,66);stroke-opacity:1;stroke-miterlimit:10;" d="M430 40L430 70 " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(51,63,66);stroke-opacity:1;stroke-miterlimit:10;" d="M110 120L110 90 " transform="matrix(0.75,0,0,0.75,0,0)" />
+<path style="fill:none;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(51,63,66);stroke-opacity:1;stroke-miterlimit:10;" d="M200 40L200 70 " transform="matrix(0.75,0,0,0.75,0,0)" />
+</g >
+</svg>
